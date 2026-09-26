@@ -117,6 +117,19 @@ body {
   background: rgba(14,22,32,0.7); color: var(--steel-bright);
 }
 .btn.ghost:hover { border-color: rgba(46,230,255,0.65); background: rgba(20,32,48,0.9); }
+.voice-toggle {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.28rem 0.6rem;
+}
+.voice-toggle[aria-pressed="false"] { color: var(--steel-dim); }
+.voice-toggle[aria-pressed="true"] {
+  color: #041a14;
+  background: rgba(93, 255, 200, 0.9);
+  border-color: transparent;
+}
 
 .badge {
   display: inline-block; padding: 0.22rem 0.55rem; border-radius: 999px;
@@ -581,8 +594,30 @@ main {
   .sub-dial { width: 100%; flex-basis: 100%; }
   .master-dial .clock-face-svg { max-width: 220px; }
 }
+.doom-clock.is-speaking {
+  box-shadow:
+    0 0 0 1px rgba(224, 176, 96, 0.75),
+    0 0 18px rgba(224, 176, 96, 0.22);
+}
+.voice-caption {
+  position: fixed;
+  z-index: 40;
+  max-width: min(340px, calc(100vw - 1.25rem));
+  margin: 0;
+  padding: 0.45rem 0.65rem;
+  border-radius: 8px;
+  border: 1px solid rgba(224, 176, 96, 0.5);
+  background: rgba(8, 12, 18, 0.94);
+  color: #f3e6c8;
+  font-size: 0.8rem;
+  line-height: 1.35;
+  pointer-events: none;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+}
+.voice-caption[hidden] { display: none; }
 @media (prefers-reduced-motion: reduce) {
   .doom-clock, .doom-clock:hover, .doom-clock:focus-visible { transition: none; transform: none; }
+  .doom-clock.is-speaking { box-shadow: 0 0 0 1px rgba(224, 176, 96, 0.75); }
 }
 
 /* Panels */
