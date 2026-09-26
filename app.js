@@ -388,6 +388,239 @@ label: ${escapeHtml(b.label || "board temperature (blend, not prophecy)")}</pre>
     if (drawer && typeof drawer.showModal === "function") drawer.showModal();
   }
 
+  function voiceBand(pct) {
+    const n = Number(pct);
+    if (n >= 60) return "high";
+    if (n >= 30) return "mid";
+    return "low";
+  }
+
+  function voiceLine(kind, pct, name, tier) {
+    const n = Math.round(Number(pct));
+    if (!Number.isFinite(n)) return "";
+    const band = voiceBand(n);
+    const who = String(name || "This dial").replace(/\s+/g, " ").trim();
+    const vibe = String(tier || "").replace(/\s+/g, " ").trim();
+    const t = vibe ? `${vibe}. ` : "";
+    const banks = {
+      blend: {
+        low: `Blend ${n}. ${t}A cool recipe. Not a prophecy.`,
+        mid: `Blend ${n}. ${t}Warm enough to notice. Still two clocks in a coat.`,
+        high: `Blend ${n}. ${t}The lobby stopped being casual. Still not Skynet.`,
+      },
+      stress: {
+        low: `Stress ${n}. ${t}Ants, not a fire. The blanket survives.`,
+        mid: `Stress ${n}. ${t}Someone noticed. Nobody is running.`,
+        high: `Stress ${n}. ${t}Past picnic. The drawer has names.`,
+      },
+      pace: {
+        low: `Pace ${n}. ${t}The future is strolling.`,
+        mid: `Pace ${n}. ${t}Concern, with comfortable shoes.`,
+        high: `Pace ${n}. ${t}The future is late, and slightly sweaty.`,
+      },
+      dial: {
+        low: `${who}, ${n}. ${t}Mostly posture.`,
+        mid: `${who}, ${n}. ${t}A reading, not a siren.`,
+        high: `${who}, ${n}. ${t}This little dial is having a day.`,
+      },
+    };
+    const bank = banks[kind] || banks.dial;
+    return bank[band];
+  }
+
+  function attachVoice(el, kind, pct, name, tier) {
+    if (!el) return;
+    if (pct == null || !Number.isFinite(Number(pct))) {
+      delete el.dataset.voice;
+      return;
+    }
+    el.dataset.voice = voiceLine(kind, pct, name, tier);
+    el.removeAttribute("title");
+  }
+
+  const VOICE_KEY = "doom-clock-voice";
+  const SPEAK_DELAY_MS = 260;
+  let voiceOn = false;
+  let voiceTimer = null;
+  let voiceTarget = null;
+  let voiceCaption = null;
+
+  function readVoicePref() {
+    try {
+      return localStorage.getItem(VOICE_KEY) === "on";
+    } catch {
+      return false;
+    }
+  }
+
+  function writeVoicePref(on) {
+    try {
+      localStorage.setItem(VOICE_KEY, on ? "on" : "off");
+    } catch {
+      /* private mode can refuse; the button still works this visit */
+    }
+  }
+
+  function paintVoiceToggle() {
+    const btn = $("#voice-toggle");
+    if (!btn) return;
+    btn.setAttribute("aria-pressed", voiceOn ? "true" : "false");
+    btn.textContent = voiceOn ? "Voice on" : "Voice off";
+    btn.title = voiceOn
+      ? "Voice is on. Hover or focus a dial and it will say its line. Click to mute."
+      : "Voice is off. Hover still shows the line. Click to let the lobby speak.";
+  }
+
+  function cancelUtterance() {
+    if (voiceTimer) {
+      clearTimeout(voiceTimer);
+      voiceTimer = null;
+    }
+    document.querySelectorAll(".doom-clock.is-speaking").forEach((el) => el.classList.remove("is-speaking"));
+    try {
+      if (window.speechSynthesis) window.speechSynthesis.cancel();
+    } catch {
+      /* some engines throw if the queue is already empty */
+    }
+  }
+
+  function hideVoiceCaption() {
+    if (!voiceCaption) voiceCaption = $("#voice-caption");
+    if (!voiceCaption) return;
+    voiceCaption.hidden = true;
+    voiceCaption.textContent = "";
+    if (voiceTarget) voiceTarget.removeAttribute("aria-describedby");
+  }
+
+  function placeVoiceCaption(el, text) {
+    if (!voiceCaption) voiceCaption = $("#voice-caption");
+    if (!voiceCaption || !el) return;
+    voiceCaption.textContent = text;
+    voiceCaption.hidden = false;
+    el.setAttribute("aria-describedby", "voice-caption");
+    const rect = el.getBoundingClientRect();
+    const maxWidth = Math.min(340, window.innerWidth - 20);
+    voiceCaption.style.maxWidth = `${maxWidth}px`;
+    voiceCaption.style.width = "max-content";
+    const capW = Math.min(maxWidth, voiceCaption.offsetWidth || maxWidth);
+    let left = rect.left + rect.width / 2 - capW / 2;
+    left = Math.max(10, Math.min(left, window.innerWidth - capW - 10));
+    voiceCaption.style.left = `${left}px`;
+    const capH = voiceCaption.offsetHeight || 48;
+    let top = rect.bottom + 8;
+    if (top + capH > window.innerHeight - 8) top = Math.max(8, rect.top - capH - 8);
+    voiceCaption.style.top = `${top}px`;
+  }
+
+  function speakVoice(text, el) {
+    if (!voiceOn || !text || !el) return;
+    const synth = window.speechSynthesis;
+    if (!synth || typeof window.SpeechSynthesisUtterance !== "function") return;
+    try {
+      synth.cancel();
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.lang = "en-US";
+      utter.rate = 1;
+      utter.pitch = 0.96;
+      const voices = synth.getVoices ? synth.getVoices() : [];
+      const pick =
+        voices.find((v) => /en-US/i.test(v.lang) && /natural|samantha|daniel|google/i.test(v.name)) ||
+        voices.find((v) => /^en/i.test(v.lang));
+      if (pick) utter.voice = pick;
+      const done = () => el.classList.remove("is-speaking");
+      utter.onend = done;
+      utter.onerror = done;
+      el.classList.add("is-speaking");
+      if (typeof synth.resume === "function") synth.resume();
+      synth.speak(utter);
+    } catch {
+      el.classList.remove("is-speaking");
+    }
+  }
+
+  function showDialVoice(el) {
+    const text = el && el.dataset ? el.dataset.voice : "";
+    if (!el || !text) return;
+    if (voiceTarget && voiceTarget !== el) {
+      voiceTarget.classList.remove("is-speaking");
+      voiceTarget.removeAttribute("aria-describedby");
+    }
+    voiceTarget = el;
+    cancelUtterance();
+    placeVoiceCaption(el, text);
+    voiceTimer = setTimeout(() => {
+      voiceTimer = null;
+      if (voiceTarget !== el) return;
+      speakVoice(text, el);
+    }, SPEAK_DELAY_MS);
+  }
+
+  function leaveDialVoice(el) {
+    if (!el || voiceTarget !== el) return;
+    el.removeAttribute("aria-describedby");
+    voiceTarget = null;
+    cancelUtterance();
+    hideVoiceCaption();
+  }
+
+  function dialFromEvent(e) {
+    const node = e.target && e.target.closest ? e.target.closest("[data-voice]") : null;
+    return node && node.dataset.voice ? node : null;
+  }
+
+  function bindVoice() {
+    if (document.body.dataset.voiceBound) return;
+    document.body.dataset.voiceBound = "1";
+    voiceOn = readVoicePref();
+    paintVoiceToggle();
+    const toggle = $("#voice-toggle");
+    if (toggle) {
+      toggle.addEventListener("click", () => {
+        voiceOn = !voiceOn;
+        writeVoicePref(voiceOn);
+        paintVoiceToggle();
+        if (!voiceOn) cancelUtterance();
+        else if (voiceTarget && voiceTarget.dataset.voice) speakVoice(voiceTarget.dataset.voice, voiceTarget);
+      });
+    }
+    if (window.speechSynthesis && typeof window.speechSynthesis.getVoices === "function") {
+      window.speechSynthesis.getVoices();
+    }
+    document.addEventListener("pointerover", (e) => {
+      const el = dialFromEvent(e);
+      if (!el || el === voiceTarget) return;
+      showDialVoice(el);
+    });
+    document.addEventListener("pointerout", (e) => {
+      const el = dialFromEvent(e);
+      if (!el) return;
+      const next = e.relatedTarget && e.relatedTarget.closest ? e.relatedTarget.closest("[data-voice]") : null;
+      if (next === el) return;
+      leaveDialVoice(el);
+    });
+    document.addEventListener("focusin", (e) => {
+      const el = dialFromEvent(e);
+      if (el) showDialVoice(el);
+    });
+    document.addEventListener("focusout", (e) => {
+      const el = dialFromEvent(e);
+      if (!el) return;
+      const next = e.relatedTarget && e.relatedTarget.closest ? e.relatedTarget.closest("[data-voice]") : null;
+      if (next === el) return;
+      leaveDialVoice(el);
+    });
+    window.addEventListener("scroll", () => {
+      if (voiceTarget && voiceCaption && !voiceCaption.hidden) placeVoiceCaption(voiceTarget, voiceTarget.dataset.voice || "");
+    }, true);
+  }
+
+  function hushVoiceForDrawer() {
+    if (voiceTarget) voiceTarget.removeAttribute("aria-describedby");
+    voiceTarget = null;
+    cancelUtterance();
+    hideVoiceCaption();
+  }
+
   function bindProvenanceClicks() {
     if (document.body.dataset.provBound) return;
     document.body.dataset.provBound = "1";
@@ -395,6 +628,7 @@ label: ${escapeHtml(b.label || "board temperature (blend, not prophecy)")}</pre>
       const clock = e.target.closest("[data-provenance]");
       if (!clock) return;
       if (e.target.closest("a")) return;
+      hushVoiceForDrawer();
       const kind = clock.dataset.provenance;
       if (kind === "dial") {
         openProvenanceDrawer("dial", { domainId: clock.dataset.domain, subId: clock.dataset.sub });
@@ -464,9 +698,13 @@ label: ${escapeHtml(b.label || "board temperature (blend, not prophecy)")}</pre>
         "aria-label",
         `Master blend clock ${face == null ? "unavailable" : Math.round(face) + " percent"}. ${label}. Open provenance.`
       );
-      if (face != null) {
-        btn.title = `Blend ${Math.round(face)}%. Click for the recipe. Still not a prophecy.`;
-      }
+      attachVoice(
+        btn,
+        typeof blend.pct === "number" ? "blend" : "dial",
+        face,
+        typeof blend.pct === "number" ? "Blend" : "Rollup",
+        tierName(blend.tier) || tierName(overall.tier)
+      );
     }
     const lab = $("#master-label");
     if (lab) lab.textContent = blend.label || "Blend, not prophecy";
@@ -539,11 +777,11 @@ label: ${escapeHtml(b.label || "board temperature (blend, not prophecy)")}</pre>
     if (paceChip) paceChip.textContent = severityLabel(pp ?? 0);
     if (sb) {
       sb.setAttribute("aria-label", `Stress clock ${sp == null ? "unavailable" : Math.round(sp) + " percent"}. Open provenance.`);
-      if (sp != null) sb.title = `Stress ${Math.round(sp)}%. Fear thermometer. Click for who flinched.`;
+      attachVoice(sb, "stress", sp, "Stress", tierName(stress.tier));
     }
     if (pb) {
       pb.setAttribute("aria-label", `Pace clock ${pp == null ? "unavailable" : Math.round(pp) + " percent"}. Open provenance.`);
-      if (pp != null) pb.title = `Pace ${Math.round(pp)}%. How fast the future is jogging. Click for the spine.`;
+      attachVoice(pb, "pace", pp, "Pace", tierName(pace.tier));
     }
   }
 
@@ -586,7 +824,7 @@ label: ${escapeHtml(b.label || "board temperature (blend, not prophecy)")}</pre>
               s.staleness && s.staleness.badge
                 ? `<div class="clock-conf">${escapeHtml(s.staleness.badge)}</div>`
                 : "";
-            return `<button type="button" class="doom-clock sub-dial ${sev}" data-provenance="dial" data-domain="${escapeAttr(id)}" data-sub="${escapeAttr(s.id || "")}" title="${escapeAttr(label)} · ${s.pct ?? "—"}%. Receipts inside." aria-label="${escapeAttr(label)} ${s.pct ?? "—"} percent. Open provenance.">
+            return `<button type="button" class="doom-clock sub-dial ${sev}" data-provenance="dial" data-domain="${escapeAttr(id)}" data-sub="${escapeAttr(s.id || "")}" aria-label="${escapeAttr(label)} ${s.pct ?? "—"} percent. Open provenance.">
               <span class="clock-face">${clockSvg(s.pct, { size: 112 })}</span>
               <span class="clock-label">${escapeHtml(label)}</span>
               <span class="clock-pct-big">${s.pct ?? "—"}%</span>
@@ -621,6 +859,18 @@ label: ${escapeHtml(b.label || "board temperature (blend, not prophecy)")}</pre>
         </article>`;
       })
       .join("");
+    root.querySelectorAll(".sub-dial").forEach((btn) => {
+      const d = domains[btn.dataset.domain];
+      const subs = d && d.subs;
+      let s = null;
+      if (subs && !Array.isArray(subs)) s = subs[btn.dataset.sub];
+      if (!s && subs) {
+        const list = Array.isArray(subs) ? subs : Object.values(subs);
+        s = list.find((row) => row && row.id === btn.dataset.sub);
+      }
+      if (!s) return;
+      attachVoice(btn, "dial", s.pct, s.clockLabel || s.name || s.id, tierName(s.tier));
+    });
   }
 
   function setGateNote(pred) {
@@ -745,6 +995,7 @@ label: ${escapeHtml(b.label || "board temperature (blend, not prophecy)")}</pre>
     renderClockWall(data);
     renderPredictions(data.predictions);
     renderSourceHealth(data.sourceHealthSummary);
+    bindVoice();
     bindProvenanceClicks();
   }
 
