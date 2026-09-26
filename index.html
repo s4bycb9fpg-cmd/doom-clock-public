@@ -30,7 +30,7 @@
       </div>
     </div>
     <div class="top-meta">
-      <button type="button" id="voice-toggle" class="btn ghost voice-toggle" aria-pressed="false" title="Voice is off. Hover still shows the line. Click to let the lobby speak.">Voice off</button>
+      <button type="button" id="voice-toggle" class="btn ghost voice-toggle" aria-pressed="true" title="Voice is on. Click a dial and it will say its line. Click here to mute.">Voice on</button>
       <span id="mode-badge" class="badge">mirror</span>
       <span id="published-badge" class="badge stale-badge" title="When this snapshot left the private lobby">published · —</span>
     </div>
@@ -38,8 +38,8 @@
 
   <main>
     <p class="mirror-banner" id="mirror-banner">
-      Read-only lobby. Nothing here is scanning. Hover a clock for a one-breath aside.
-      Voice stays off until you turn it on up top. Click still opens the receipts.
+      Read-only lobby. Nothing here is scanning. Click a clock: it says its line, then shows the receipts.
+      Voice is on until you mute it up top. The page itself stays quiet.
     </p>
 
     <section class="pyramid" id="pyramid" aria-label="Pyramid clock wall">
@@ -135,8 +135,6 @@
     <p class="muted tiny">No scanning on this floor. Click a clock and it will show its work.</p>
     <p class="footer-cute" aria-hidden="true">TOKYO · MOSCOW · DUBAI · NYC · still a lobby, not a trading floor</p>
   </footer>
-
-  <div id="voice-caption" class="voice-caption" role="tooltip" hidden></div>
 
   <dialog id="trust-drawer" class="modal trust-drawer">
     <form method="dialog" class="modal-inner">
