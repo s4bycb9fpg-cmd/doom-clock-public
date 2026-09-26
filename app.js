@@ -82,6 +82,16 @@
     return "sev-chill";
   }
 
+  function severityLabel(pct) {
+    const p = Number(pct) || 0;
+    if (p >= 85) return "marble's worried";
+    if (p >= 65) return "lobby sweat";
+    if (p >= 45) return "ticket weather";
+    if (p >= 30) return "warm brass";
+    if (p >= 16) return "cool steel";
+    return "nap tier";
+  }
+
   function severityColor(pct) {
     const p = Number(pct) || 0;
     if (p >= 85) return "#ff2d55";
@@ -169,7 +179,7 @@
 
   function provenanceDriversHtml(drivers, limit = 8) {
     if (!drivers || !drivers.length) {
-      return `<p class="muted tiny">No drivers listed for this clock.</p>`;
+      return `<p class="muted tiny">No receipts on this dial. It is running on posture.</p>`;
     }
     return `<ul class="prov-driver-list">${drivers
       .slice(0, limit)
@@ -293,7 +303,7 @@
         <h3>Apex spine</h3>
         ${spine}
         <h3>Apex sources</h3>
-        <ul class="prov-driver-list">${srcList || "<li class='muted tiny'>No apex sources on file.</li>"}</ul>
+        <ul class="prov-driver-list">${srcList || "<li class='muted tiny'>No apex sources packed. The spine is still a guess with a date on it.</li>"}</ul>
         <h3>Top drivers</h3>
         ${provenanceDriversHtml(p.drivers)}
         <p class="muted tiny">Computed ${escapeHtml(fmtTime(p.computedAt))} · primaryBoost ${p.primaryBoost ?? 0} · freshBoost ${p.freshBoost ?? 0} · freshReleaseBoost ${p.freshReleaseBoost ?? 0}</p>
@@ -323,7 +333,7 @@ label: ${escapeHtml(b.label || "board temperature (blend, not prophecy)")}</pre>
           ${o.confidence != null ? `<span>rollup confidence ${escapeHtml(String(o.confidence))}%</span>` : ""}
         </div>
         ${o.line ? `<p class="muted tiny">Legacy domain rollup: ${escapeHtml(o.line)}</p>` : ""}
-        <p class="muted tiny">The master face is the blend. Shelf dials below are the domain rollup, kept as a separate engraved number so the two formulas are not mixed.</p>
+        <p class="muted tiny">The face is the blend. The engraved rollup is the shelves’ own argument. Please don’t stir them together.</p>
       `;
     } else if (kind === "dial" && dialOpts) {
       const { domainId, subId } = dialOpts;
@@ -429,7 +439,7 @@ label: ${escapeHtml(b.label || "board temperature (blend, not prophecy)")}</pre>
       const bits = [notes.recursiveAi, notes.agiHere].filter(Boolean);
       why.textContent = bits.length
         ? bits.join(" ")
-        : "Apex spine from Anthropic / METR / Epoch public indexes. Cross-lab guess, not a scrape.";
+        : "Apex spine from the public indexes. A cross-lab guess, not a scrape.";
     }
     const meta = $("#apex-meta");
     if (meta) {
@@ -454,9 +464,14 @@ label: ${escapeHtml(b.label || "board temperature (blend, not prophecy)")}</pre>
         "aria-label",
         `Master blend clock ${face == null ? "unavailable" : Math.round(face) + " percent"}. ${label}. Open provenance.`
       );
+      if (face != null) {
+        btn.title = `Blend ${Math.round(face)}%. Click for the recipe. Still not a prophecy.`;
+      }
     }
     const lab = $("#master-label");
     if (lab) lab.textContent = blend.label || "Blend, not prophecy";
+    const chip = $("#master-chip");
+    if (chip) chip.textContent = severityLabel(face ?? 0);
     const tier = $("#master-tier");
     if (tier) tier.textContent = tierName(blend.tier) || tierName(overall.tier) || "—";
     const formula = $("#master-formula");
@@ -518,8 +533,18 @@ label: ${escapeHtml(b.label || "board temperature (blend, not prophecy)")}</pre>
 
     const sb = $("#stress-btn");
     const pb = $("#pace-btn");
-    if (sb) sb.setAttribute("aria-label", `Stress clock ${sp == null ? "unavailable" : Math.round(sp) + " percent"}. Open provenance.`);
-    if (pb) pb.setAttribute("aria-label", `Pace clock ${pp == null ? "unavailable" : Math.round(pp) + " percent"}. Open provenance.`);
+    const stressChip = $("#stress-chip");
+    const paceChip = $("#pace-chip");
+    if (stressChip) stressChip.textContent = severityLabel(sp ?? 0);
+    if (paceChip) paceChip.textContent = severityLabel(pp ?? 0);
+    if (sb) {
+      sb.setAttribute("aria-label", `Stress clock ${sp == null ? "unavailable" : Math.round(sp) + " percent"}. Open provenance.`);
+      if (sp != null) sb.title = `Stress ${Math.round(sp)}%. Fear thermometer. Click for who flinched.`;
+    }
+    if (pb) {
+      pb.setAttribute("aria-label", `Pace clock ${pp == null ? "unavailable" : Math.round(pp) + " percent"}. Open provenance.`);
+      if (pp != null) pb.title = `Pace ${Math.round(pp)}%. How fast the future is jogging. Click for the spine.`;
+    }
   }
 
   function domainIds(domains) {
@@ -543,7 +568,7 @@ label: ${escapeHtml(b.label || "board temperature (blend, not prophecy)")}</pre>
     const domains = data.domains || {};
     const ids = domainIds(domains);
     if (!ids.length) {
-      root.innerHTML = `<p class="muted">No domain shelves on this snapshot. Master, Stress, and Pace above still read the board.</p>`;
+      root.innerHTML = `<p class="muted">The shelves came back empty. The big clocks upstairs still have opinions.</p>`;
       return;
     }
     root.innerHTML = ids
@@ -561,10 +586,11 @@ label: ${escapeHtml(b.label || "board temperature (blend, not prophecy)")}</pre>
               s.staleness && s.staleness.badge
                 ? `<div class="clock-conf">${escapeHtml(s.staleness.badge)}</div>`
                 : "";
-            return `<button type="button" class="doom-clock sub-dial ${sev}" data-provenance="dial" data-domain="${escapeAttr(id)}" data-sub="${escapeAttr(s.id || "")}" title="${escapeAttr(label)} — open provenance" aria-label="${escapeAttr(label)} ${s.pct ?? "—"} percent. Open provenance.">
+            return `<button type="button" class="doom-clock sub-dial ${sev}" data-provenance="dial" data-domain="${escapeAttr(id)}" data-sub="${escapeAttr(s.id || "")}" title="${escapeAttr(label)} · ${s.pct ?? "—"}%. Receipts inside." aria-label="${escapeAttr(label)} ${s.pct ?? "—"} percent. Open provenance.">
               <span class="clock-face">${clockSvg(s.pct, { size: 112 })}</span>
               <span class="clock-label">${escapeHtml(label)}</span>
               <span class="clock-pct-big">${s.pct ?? "—"}%</span>
+              <span class="sev-chip">${escapeHtml(severityLabel(s.pct))}</span>
               ${tier ? `<span class="clock-tier">${escapeHtml(tier)}</span>` : ""}
               ${conf ? `<span class="clock-conf">${escapeHtml(conf)}</span>` : ""}
               ${stale}
@@ -590,7 +616,7 @@ label: ${escapeHtml(b.label || "board temperature (blend, not prophecy)")}</pre>
           </div>
           <div class="shelf-body">
             ${d.blurb ? `<p class="shelf-blurb">${escapeHtml(d.blurb)}</p>` : ""}
-            <div class="clock-grid">${clocks || `<p class="muted">No sub-dials on this shelf.</p>`}</div>
+            <div class="clock-grid">${clocks || `<p class="muted">This shelf is politely blank.</p>`}</div>
           </div>
         </article>`;
       })
@@ -602,8 +628,8 @@ label: ${escapeHtml(b.label || "board temperature (blend, not prophecy)")}</pre>
     const verdict = (pred && pred.verdict) || "no edge";
     const text =
       gate === "open"
-        ? `Prediction edges · gate open · ${verdict}`
-        : `Prediction edges · gate closed · ${verdict}`;
+        ? `Prediction edges · gate open · ${verdict} · still not prophecy`
+        : `Prediction edges · gate closed · ${verdict} · the lobby declines to invent one`;
     const note = $("#pyramid-gate");
     if (note) {
       note.textContent = text;
@@ -617,8 +643,8 @@ label: ${escapeHtml(b.label || "board temperature (blend, not prophecy)")}</pre>
     const feed = $("#pred-feed");
     const { gate, verdict } = setGateNote(pred);
     if (!pred) {
-      if (gateEl) gateEl.textContent = "Calibration gate · unavailable";
-      if (feed) feed.innerHTML = `<p class="muted">No prediction block on this snapshot.</p>`;
+      if (gateEl) gateEl.textContent = "Calibration gate · not on this snapshot";
+      if (feed) feed.innerHTML = `<p class="muted">No prediction book in the bag. The gate can stay shut without one.</p>`;
       return;
     }
     if (gateEl) {
@@ -628,13 +654,13 @@ label: ${escapeHtml(b.label || "board temperature (blend, not prophecy)")}</pre>
     const markets = pred.markets || [];
     if (!feed) return;
     if (!markets.length) {
-      feed.innerHTML = `<p class="muted">No markets on file. Gate ${escapeHtml(gate)} · ${escapeHtml(verdict)}.</p>`;
+      feed.innerHTML = `<p class="muted">The book is empty. Gate ${escapeHtml(gate)} · ${escapeHtml(verdict)}. Nobody gets to invent an edge.</p>`;
       return;
     }
     const edges = markets.filter((m) => m.edge);
     const shown = (edges.length ? edges : markets).slice(0, 8);
     feed.innerHTML =
-      `<p class="muted tiny">${edges.length ? `${edges.length} edge(s)` : "No edges — gate closed / no calibrated edge"} · showing ${shown.length} of ${markets.length}</p>` +
+      `<p class="muted tiny">${edges.length ? `${edges.length} edge(s) · the gate actually opened` : "No edges. The gate is being boring on purpose."} · showing ${shown.length} of ${markets.length}</p>` +
       shown
         .map((m) => {
           const q = escapeHtml(m.question || m.id || "market");
@@ -659,7 +685,7 @@ label: ${escapeHtml(b.label || "board temperature (blend, not prophecy)")}</pre>
     const el = $("#source-health");
     if (!el) return;
     if (summary == null) {
-      el.innerHTML = `<p class="muted">No <code>sourceHealthSummary</code> on this snapshot. Private scan health was not exported — each clock’s drawer still lists its own sources.</p>`;
+      el.innerHTML = `<p class="muted">The health chart didn’t make the trip. Each clock still brought its own sources in the drawer.</p>`;
       return;
     }
     if (typeof summary === "string") {

@@ -26,37 +26,39 @@
       <span class="brand-badge" aria-hidden="true">◈</span>
       <div>
         <h1 class="wordmark">DOOM INDEX</h1>
-        <p class="tagline">Pyramid clock wall · read-only snapshot · no live scan</p>
+        <p class="tagline">Pyramid clock wall · read-only lobby · the percents are serious</p>
       </div>
     </div>
     <div class="top-meta">
       <span id="mode-badge" class="badge">mirror</span>
-      <span id="published-badge" class="badge stale-badge" title="Snapshot publishedAt">published · —</span>
+      <span id="published-badge" class="badge stale-badge" title="When this snapshot left the private lobby">published · —</span>
     </div>
   </header>
 
   <main>
     <p class="mirror-banner" id="mirror-banner">
-      Static public mirror. No live scan. Numbers are Josh’s last private board snapshot.
-      Click the master, Stress, Pace, or any shelf dial for sources.
+      Read-only lobby. Nothing here is scanning. These are Josh’s last numbers, served cold.
+      Tap a clock if you want the receipts.
     </p>
 
     <section class="pyramid" id="pyramid" aria-label="Pyramid clock wall">
       <div class="pyramid-step step-master">
         <p class="step-kicker">Master · blend, not prophecy</p>
-        <button type="button" class="doom-clock master-dial" id="master-clock" data-provenance="blend" title="Open blend provenance">
+        <button type="button" class="doom-clock master-dial" id="master-clock" data-provenance="blend" title="Board temperature. Click for the recipe. Still not a prophecy.">
           <span class="clock-kicker">Master · board temperature <span class="prov-hint">trust</span></span>
           <span class="clock-face" id="master-face" role="img" aria-label="Blend doom clock"></span>
           <span class="clock-label" id="master-label">Blend, not prophecy</span>
-          <span class="clock-tier" id="master-tier">loading…</span>
+          <span class="clock-tier" id="master-tier">winding…</span>
+          <span class="sev-chip" id="master-chip">severity · —</span>
           <span class="clock-formula" id="master-formula">0.55×Stress + 0.45×Pace</span>
           <span class="clock-legacy" id="master-legacy">Legacy domain rollup —</span>
+          <span class="clock-stamp">still not Skynet</span>
         </button>
       </div>
 
       <div class="pyramid-step step-apex">
         <section class="apex-cap" id="apex" aria-label="Apex spine Recursive AI and AGI">
-          <p class="apex-kicker">APEX SPINE · best guess, not a scraped dial <span id="apex-stale-badge" class="stale-pill hidden">stale</span></p>
+          <p class="apex-kicker">APEX SPINE · a best guess, not a scraped dial <span id="apex-stale-badge" class="stale-pill hidden">stale</span></p>
           <div class="apex-row">
             <article class="apex-stone">
               <p class="apex-label">Recursive AI now</p>
@@ -75,31 +77,35 @@
       </div>
 
       <div class="pyramid-step step-pair">
-        <p class="step-kicker">Stress · Pace</p>
+        <p class="step-kicker">Stress · Pace · the two ingredients</p>
         <div class="pair-row">
-          <button type="button" class="doom-clock mid-dial stress-dial" id="stress-btn" data-provenance="stress" title="Open Stress provenance">
+          <button type="button" class="doom-clock mid-dial stress-dial" id="stress-btn" data-provenance="stress" title="Stress. The fear thermometer. Click for who flinched.">
             <span class="clock-kicker">Stress <span class="prov-hint">trust</span></span>
             <span class="clock-face" id="stress-clock" role="img" aria-label="Stress clock"></span>
             <span class="clock-pct-big" id="stress-pct">—</span>
-            <span class="clock-tier" id="stress-tier">loading…</span>
+            <span class="clock-tier" id="stress-tier">winding…</span>
+            <span class="sev-chip" id="stress-chip">severity · —</span>
             <span class="clock-line" id="stress-line">Incident heat. Confirmation-gated.</span>
+            <span class="clock-aside">Citations live in the drawer.</span>
           </button>
-          <button type="button" class="doom-clock mid-dial pace-dial" id="pace-btn" data-provenance="pace" title="Open Pace provenance">
+          <button type="button" class="doom-clock mid-dial pace-dial" id="pace-btn" data-provenance="pace" title="Pace. How fast the future is jogging. Click for the spine.">
             <span class="clock-kicker">Pace <span class="prov-hint">trust</span></span>
             <span class="clock-face" id="pace-clock" role="img" aria-label="Pace clock"></span>
             <span class="clock-pct-big" id="pace-pct">—</span>
-            <span class="clock-tier" id="pace-tier">loading…</span>
+            <span class="clock-tier" id="pace-tier">winding…</span>
+            <span class="sev-chip" id="pace-chip">severity · —</span>
             <span class="clock-line" id="pace-line">Apex spine plus dial haircuts.</span>
             <span class="clock-line muted" id="pace-apex-mini">Recursive AI —% · AGI —%</span>
+            <span class="clock-aside">Jogging. Not arrived.</span>
           </button>
         </div>
-        <p class="pyramid-gate" id="pyramid-gate">Prediction edges · gate closed</p>
+        <p class="pyramid-gate" id="pyramid-gate">Prediction edges · gate closed · the lobby declines to invent one</p>
       </div>
 
       <div class="pyramid-step step-base">
-        <p class="step-kicker">Domain shelves</p>
+        <p class="step-kicker">Domain shelves · smaller dooms, named</p>
         <div class="clock-wall" id="clock-wall" aria-label="Domain shelf clocks">
-          <p class="muted">Winding the shelf clocks…</p>
+          <p class="muted">Winding the little dooms. One moment.</p>
         </div>
       </div>
     </section>
@@ -107,26 +113,26 @@
     <section class="panel panel-predictions" id="predictions-panel" aria-label="Polymarket gate">
       <div class="panel-head">
         <h2>Polymarket · prediction gate</h2>
-        <p class="muted">Public markets shown for context. Edges only when the calibration gate is open.</p>
+        <p class="muted">Public markets, for context. The gate does not do fan fiction.</p>
       </div>
       <div class="pred-gate" id="pred-gate">Calibration gate · —</div>
-      <div id="pred-feed" class="pred-feed"><p class="muted">Loading prediction book…</p></div>
+      <div id="pred-feed" class="pred-feed"><p class="muted">Checking whether the gate even bothers to open…</p></div>
     </section>
 
     <section class="panel panel-sources" id="sources-panel" aria-label="Source health">
       <div class="panel-head">
         <h2>Source health</h2>
-        <p class="muted">Summary from the private scan that produced this snapshot</p>
+        <p class="muted">Whatever the private scan bothered to pack for the trip.</p>
       </div>
-      <div id="source-health" class="source-summary"><p class="muted">Loading…</p></div>
+      <div id="source-health" class="source-summary"><p class="muted">Looking for the health chart…</p></div>
     </section>
   </main>
 
   <footer class="footer">
-    <p>Carbon · marble · cold steel. Public headlines only. Not prophecy.</p>
+    <p>Carbon · marble · cold steel. The jokes are free. The percents are not.</p>
     <p class="muted" id="footer-disclaimer">Personal research signal board. Blend is not prophecy. Not financial, legal, or safety advice.</p>
-    <p class="muted tiny">This is a static mirror of a private research board. No scanning runs here. Click a clock for provenance.</p>
-    <p class="footer-cute" aria-hidden="true">TOKYO · MOSCOW · DUBAI · NYC · calibrated for doom · mirror only</p>
+    <p class="muted tiny">No scanning on this floor. Click a clock and it will show its work.</p>
+    <p class="footer-cute" aria-hidden="true">TOKYO · MOSCOW · DUBAI · NYC · still a lobby, not a trading floor</p>
   </footer>
 
   <dialog id="trust-drawer" class="modal trust-drawer">
