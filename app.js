@@ -226,6 +226,19 @@
     )}</strong> · blend is blend, not prophecy · board will not invent edges.</p>`;
   }
 
+  function formatChecked(iso) {
+    if (!iso) return "—";
+    const match = String(iso).match(/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/);
+    if (!match) return fmtTime(iso);
+    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    const month = months[Number(match[2]) - 1];
+    if (!month) return fmtTime(iso);
+    let hour = Number(match[4]);
+    const ampm = hour >= 12 ? "PM" : "AM";
+    hour = hour % 12 || 12;
+    return `${month} ${Number(match[3])}, ${match[1]}, ${hour}:${match[5]} ${ampm}`;
+  }
+
   function formatAsOf(raw) {
     const s = String(raw || "").trim();
     if (!s || s === "—") return "—";
@@ -299,7 +312,7 @@
           <div class="apex-spine-cell"><span class="lbl">Closed-loop</span><span class="val">${p.closedLoopPct ?? "—"}%</span></div>
         </div>
         <p class="muted tiny">Measurement as-of ${escapeHtml(asOfLabel)} · last checked ${escapeHtml(
-          fmtTime(updated)
+          formatChecked(updated)
         )} · dial shelf ${p.dialPct ?? "—"}% · apexPace ${p.apexPace ?? "—"}${
           measurementStale
             ? ` · <strong>measurement stale ${p.apexStaleDays ?? apex.staleDays ?? "?"}d</strong>`
@@ -596,7 +609,10 @@ label: ${escapeHtml(b.label || "board temperature (blend, not prophecy)")}</pre>
     const rect = el.getBoundingClientRect();
     const width = cap.offsetWidth || 220;
     const left = Math.min(window.innerWidth - width / 2 - 12, Math.max(width / 2 + 12, rect.left + rect.width / 2));
-    const top = Math.min(window.innerHeight - 8, rect.bottom + 8);
+    let top = rect.bottom + 8;
+    if (top + cap.offsetHeight > window.innerHeight - 8) {
+      top = Math.max(8, rect.top - cap.offsetHeight - 8);
+    }
     cap.style.left = `${left}px`;
     cap.style.top = `${top}px`;
   }
@@ -738,7 +754,7 @@ label: ${escapeHtml(b.label || "board temperature (blend, not prophecy)")}</pre>
     }
     const meta = $("#apex-meta");
     if (meta) {
-      meta.textContent = `as-of ${asOfLabel} · last checked ${fmtTime(
+      meta.textContent = `as-of ${asOfLabel} · last checked ${formatChecked(
         pace.apexUpdatedAt || apex.updatedAt
       )} · closed-loop ${closed ?? "—"}%`;
     }
