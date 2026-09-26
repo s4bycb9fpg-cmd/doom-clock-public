@@ -34,7 +34,11 @@ def pick_driver(d):
         "publishedAt": d.get("publishedAt"),
         "evidence": d.get("evidence"),
         "sourceTier": d.get("sourceTier"),
+        "impact": d.get("impact"),
         "effectiveImpact": d.get("effectiveImpact"),
+        "polarity": d.get("polarity"),
+        "clusterSize": d.get("clusterSize"),
+        "decayFactor": d.get("decayFactor"),
         "decayHint": d.get("decayHint"),
         "bodyConfirmed": d.get("bodyConfirmed"),
     }
@@ -88,6 +92,64 @@ def slim_markets(markets, n=16):
         })
     return out
 
+def slim_sub(s):
+    if not isinstance(s, dict):
+        return None
+    tier = s.get("tier")
+    return {
+        "id": s.get("id"),
+        "name": s.get("name"),
+        "clockLabel": s.get("clockLabel"),
+        "pct": s.get("pct"),
+        "tier": tier if isinstance(tier, (dict, str)) else None,
+        "confidence": s.get("confidence"),
+        "weight": s.get("weight"),
+        "rationale": s.get("rationale"),
+        "methodNotes": s.get("methodNotes"),
+        "lastSignalAt": s.get("lastSignalAt"),
+        "staleness": s.get("staleness"),
+        "scoreParts": s.get("scoreParts"),
+        "confirmation": s.get("confirmation"),
+        "drivers": slim_drivers(s.get("drivers") or s.get("signals"), n=6),
+    }
+
+def slim_domains(domains):
+    out = {}
+    if not isinstance(domains, dict):
+        return out
+    for did, d in domains.items():
+        if not isinstance(d, dict):
+            continue
+        subs_in = d.get("subs") or {}
+        subs = {}
+        if isinstance(subs_in, dict):
+            pairs = subs_in.items()
+        elif isinstance(subs_in, list):
+            pairs = ((s.get("id"), s) for s in subs_in if isinstance(s, dict))
+        else:
+            pairs = ()
+        for sid, s in pairs:
+            slim = slim_sub(s)
+            if not slim:
+                continue
+            key = slim.get("id") or sid
+            if key:
+                subs[key] = slim
+        out[did] = {
+            "id": d.get("id") or did,
+            "name": d.get("name"),
+            "shelfLabel": d.get("shelfLabel"),
+            "accent": d.get("accent"),
+            "blurb": d.get("blurb"),
+            "pct": d.get("pct"),
+            "weight": d.get("weight"),
+            "confidence": d.get("confidence"),
+            "tier": d.get("tier") if isinstance(d.get("tier"), (dict, str)) else None,
+            "subs": subs,
+        }
+    return out
+
+overall = raw.get("overall") if isinstance(raw.get("overall"), dict) else {}
 stress = raw.get("stress") or {}
 pace = raw.get("pace") or {}
 blend = raw.get("blend") or {}
@@ -179,6 +241,14 @@ public = {
         "markets": slim_markets(pred.get("markets")),
     },
     "sourceHealthSummary": health,
+    "overall": {
+        "pct": overall.get("pct"),
+        "tier": overall.get("tier"),
+        "line": overall.get("line"),
+        "confidence": overall.get("confidence"),
+    } if overall else None,
+    "domains": slim_domains(raw.get("domains")),
+    "lastUpdated": raw.get("lastUpdated") or published,
 }
 
 text = json.dumps(public, indent=2, ensure_ascii=False) + "\n"
@@ -189,6 +259,7 @@ open(out2_path, "w").write(text)
 print(
     f"Wrote {out_path} and {out2_path} · "
     f"Stress {public['stress']['pct']}% · Pace {public['pace']['pct']}% · "
-    f"blend {public['blend']['pct']}% · gate {public['predictions']['gate']}"
+    f"blend {public['blend']['pct']}% · shelves {len(public.get('domains') or {})} · "
+    f"gate {public['predictions']['gate']}"
 )
 PY
