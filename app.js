@@ -1,10 +1,41 @@
-/* DOOM INDEX — public static mirror (read-only). No scan, no POST, no secrets. */
+/* DOOM INDEX — public pyramid clock wall (read-only). No scan, no POST, no secrets. */
 (() => {
   "use strict";
 
   const BOARD_URLS = ["public-board.json", "data/public-board.json"];
+
+  const DOMAIN_ORDER = [
+    "tech_control",
+    "cyber_info",
+    "policy_law",
+    "politics_geo",
+    "social_labor",
+    "physical_bio",
+    "weird_signals",
+    "scenario_watch",
+    "zeihan_watch",
+    "lex_watch",
+    "rogan_watch",
+    "dwarkesh_watch",
+  ];
+
+  const DOMAIN_MARK = {
+    tech_control: "◈",
+    cyber_info: "⬡",
+    policy_law: "▣",
+    politics_geo: "◎",
+    social_labor: "◇",
+    physical_bio: "⊕",
+    weird_signals: "✧",
+    scenario_watch: "☽",
+    zeihan_watch: "⌖",
+    lex_watch: "🎙",
+    rogan_watch: "📻",
+    dwarkesh_watch: "📡",
+  };
+
   let lastPayload = null;
-  let focusDriver = null;
+  let svgSeq = 0;
 
   const $ = (sel) => document.querySelector(sel);
 
@@ -35,6 +66,22 @@
     return escapeHtml(str).replace(/'/g, "&#39;");
   }
 
+  function tierName(tier) {
+    if (!tier) return "";
+    if (typeof tier === "string") return tier;
+    return tier.name || "";
+  }
+
+  function severityClass(pct) {
+    const p = Number(pct) || 0;
+    if (p >= 85) return "sev-cooked";
+    if (p >= 65) return "sev-magma";
+    if (p >= 45) return "sev-hot";
+    if (p >= 30) return "sev-warm";
+    if (p >= 16) return "sev-cool";
+    return "sev-chill";
+  }
+
   function severityColor(pct) {
     const p = Number(pct) || 0;
     if (p >= 85) return "#ff2d55";
@@ -45,14 +92,14 @@
     return "#5dffc8";
   }
 
-  function clockSvg(pct, { size = 120 } = {}) {
+  function clockSvg(pct, { size = 120, master = false } = {}) {
     const p = Math.max(0, Math.min(100, Number(pct) || 0));
     const color = severityColor(p);
     const angle = p * 3.6 - 90;
     const rad = (angle * Math.PI) / 180;
     const cx = 60;
     const cy = 60;
-    const handLen = 32;
+    const handLen = master ? 40 : 32;
     const hx = cx + Math.cos(rad) * handLen;
     const hy = cy + Math.sin(rad) * handLen;
     let ticks = "";
@@ -65,8 +112,11 @@
       const major = i % 5 === 0;
       ticks += `<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="${major ? color : "#2a3a4c"}" stroke-width="${major ? 2.2 : 1.5}" opacity="${major ? 0.85 : 1}"/>`;
     }
-    const gid = `p${Math.round(p)}${size}`;
-    const outerGlow = `<circle cx="60" cy="60" r="54.5" fill="none" stroke="${color}" stroke-width="1.2" opacity="0.35"/>`;
+    const gid = `c${svgSeq++}`;
+    const outerGlow = master
+      ? `<circle cx="60" cy="60" r="55" fill="none" stroke="${color}" stroke-width="1.5" opacity="0.55"/>
+         <circle cx="60" cy="60" r="57.5" fill="none" stroke="${color}" stroke-width="0.6" opacity="0.25"/>`
+      : `<circle cx="60" cy="60" r="54.5" fill="none" stroke="${color}" stroke-width="1.2" opacity="0.35"/>`;
     const arcSweep = p >= 100 ? 0.001 : p;
     const arcEnd = ((arcSweep * 3.6 - 90) * Math.PI) / 180;
     const large = arcSweep > 50 ? 1 : 0;
@@ -74,7 +124,7 @@
     const ay = cy + Math.sin(arcEnd) * 53;
     const arc =
       p > 0.5
-        ? `<path d="M ${cx} ${cy - 53} A 53 53 0 ${large} 1 ${ax.toFixed(2)} ${ay.toFixed(2)}" fill="none" stroke="${color}" stroke-width="2.5" stroke-linecap="round" opacity="0.9"/>`
+        ? `<path d="M ${cx} ${cy - 53} A 53 53 0 ${large} 1 ${ax.toFixed(2)} ${ay.toFixed(2)}" fill="none" stroke="${color}" stroke-width="${master ? 3.5 : 2.5}" stroke-linecap="round" opacity="0.9"/>`
         : "";
     return `<svg class="clock-face-svg" viewBox="0 0 120 120" width="${size}" height="${size}" aria-hidden="true">
       <defs>
@@ -99,26 +149,18 @@
       ${arc}
       ${ticks}
       <text x="60" y="38" text-anchor="middle" font-family="Outfit,sans-serif" font-size="6.5" font-weight="700" letter-spacing="2" fill="#3a5068">DOOM</text>
-      <text x="60" y="80" text-anchor="middle" font-family="Bebas Neue,Outfit,sans-serif" font-size="16" font-weight="400" letter-spacing="1" fill="${color}" filter="url(#glow${gid})">${Math.round(p)}%</text>
-      <line x1="60" y1="60" x2="${hx.toFixed(1)}" y2="${hy.toFixed(1)}" stroke="#0e1620" stroke-width="4" stroke-linecap="round" opacity="0.3"/>
-      <line x1="60" y1="60" x2="${hx.toFixed(1)}" y2="${hy.toFixed(1)}" stroke="${color}" stroke-width="2.7" stroke-linecap="round" filter="url(#glow${gid})"/>
+      <text x="60" y="80" text-anchor="middle" font-family="Bebas Neue,Outfit,sans-serif" font-size="${master ? 22 : 16}" font-weight="400" letter-spacing="1" fill="${color}" filter="url(#glow${gid})">${Math.round(p)}%</text>
+      <line x1="60" y1="60" x2="${hx.toFixed(1)}" y2="${hy.toFixed(1)}" stroke="#0e1620" stroke-width="${master ? 5.5 : 4}" stroke-linecap="round" opacity="0.3"/>
+      <line x1="60" y1="60" x2="${hx.toFixed(1)}" y2="${hy.toFixed(1)}" stroke="${color}" stroke-width="${master ? 3.4 : 2.7}" stroke-linecap="round" filter="url(#glow${gid})"/>
       <circle cx="60" cy="60" r="5" fill="#121c28"/>
       <circle cx="60" cy="60" r="2.4" fill="${color}"/>
     </svg>`;
   }
 
-  function driverListHtml(drivers, kind, limit = 4) {
-    if (!drivers || !drivers.length) {
-      return '<li class="muted">No gated drivers this snapshot.</li>';
-    }
-    return drivers
-      .slice(0, limit)
-      .map((d, i) => {
-        const title = escapeHtml(d.title || "—");
-        const evid = escapeHtml(d.evidence || "");
-        return `<li><button type="button" class="driver-btn" data-kind="${escapeAttr(kind)}" data-idx="${i}">${title}</button> <span class="muted tiny">${evid}</span></li>`;
-      })
-      .join("");
+  function applySeverity(el, pct) {
+    if (!el) return;
+    el.classList.remove("sev-chill", "sev-cool", "sev-warm", "sev-hot", "sev-magma", "sev-cooked");
+    el.classList.add(severityClass(pct));
   }
 
   function provChip(label, cls = "") {
@@ -127,7 +169,7 @@
 
   function provenanceDriversHtml(drivers, limit = 8) {
     if (!drivers || !drivers.length) {
-      return `<p class="muted tiny">No drivers listed for this meter.</p>`;
+      return `<p class="muted tiny">No drivers listed for this clock.</p>`;
     }
     return `<ul class="prov-driver-list">${drivers
       .slice(0, limit)
@@ -141,7 +183,7 @@
         const evidCls =
           evid === "body-confirmed"
             ? "evidence-body"
-            : evid === "kev-catalog" || (evid && /kev/i.test(evid))
+            : evid === "kev-catalog" || (evid && /kev/i.test(String(evid)))
               ? "evidence-kev"
               : "";
         const decay =
@@ -156,7 +198,9 @@
           (d.clusterSize || 1) > 1 ? provChip(`cluster ×${d.clusterSize}`) : "",
           d.effectiveImpact != null
             ? provChip(`impact ${Number(d.effectiveImpact).toFixed(1)}`)
-            : "",
+            : d.impact != null
+              ? provChip(`impact ${d.impact}`)
+              : "",
         ]
           .filter(Boolean)
           .join("");
@@ -165,52 +209,20 @@
       .join("")}</ul>`;
   }
 
-  function singleDriverHtml(d) {
-    if (!d) return `<p class="muted">Driver not found.</p>`;
-    const title = escapeHtml(d.title || "—");
-    const link = d.link
-      ? `<a href="${escapeAttr(d.link)}" target="_blank" rel="noopener noreferrer">${title}</a>`
-      : title;
-    const tier = d.sourceTier || null;
-    const evid = d.evidence || (d.bodyConfirmed ? "body-confirmed" : null);
-    const decay = d.decayHint || null;
-    return `
-      <p class="trust-kicker">Trust drawer · driver</p>
-      <div class="prov-driver">
-        <div>${link}</div>
-        <div class="prov-meta">
-          ${tier ? provChip(`tier ${tier}`, `tier-${escapeAttr(tier)}`) : ""}
-          ${evid ? provChip(evid) : ""}
-          ${d.source ? provChip(d.source) : ""}
-          ${decay ? provChip(decay, "decay") : ""}
-          ${d.publishedAt ? provChip(fmtTime(d.publishedAt)) : ""}
-          ${d.effectiveImpact != null ? provChip(`impact ${Number(d.effectiveImpact).toFixed(1)}`) : ""}
-        </div>
-      </div>
-      <p class="muted tiny">Outbound link opens the original source. This mirror does not fetch or rescan.</p>
-    `;
+  function gateBannerHtml(data) {
+    const gate = (data.predictions && data.predictions.gate) || "closed";
+    return `<p class="trust-banner">Prediction edges · calibration <strong>gate ${escapeHtml(
+      gate === "open" ? "open" : "closed"
+    )}</strong> · blend is blend, not prophecy · board will not invent edges.</p>`;
   }
 
-  function openProvenanceDrawer(kind, driverIdx) {
+  function openProvenanceDrawer(kind, dialOpts) {
     const data = lastPayload;
     if (!data) return;
     const titleEl = $("#trust-drawer-title");
     const bodyEl = $("#trust-drawer-body");
     if (!titleEl || !bodyEl) return;
-
-    const gate = (data.predictions && data.predictions.gate) || "closed";
-    const gateBanner = `<p class="trust-banner">Prediction edges · calibration <strong>gate ${escapeHtml(
-      gate === "open" ? "open" : "closed"
-    )}</strong> · blend is blend, not prophecy · board will not invent edges.</p>`;
-
-    if (kind === "driver-stress" || kind === "driver-pace") {
-      const list = kind === "driver-stress" ? data.stress?.drivers : data.pace?.drivers;
-      const d = (list || [])[driverIdx];
-      titleEl.textContent = `Provenance · driver`;
-      bodyEl.innerHTML = singleDriverHtml(d);
-      $("#trust-drawer").showModal();
-      return;
-    }
+    const gateBanner = gateBannerHtml(data);
 
     if (kind === "stress") {
       const s = data.stress || {};
@@ -219,7 +231,7 @@
         <p class="trust-kicker">Trust drawer · Stress Index</p>
         <div class="trust-pct-row">
           <span class="trust-pct">${s.pct == null ? "—" : Math.round(s.pct)}</span>
-          <span class="trust-tier">${escapeHtml(s.tier || (s.refused ? "Demo refused" : "—"))}</span>
+          <span class="trust-tier">${escapeHtml(tierName(s.tier) || (s.refused ? "Demo refused" : "—"))}</span>
         </div>
         <pre class="trust-formula">${escapeHtml(
           s.methodNotes ||
@@ -230,6 +242,7 @@
             ? `<p class="trust-banner warn">${escapeHtml(s.note || "Stress refuses demo seed.")}</p>`
             : gateBanner
         }
+        ${s.line ? `<p>${escapeHtml(s.line)}</p>` : ""}
         <h3>Top drivers</h3>
         ${provenanceDriversHtml(s.drivers)}
         <p class="muted tiny">Computed ${escapeHtml(fmtTime(s.computedAt))} · eligible ${s.eligibleCount ?? "—"} · confidence ${s.confidence ?? "—"}%</p>
@@ -269,13 +282,14 @@
         <p class="trust-kicker">Trust drawer · Pace Index</p>
         <div class="trust-pct-row">
           <span class="trust-pct">${p.pct == null ? "—" : Math.round(p.pct)}</span>
-          <span class="trust-tier">${escapeHtml(p.tier || "—")}</span>
+          <span class="trust-tier">${escapeHtml(tierName(p.tier) || "—")}</span>
         </div>
         <pre class="trust-formula">${escapeHtml(
           p.methodNotes ||
             "Pace = 0.55×dial haircut + 0.45×apex spine (recursiveAi×1.15 + agiHere×0.55 + closedLoop×1.5) + primary/fresh boosts."
         )}</pre>
         ${gateBanner}
+        ${p.line ? `<p>${escapeHtml(p.line)}</p>` : ""}
         <h3>Apex spine</h3>
         ${spine}
         <h3>Apex sources</h3>
@@ -284,20 +298,20 @@
         ${provenanceDriversHtml(p.drivers)}
         <p class="muted tiny">Computed ${escapeHtml(fmtTime(p.computedAt))} · primaryBoost ${p.primaryBoost ?? 0} · freshBoost ${p.freshBoost ?? 0} · freshReleaseBoost ${p.freshReleaseBoost ?? 0}</p>
       `;
-    } else if (kind === "blend") {
+    } else if (kind === "blend" || kind === "overall") {
       const b = data.blend || {};
       const s = data.stress || {};
       const p = data.pace || {};
-      titleEl.textContent = `Provenance · Blend ${b.pct ?? "—"}%`;
+      const o = data.overall || data.legacyOverall || {};
+      const face = typeof b.pct === "number" ? b.pct : o.pct;
+      titleEl.textContent = `Provenance · Master ${face ?? "—"}%`;
       bodyEl.innerHTML = `
         <p class="trust-kicker">Trust drawer · board temperature</p>
         <div class="trust-pct-row">
-          <span class="trust-pct">${b.pct == null ? "—" : Math.round(b.pct)}</span>
-          <span class="trust-tier">${escapeHtml(b.tier || "—")}</span>
+          <span class="trust-pct">${face == null ? "—" : Math.round(face)}</span>
+          <span class="trust-tier">${escapeHtml(tierName(b.tier) || tierName(o.tier) || "—")}</span>
         </div>
-        <pre class="trust-formula">${escapeHtml(
-          b.formula || "0.55×Stress + 0.45×Pace"
-        )}
+        <pre class="trust-formula">${escapeHtml(b.formula || "0.55×Stress + 0.45×Pace")}
 label: ${escapeHtml(b.label || "board temperature (blend, not prophecy)")}</pre>
         <p class="trust-banner"><strong>Blend is blend, not prophecy.</strong> It is a weighted mix of Stress and Pace for board temperature only — not an AGI timeline, not a forecast, not a trade signal.</p>
         ${gateBanner}
@@ -305,41 +319,78 @@ label: ${escapeHtml(b.label || "board temperature (blend, not prophecy)")}</pre>
           <span>Stress ${s.pct ?? "—"}%</span>
           <span>Pace ${p.pct ?? "—"}%</span>
           <span>weights 0.55 / 0.45</span>
+          <span>legacy rollup ${o.pct ?? "—"}%${o.tier ? ` · ${escapeHtml(tierName(o.tier))}` : ""}</span>
+          ${o.confidence != null ? `<span>rollup confidence ${escapeHtml(String(o.confidence))}%</span>` : ""}
         </div>
+        ${o.line ? `<p class="muted tiny">Legacy domain rollup: ${escapeHtml(o.line)}</p>` : ""}
+        <p class="muted tiny">The master face is the blend. Shelf dials below are the domain rollup, kept as a separate engraved number so the two formulas are not mixed.</p>
+      `;
+    } else if (kind === "dial" && dialOpts) {
+      const { domainId, subId } = dialOpts;
+      const d = (data.domains || {})[domainId];
+      const subs = d && d.subs;
+      const s = subs && (subs[subId] || Object.values(subs).find((row) => row && row.id === subId));
+      if (!s) return;
+      const title = s.clockLabel || s.name || subId;
+      titleEl.textContent = `Provenance · ${title} · ${s.pct}%`;
+      const parts = s.scoreParts || {};
+      const conf = s.confirmation || {};
+      const formula =
+        parts.intensity != null
+          ? "incident dial: intensity×scale + coverage + recency + incidentSpread + corroboration − loneD − confirmDamp; then × time-decay (~10d half-life). Quiet floor ~7%."
+          : parts.prior != null
+            ? `shelf dial: ${parts.formula || `${parts.priorBlend}×prior + ${parts.evidenceBlend}×evidence`} (prior ${parts.prior}% · evidence ${parts.evidenceScore}%).`
+            : s.methodNotes || "Snapshot dial. Drivers below are the sources on this export.";
+      const wSub = typeof s.weight === "number" ? `${(s.weight * 100).toFixed(0)}% of domain` : "—";
+      const wDom = d && typeof d.weight === "number" ? `${(d.weight * 100).toFixed(0)}% of rollup` : "—";
+      bodyEl.innerHTML = `
+        <p class="trust-kicker">Trust drawer · dial · ${escapeHtml(d.shelfLabel || d.name || domainId)}</p>
+        <div class="trust-pct-row">
+          <span class="trust-pct">${s.pct}</span>
+          <span class="trust-tier">${escapeHtml(tierName(s.tier) || "—")}</span>
+        </div>
+        <p><strong>${escapeHtml(s.name || title)}</strong> on the <em>${escapeHtml(d.shelfLabel || d.name || "")}</em> shelf.</p>
+        <pre class="trust-formula">${escapeHtml(formula)}</pre>
+        ${gateBanner}
+        <div class="detail-stats">
+          <span>confidence ${s.confidence ?? "—"}%</span>
+          <span>sub weight ${escapeHtml(wSub)}</span>
+          <span>domain weight ${escapeHtml(wDom)}</span>
+          <span>shelf ${d.pct ?? "—"}%</span>
+          ${s.lastSignalAt ? `<span>last signal ${fmtTime(s.lastSignalAt)}</span>` : ""}
+          ${conf.note ? `<span>${escapeHtml(conf.note)}</span>` : ""}
+          ${s.staleness && s.staleness.badge ? `<span>${escapeHtml(s.staleness.badge)}</span>` : ""}
+        </div>
+        ${
+          s.rationale
+            ? `<div class="dossier-block"><h3 style="margin-top:0">Rationale</h3><p>${escapeHtml(s.rationale)}</p></div>`
+            : ""
+        }
+        <h3>Drivers</h3>
+        ${provenanceDriversHtml(s.drivers || s.signals, 8)}
+        ${s.methodNotes ? `<p class="muted tiny">${escapeHtml(s.methodNotes)}</p>` : ""}
       `;
     } else {
       return;
     }
 
-    $("#trust-drawer").showModal();
+    const drawer = $("#trust-drawer");
+    if (drawer && typeof drawer.showModal === "function") drawer.showModal();
   }
 
   function bindProvenanceClicks() {
-    const bind = (el, kind) => {
-      if (!el || el.dataset.provBound) return;
-      el.dataset.provBound = "1";
-      const go = (e) => {
-        if (e.target.closest && e.target.closest("a,button.driver-btn")) return;
+    if (document.body.dataset.provBound) return;
+    document.body.dataset.provBound = "1";
+    document.body.addEventListener("click", (e) => {
+      const clock = e.target.closest("[data-provenance]");
+      if (!clock) return;
+      if (e.target.closest("a")) return;
+      const kind = clock.dataset.provenance;
+      if (kind === "dial") {
+        openProvenanceDrawer("dial", { domainId: clock.dataset.domain, subId: clock.dataset.sub });
+      } else {
         openProvenanceDrawer(kind);
-      };
-      el.addEventListener("click", go);
-      el.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          openProvenanceDrawer(kind);
-        }
-      });
-    };
-    bind($("#stress-card"), "stress");
-    bind($("#pace-card"), "pace");
-    bind($("#blend-strip"), "blend");
-
-    document.querySelectorAll(".driver-btn").forEach((btn) => {
-      btn.addEventListener("click", (e) => {
-        e.stopPropagation();
-        const kind = btn.dataset.kind === "stress" ? "driver-stress" : "driver-pace";
-        openProvenanceDrawer(kind, Number(btn.dataset.idx));
-      });
+      }
     });
   }
 
@@ -356,12 +407,10 @@ label: ${escapeHtml(b.label || "board temperature (blend, not prophecy)")}</pre>
     const recEl = $("#apex-recursive");
     const agiEl = $("#apex-agi");
     if (recEl) {
-      recEl.innerHTML =
-        typeof rec === "number" ? `${Math.round(rec)}<span>%</span>` : `—<span>%</span>`;
+      recEl.innerHTML = typeof rec === "number" ? `${Math.round(rec)}<span>%</span>` : `—<span>%</span>`;
     }
     if (agiEl) {
-      agiEl.innerHTML =
-        typeof agi === "number" ? `${Math.round(agi)}<span>%</span>` : `—<span>%</span>`;
+      agiEl.innerHTML = typeof agi === "number" ? `${Math.round(agi)}<span>%</span>` : `—<span>%</span>`;
     }
 
     const staleBadge = $("#apex-stale-badge");
@@ -390,28 +439,64 @@ label: ${escapeHtml(b.label || "board temperature (blend, not prophecy)")}</pre>
     }
   }
 
-  function renderDualMeters(data) {
+  function renderMaster(data) {
+    const blend = data.blend || {};
+    const overall = data.overall || data.legacyOverall || {};
+    const face = typeof blend.pct === "number" ? blend.pct : overall.pct;
+    const btn = $("#master-clock");
+    const slot = $("#master-face");
+    if (slot) slot.innerHTML = clockSvg(face ?? 0, { size: 280, master: true });
+    applySeverity(btn, face ?? 0);
+    if (btn) {
+      btn.dataset.provenance = typeof blend.pct === "number" ? "blend" : "overall";
+      const label = blend.label || "board temperature (blend, not prophecy)";
+      btn.setAttribute(
+        "aria-label",
+        `Master blend clock ${face == null ? "unavailable" : Math.round(face) + " percent"}. ${label}. Open provenance.`
+      );
+    }
+    const lab = $("#master-label");
+    if (lab) lab.textContent = blend.label || "Blend, not prophecy";
+    const tier = $("#master-tier");
+    if (tier) tier.textContent = tierName(blend.tier) || tierName(overall.tier) || "—";
+    const formula = $("#master-formula");
+    if (formula) {
+      const base = blend.formula || "0.55×Stress + 0.45×Pace";
+      formula.textContent = /not prophecy/i.test(base) ? base : `${base} · blend, not prophecy`;
+    }
+    const legacy = $("#master-legacy");
+    if (legacy) {
+      if (typeof overall.pct === "number") {
+        const t = tierName(overall.tier);
+        legacy.textContent = `Legacy domain rollup ${Math.round(overall.pct)}%${t ? ` · ${t}` : ""}`;
+      } else {
+        legacy.textContent = "Legacy domain rollup —";
+      }
+    }
+  }
+
+  function renderPair(data) {
     const stress = data.stress || {};
     const pace = data.pace || {};
-    const blend = data.blend || {};
-
     const sp = typeof stress.pct === "number" ? stress.pct : null;
     const pp = typeof pace.pct === "number" ? pace.pct : null;
 
     const sc = $("#stress-clock");
     const pc = $("#pace-clock");
-    if (sc) sc.innerHTML = clockSvg(sp ?? 0, { size: 140 });
-    if (pc) pc.innerHTML = clockSvg(pp ?? 0, { size: 140 });
+    if (sc) sc.innerHTML = clockSvg(sp ?? 0, { size: 168 });
+    if (pc) pc.innerHTML = clockSvg(pp ?? 0, { size: 168 });
+    applySeverity($("#stress-btn"), sp ?? 0);
+    applySeverity($("#pace-btn"), pp ?? 0);
 
     const spEl = $("#stress-pct");
     const ppEl = $("#pace-pct");
-    if (spEl) spEl.textContent = sp == null ? "—" : Math.round(sp);
-    if (ppEl) ppEl.textContent = pp == null ? "—" : Math.round(pp);
+    if (spEl) spEl.textContent = sp == null ? "—" : `${Math.round(sp)}%`;
+    if (ppEl) ppEl.textContent = pp == null ? "—" : `${Math.round(pp)}%`;
 
     const st = $("#stress-tier");
     const pt = $("#pace-tier");
-    if (st) st.textContent = stress.refused ? "Demo refused" : stress.tier || "—";
-    if (pt) pt.textContent = pace.tier || "—";
+    if (st) st.textContent = stress.refused ? "Demo refused" : tierName(stress.tier) || "—";
+    if (pt) pt.textContent = tierName(pace.tier) || "—";
 
     const sl = $("#stress-line");
     const pl = $("#pace-line");
@@ -431,39 +516,111 @@ label: ${escapeHtml(b.label || "board temperature (blend, not prophecy)")}</pre>
       apexMini.textContent = `Recursive AI ${pace.recursiveAiPct ?? "—"}% · AGI ${pace.agiHerePct ?? "—"}% · Closed-loop ${pace.closedLoopPct ?? "—"}%${stale}`;
     }
 
-    const sd = $("#stress-drivers");
-    const pd = $("#pace-drivers");
-    if (sd) sd.innerHTML = driverListHtml(stress.drivers, "stress");
-    if (pd) pd.innerHTML = driverListHtml(pace.drivers, "pace");
+    const sb = $("#stress-btn");
+    const pb = $("#pace-btn");
+    if (sb) sb.setAttribute("aria-label", `Stress clock ${sp == null ? "unavailable" : Math.round(sp) + " percent"}. Open provenance.`);
+    if (pb) pb.setAttribute("aria-label", `Pace clock ${pp == null ? "unavailable" : Math.round(pp) + " percent"}. Open provenance.`);
+  }
 
-    const bp = $("#blend-pct");
-    const bf = $("#blend-formula");
-    if (bp) bp.textContent = typeof blend.pct === "number" ? `${Math.round(blend.pct)}%` : "—";
-    if (bf) {
-      const base = blend.formula || "0.55×Stress + 0.45×Pace";
-      bf.textContent = /not prophecy/i.test(base) ? base : `${base} · blend, not prophecy`;
+  function domainIds(domains) {
+    const ids = DOMAIN_ORDER.filter((id) => domains[id]);
+    Object.keys(domains).forEach((id) => {
+      if (!ids.includes(id)) ids.push(id);
+    });
+    return ids;
+  }
+
+  function subsOf(domain) {
+    const subs = domain && domain.subs;
+    if (!subs) return [];
+    if (Array.isArray(subs)) return subs.filter(Boolean);
+    return Object.values(subs).filter(Boolean);
+  }
+
+  function renderClockWall(data) {
+    const root = $("#clock-wall");
+    if (!root) return;
+    const domains = data.domains || {};
+    const ids = domainIds(domains);
+    if (!ids.length) {
+      root.innerHTML = `<p class="muted">No domain shelves on this snapshot. Master, Stress, and Pace above still read the board.</p>`;
+      return;
     }
-    const bg = $("#blend-gate");
-    if (bg) {
-      const g = (data.predictions && data.predictions.gate) || "closed";
-      const verdict = (data.predictions && data.predictions.verdict) || "no edge";
-      bg.textContent =
-        g === "open"
-          ? `Prediction edges · gate open · ${verdict}`
-          : `Prediction edges · gate closed · ${verdict}`;
+    root.innerHTML = ids
+      .map((id) => {
+        const d = domains[id];
+        if (!d) return "";
+        const mark = DOMAIN_MARK[id] || "·";
+        const clocks = subsOf(d)
+          .map((s) => {
+            const label = s.clockLabel || s.name || s.id || "dial";
+            const sev = severityClass(s.pct);
+            const tier = tierName(s.tier);
+            const conf = typeof s.confidence === "number" ? `conf ${s.confidence}%` : "";
+            const stale =
+              s.staleness && s.staleness.badge
+                ? `<div class="clock-conf">${escapeHtml(s.staleness.badge)}</div>`
+                : "";
+            return `<button type="button" class="doom-clock sub-dial ${sev}" data-provenance="dial" data-domain="${escapeAttr(id)}" data-sub="${escapeAttr(s.id || "")}" title="${escapeAttr(label)} — open provenance" aria-label="${escapeAttr(label)} ${s.pct ?? "—"} percent. Open provenance.">
+              <span class="clock-face">${clockSvg(s.pct, { size: 112 })}</span>
+              <span class="clock-label">${escapeHtml(label)}</span>
+              <span class="clock-pct-big">${s.pct ?? "—"}%</span>
+              ${tier ? `<span class="clock-tier">${escapeHtml(tier)}</span>` : ""}
+              ${conf ? `<span class="clock-conf">${escapeHtml(conf)}</span>` : ""}
+              ${stale}
+            </button>`;
+          })
+          .join("");
+        const weight =
+          typeof d.weight === "number" ? `${(d.weight * 100).toFixed(0)}% of rollup` : "";
+        return `<article class="shelf-panel" data-domain="${escapeAttr(id)}">
+          <div class="shelf-poster">
+            <div class="shelf-title">
+              <div class="shelf-mark-row">
+                <span class="shelf-brass">${escapeHtml(d.shelfLabel || d.name || id)}</span>
+                <span class="shelf-mark" aria-hidden="true">${mark}</span>
+                ${d.accent ? `<span class="shelf-accent">${escapeHtml(d.accent)}</span>` : ""}
+              </div>
+              <h2>${escapeHtml(d.name || id)}</h2>
+            </div>
+            <div class="shelf-meta">
+              shelf <strong>${d.pct ?? "—"}%</strong><br/>
+              ${escapeHtml([tierName(d.tier), weight, d.confidence != null ? `conf ${d.confidence}%` : ""].filter(Boolean).join(" · "))}
+            </div>
+          </div>
+          <div class="shelf-body">
+            ${d.blurb ? `<p class="shelf-blurb">${escapeHtml(d.blurb)}</p>` : ""}
+            <div class="clock-grid">${clocks || `<p class="muted">No sub-dials on this shelf.</p>`}</div>
+          </div>
+        </article>`;
+      })
+      .join("");
+  }
+
+  function setGateNote(pred) {
+    const gate = (pred && pred.gate) || "closed";
+    const verdict = (pred && pred.verdict) || "no edge";
+    const text =
+      gate === "open"
+        ? `Prediction edges · gate open · ${verdict}`
+        : `Prediction edges · gate closed · ${verdict}`;
+    const note = $("#pyramid-gate");
+    if (note) {
+      note.textContent = text;
+      note.classList.toggle("open", gate === "open");
     }
+    return { gate, verdict };
   }
 
   function renderPredictions(pred) {
     const gateEl = $("#pred-gate");
     const feed = $("#pred-feed");
+    const { gate, verdict } = setGateNote(pred);
     if (!pred) {
       if (gateEl) gateEl.textContent = "Calibration gate · unavailable";
       if (feed) feed.innerHTML = `<p class="muted">No prediction block on this snapshot.</p>`;
       return;
     }
-    const gate = pred.gate || "closed";
-    const verdict = pred.verdict || "no edge";
     if (gateEl) {
       gateEl.textContent = `Calibration gate · ${gate} · ${verdict}`;
       gateEl.classList.toggle("open", gate === "open");
@@ -484,8 +641,7 @@ label: ${escapeHtml(b.label || "board temperature (blend, not prophecy)")}</pre>
           const url = m.polymarketUrl
             ? `<a href="${escapeAttr(m.polymarketUrl)}" target="_blank" rel="noopener noreferrer">${q}</a>`
             : q;
-          const yes =
-            m.marketYes == null ? "—" : `${Math.round(Number(m.marketYes) * 1000) / 10}%`;
+          const yes = m.marketYes == null ? "—" : `${Math.round(Number(m.marketYes) * 1000) / 10}%`;
           return `<article class="pred-card">
             <div>${url}</div>
             <div class="pred-meta">
@@ -503,7 +659,7 @@ label: ${escapeHtml(b.label || "board temperature (blend, not prophecy)")}</pre>
     const el = $("#source-health");
     if (!el) return;
     if (summary == null) {
-      el.innerHTML = `<p class="muted">No <code>sourceHealthSummary</code> on this snapshot. Private scan health was not exported — meters and drivers above still carry their own source / tier / evidence chips.</p>`;
+      el.innerHTML = `<p class="muted">No <code>sourceHealthSummary</code> on this snapshot. Private scan health was not exported — each clock’s drawer still lists its own sources.</p>`;
       return;
     }
     if (typeof summary === "string") {
@@ -557,8 +713,10 @@ label: ${escapeHtml(b.label || "board temperature (blend, not prophecy)")}</pre>
   function renderAll(data) {
     lastPayload = data;
     renderHeader(data);
+    renderMaster(data);
     renderApex(data);
-    renderDualMeters(data);
+    renderPair(data);
+    renderClockWall(data);
     renderPredictions(data.predictions);
     renderSourceHealth(data.sourceHealthSummary);
     bindProvenanceClicks();

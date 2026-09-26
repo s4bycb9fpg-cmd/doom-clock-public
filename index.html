@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#080c12" />
-  <meta name="description" content="DOOM INDEX public mirror — static snapshot of Stress, Pace, and blend. Blend is not prophecy." />
-  <title>DOOM INDEX · Public Mirror</title>
+  <meta name="description" content="DOOM INDEX public pyramid clock wall — blend master, Stress, Pace, and domain shelf dials. Blend is not prophecy." />
+  <title>DOOM INDEX · Pyramid Clock Wall</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -26,7 +26,7 @@
       <span class="brand-badge" aria-hidden="true">◈</span>
       <div>
         <h1 class="wordmark">DOOM INDEX</h1>
-        <p class="tagline">Public mirror · last private auto-scan · read-only snapshot</p>
+        <p class="tagline">Pyramid clock wall · read-only snapshot · no live scan</p>
       </div>
     </div>
     <div class="top-meta">
@@ -37,61 +37,70 @@
 
   <main>
     <p class="mirror-banner" id="mirror-banner">
-      Static public mirror. No live scan. Numbers below are Josh’s last private board snapshot.
-      Click Stress / Pace / blend / any driver for provenance.
+      Static public mirror. No live scan. Numbers are Josh’s last private board snapshot.
+      Click the master, Stress, Pace, or any shelf dial for sources.
     </p>
 
-    <section class="apex-cap" id="apex" aria-label="Apex spine Recursive AI and AGI">
-      <p class="apex-kicker">APEX SPINE · best guess, not a scraped dial <span id="apex-stale-badge" class="stale-pill hidden">stale</span></p>
-      <div class="apex-row">
-        <article class="apex-stone">
-          <p class="apex-label">Recursive AI now</p>
-          <p class="apex-num" id="apex-recursive">—<span>%</span></p>
-          <p class="apex-def">Share of frontier model R&amp;D where AI leads the work. Not autocomplete. Not a closed loop.</p>
-        </article>
-        <article class="apex-stone">
-          <p class="apex-label">AGI already here</p>
-          <p class="apex-num" id="apex-agi">—<span>%</span></p>
-          <p class="apex-def">Chance a system can already do nearly all of a skilled researcher’s work, including week-scale novel tasks, with no human in the loop.</p>
-        </article>
+    <section class="pyramid" id="pyramid" aria-label="Pyramid clock wall">
+      <div class="pyramid-step step-master">
+        <p class="step-kicker">Master · blend, not prophecy</p>
+        <button type="button" class="doom-clock master-dial" id="master-clock" data-provenance="blend" title="Open blend provenance">
+          <span class="clock-kicker">Master · board temperature <span class="prov-hint">trust</span></span>
+          <span class="clock-face" id="master-face" role="img" aria-label="Blend doom clock"></span>
+          <span class="clock-label" id="master-label">Blend, not prophecy</span>
+          <span class="clock-tier" id="master-tier">loading…</span>
+          <span class="clock-formula" id="master-formula">0.55×Stress + 0.45×Pace</span>
+          <span class="clock-legacy" id="master-legacy">Legacy domain rollup —</span>
+        </button>
       </div>
-      <p class="apex-why" id="apex-why">Loading apex notes…</p>
-      <p class="apex-meta muted tiny" id="apex-meta">asOf — · closed-loop —%</p>
-    </section>
 
-    <section class="dual-meters" id="dual-meters" aria-label="Stress and Pace indexes">
-      <div class="dual-grid">
-        <article class="meter-card stress-card meter-clickable" id="stress-card" role="button" tabindex="0" data-provenance="stress" title="Open Stress provenance">
-          <p class="meter-kicker">STRESS INDEX · fear / chaos / incident heat <span class="prov-hint">trust</span></p>
-          <div class="meter-row">
-            <div class="meter-clock" id="stress-clock" role="img" aria-label="Stress gauge"></div>
-            <div class="meter-copy">
-              <div class="meter-pct-row"><span class="meter-pct" id="stress-pct">—</span><span class="meter-unit">%</span></div>
-              <p class="meter-tier" id="stress-tier">loading…</p>
-              <p class="meter-line muted" id="stress-line">Body-confirmed cyber · conflict · infra · bio only.</p>
-              <ul class="meter-drivers" id="stress-drivers"></ul>
-            </div>
+      <div class="pyramid-step step-apex">
+        <section class="apex-cap" id="apex" aria-label="Apex spine Recursive AI and AGI">
+          <p class="apex-kicker">APEX SPINE · best guess, not a scraped dial <span id="apex-stale-badge" class="stale-pill hidden">stale</span></p>
+          <div class="apex-row">
+            <article class="apex-stone">
+              <p class="apex-label">Recursive AI now</p>
+              <p class="apex-num" id="apex-recursive">—<span>%</span></p>
+              <p class="apex-def">Share of frontier model R&amp;D where AI leads the work. Not autocomplete. Not a closed loop.</p>
+            </article>
+            <article class="apex-stone">
+              <p class="apex-label">AGI already here</p>
+              <p class="apex-num" id="apex-agi">—<span>%</span></p>
+              <p class="apex-def">Chance a system can already do nearly all of a skilled researcher’s work, including week-scale novel tasks, with no human in the loop.</p>
+            </article>
           </div>
-        </article>
-        <article class="meter-card pace-card meter-clickable" id="pace-card" role="button" tabindex="0" data-provenance="pace" title="Open Pace provenance">
-          <p class="meter-kicker">PACE INDEX · RSI / AGI-adjacent / frontier speed <span class="prov-hint">trust</span></p>
-          <div class="meter-row">
-            <div class="meter-clock" id="pace-clock" role="img" aria-label="Pace gauge"></div>
-            <div class="meter-copy">
-              <div class="meter-pct-row"><span class="meter-pct" id="pace-pct">—</span><span class="meter-unit">%</span></div>
-              <p class="meter-tier" id="pace-tier">loading…</p>
-              <p class="meter-line muted" id="pace-line">Apex spine + haircut Cap Demos / Containment / Lab Gov.</p>
-              <p class="meter-apex-mini muted tiny" id="pace-apex-mini">Recursive AI —% · AGI —% · Closed-loop —%</p>
-              <ul class="meter-drivers" id="pace-drivers"></ul>
-            </div>
-          </div>
-        </article>
+          <p class="apex-why" id="apex-why">Loading apex notes…</p>
+          <p class="apex-meta muted tiny" id="apex-meta">asOf — · closed-loop —%</p>
+        </section>
       </div>
-      <div class="blend-strip blend-clickable" id="blend-strip" role="button" tabindex="0" data-provenance="blend" title="Open blend provenance">
-        <span class="blend-label">Board temperature (blend, not prophecy) <span class="prov-hint">trust</span></span>
-        <span class="blend-pct" id="blend-pct">—</span>
-        <span class="blend-formula muted tiny" id="blend-formula">0.55×Stress + 0.45×Pace</span>
-        <span class="blend-gate muted tiny" id="blend-gate">Prediction edges · gate closed</span>
+
+      <div class="pyramid-step step-pair">
+        <p class="step-kicker">Stress · Pace</p>
+        <div class="pair-row">
+          <button type="button" class="doom-clock mid-dial stress-dial" id="stress-btn" data-provenance="stress" title="Open Stress provenance">
+            <span class="clock-kicker">Stress <span class="prov-hint">trust</span></span>
+            <span class="clock-face" id="stress-clock" role="img" aria-label="Stress clock"></span>
+            <span class="clock-pct-big" id="stress-pct">—</span>
+            <span class="clock-tier" id="stress-tier">loading…</span>
+            <span class="clock-line" id="stress-line">Incident heat. Confirmation-gated.</span>
+          </button>
+          <button type="button" class="doom-clock mid-dial pace-dial" id="pace-btn" data-provenance="pace" title="Open Pace provenance">
+            <span class="clock-kicker">Pace <span class="prov-hint">trust</span></span>
+            <span class="clock-face" id="pace-clock" role="img" aria-label="Pace clock"></span>
+            <span class="clock-pct-big" id="pace-pct">—</span>
+            <span class="clock-tier" id="pace-tier">loading…</span>
+            <span class="clock-line" id="pace-line">Apex spine plus dial haircuts.</span>
+            <span class="clock-line muted" id="pace-apex-mini">Recursive AI —% · AGI —%</span>
+          </button>
+        </div>
+        <p class="pyramid-gate" id="pyramid-gate">Prediction edges · gate closed</p>
+      </div>
+
+      <div class="pyramid-step step-base">
+        <p class="step-kicker">Domain shelves</p>
+        <div class="clock-wall" id="clock-wall" aria-label="Domain shelf clocks">
+          <p class="muted">Winding the shelf clocks…</p>
+        </div>
       </div>
     </section>
 
@@ -116,7 +125,7 @@
   <footer class="footer">
     <p>Carbon · marble · cold steel. Public headlines only. Not prophecy.</p>
     <p class="muted" id="footer-disclaimer">Personal research signal board. Blend is not prophecy. Not financial, legal, or safety advice.</p>
-    <p class="muted tiny">This is a static mirror of a private research board. No scanning runs here. Click meters for provenance.</p>
+    <p class="muted tiny">This is a static mirror of a private research board. No scanning runs here. Click a clock for provenance.</p>
     <p class="footer-cute" aria-hidden="true">TOKYO · MOSCOW · DUBAI · NYC · calibrated for doom · mirror only</p>
   </footer>
 

@@ -14,9 +14,13 @@
         "publishedAt": "2026-09-18T12:00:00.000Z",
         "evidence": "body-confirmed",
         "sourceTier": "A",
+        "impact": 3,
         "effectiveImpact": 2.1,
-        "decayHint": "decay \u00d70.568 (~10d half-life)",
-        "bodyConfirmed": true
+        "polarity": "incident",
+        "clusterSize": 1,
+        "bodyConfirmed": true,
+        "decayFactor": 0.567,
+        "decayHint": "decay \u00d70.567 (~10d half-life)"
       },
       {
         "title": "Detecting and countering misuse of AI: September 2026",
@@ -25,9 +29,13 @@
         "publishedAt": "2026-09-10T16:00:00.000Z",
         "evidence": "body-confirmed",
         "sourceTier": "A",
+        "impact": 3,
         "effectiveImpact": 1.2,
-        "decayHint": "decay \u00d70.33 (aging; ~10d half-life)",
-        "bodyConfirmed": true
+        "polarity": "incident",
+        "clusterSize": 1,
+        "bodyConfirmed": true,
+        "decayFactor": 0.33,
+        "decayHint": "decay \u00d70.33 (aging; ~10d half-life)"
       },
       {
         "title": "Zelenskyy on X: Russian drones kill civilians near shopping malls in Pavlohrad",
@@ -36,9 +44,13 @@
         "publishedAt": "2026-09-10T16:00:00.000Z",
         "evidence": "body-confirmed",
         "sourceTier": "A",
+        "impact": 3,
         "effectiveImpact": 1.2,
-        "decayHint": "decay \u00d70.33 (aging; ~10d half-life)",
-        "bodyConfirmed": true
+        "polarity": "incident",
+        "clusterSize": 1,
+        "bodyConfirmed": true,
+        "decayFactor": 0.33,
+        "decayHint": "decay \u00d70.33 (aging; ~10d half-life)"
       },
       {
         "title": "CVE-2026-67279: Mikrotik RouterOS Improper Enforcement of Behavioral Workflow Vulnerability",
@@ -47,9 +59,13 @@
         "publishedAt": "2026-09-25T12:00:00.000Z",
         "evidence": "kev-catalog",
         "sourceTier": "A",
+        "impact": 3,
         "effectiveImpact": 1.9,
-        "decayHint": "decay \u00d70.923 (fresh; ~10d half-life)",
-        "bodyConfirmed": false
+        "polarity": "incident",
+        "clusterSize": 1,
+        "bodyConfirmed": false,
+        "decayFactor": 0.922,
+        "decayHint": "decay \u00d70.922 (fresh; ~10d half-life)"
       },
       {
         "title": "CVE-2026-93952: Arista VeloCloud Orchestrator Improper Input Validation Vulnerability",
@@ -58,12 +74,16 @@
         "publishedAt": "2026-09-22T12:00:00.000Z",
         "evidence": "kev-catalog",
         "sourceTier": "A",
+        "impact": 3,
         "effectiveImpact": 1.5,
-        "decayHint": "decay \u00d70.749 (~10d half-life)",
-        "bodyConfirmed": false
+        "polarity": "incident",
+        "clusterSize": 1,
+        "bodyConfirmed": false,
+        "decayFactor": 0.749,
+        "decayHint": "decay \u00d70.749 (~10d half-life)"
       }
     ],
-    "computedAt": "2026-09-26T15:52:49.150Z",
+    "computedAt": "2026-09-26T16:17:04.662Z",
     "confidence": 53,
     "scoreParts": {
       "intensity": 0.188,
@@ -124,10 +144,7 @@
         "link": "https://www.anthropic.com/institute/measuring-pace-of-ai-development",
         "publishedAt": "2026-09-17T16:00:00.000Z",
         "evidence": "lab-primary",
-        "sourceTier": null,
-        "effectiveImpact": null,
-        "decayHint": null,
-        "bodyConfirmed": null
+        "summary": "Anthropic Institute measurements for the pace of AI development. Anthropic R&D Automation Index as of August 2026: Claude is not fully autonomous on any measured subset of AI R&D; Claude leads 26% of AI R&D work; the share at or above AI collaborates is above 90%. About 30,000 agents on the main internal platform. About 6% of AI R&D compute that week went to safety."
       },
       {
         "title": "xAI launches Grok 4.7 (live in Grok app, Cursor, API, GitHub Copilot)",
@@ -135,10 +152,7 @@
         "link": "https://github.blog/changelog/2026-09-21-grok-4-7-is-now-available-in-github-copilot/",
         "publishedAt": "2026-09-21T18:00:00.000Z",
         "evidence": "lab-primary",
-        "sourceTier": null,
-        "effectiveImpact": null,
-        "decayHint": null,
-        "bodyConfirmed": null
+        "summary": "Frontier model release, Sep 21 2026. Grok 4.7 is live in the Grok app, Cursor, Grok Build, xAI API, and rolling out in GitHub Copilot. Company calls it a notable improvement over Grok 4.6 at the same price. Independent benches (Artificial Analysis / GDPval) still place it behind Claude Fable 5.1 and GPT-6 Astra \u2014 mid-pack frontier, not a Recursive-AI leap. Corroborated by Decrypt and The Decoder same day."
       },
       {
         "title": "Sam Altman on X: big shipping this week, then DevDay",
@@ -146,46 +160,31 @@
         "link": "https://x.com/sama/status/2099872600977760451",
         "publishedAt": "2026-09-15T16:00:00.000Z",
         "evidence": "lab-primary",
-        "sourceTier": null,
-        "effectiveImpact": null,
-        "decayHint": null,
-        "bodyConfirmed": null
+        "summary": "Verified OpenAI CEO post. Altman teases major product shipping this week ahead of DevDay. Capability cadence signal, not a leak."
       },
       {
         "title": "Cap Demos dial 32% \u2192 haircut 32% (body share 100%)",
         "source": "live scan dial",
         "link": null,
-        "publishedAt": null,
         "evidence": "dial-haircut",
-        "sourceTier": null,
-        "effectiveImpact": null,
-        "decayHint": null,
-        "bodyConfirmed": null
+        "subId": "capability_demos"
       },
       {
         "title": "Containment dial 64% \u2192 haircut 42% (body share 40%)",
         "source": "live scan dial",
         "link": null,
-        "publishedAt": null,
         "evidence": "dial-haircut",
-        "sourceTier": null,
-        "effectiveImpact": null,
-        "decayHint": null,
-        "bodyConfirmed": null
+        "subId": "ai_containment"
       },
       {
         "title": "Lab Gov dial 35% \u2192 haircut 24% (body share 40%)",
         "source": "live scan dial",
         "link": null,
-        "publishedAt": null,
         "evidence": "dial-haircut",
-        "sourceTier": null,
-        "effectiveImpact": null,
-        "decayHint": null,
-        "bodyConfirmed": null
+        "subId": "lab_governance"
       }
     ],
-    "computedAt": "2026-09-26T15:52:49.151Z",
+    "computedAt": "2026-09-26T16:17:04.662Z",
     "apexAsOf": "2026-08",
     "apexUpdatedAt": "2026-09-25T19:45:00.000-07:00",
     "apexSources": [
@@ -419,8 +418,336 @@
   "movedNeedle": [],
   "changeSummary": null,
   "predictions": {
-    "gate": "closed",
+    "updated": "2026-09-26T16:17:04.657Z",
     "verdict": "no edge",
+    "gate": "closed",
+    "edgeRule": "edge only if primary-sourced ourP, |gap|\u226515, yes in 15\u201385, and calibration gate open for that family",
+    "rule": "A market is an edge only if three things are true: our number comes from a primary source that matches that market's exact question, the gap is at least 15 points, and the price is between 15% and 85% so a disagreement can actually pay. Headline doom percent is not a probability.",
+    "how": "The way to earn an edge is to keep this book, resolve each row when the market closes, and only then bet a category that beat the price often enough. Forcing a bet off the overall clock would fake an edge we have not measured.",
+    "calibration": {
+      "asOf": "2026-09-26",
+      "method": "Resolved gamma markets (closed, outcomePrices near 0/1, volume\u2265$20k) matched to family question filters. Aim: dozens per family, not thousands. Brier uses prior p30 prints when available; otherwise base rates only.",
+      "gate": "closed",
+      "rule": "A family opens only if ALL hold: top-level gate set to open, family.open=true, nResolved\u226520 with non-ladder-independent trials, and |mean p30\u2212outcome|\u22650.08 on \u22658 distinct events. None qualify automatically. Do not invent edges.",
+      "minVolumeUsd": 20000,
+      "maxPerFamily": 80,
+      "families": [
+        {
+          "id": "taiwan",
+          "label": "China\u2013Taiwan invade / clash / blockade",
+          "family": "taiwan",
+          "nResolved": 10,
+          "n": 10,
+          "baseRateYes": 0,
+          "yesRate": 0,
+          "nYes": 0,
+          "meanBrier": 0.000378,
+          "meanGap": 0.0179,
+          "brierN": 4,
+          "open": false,
+          "gateStatus": "closed",
+          "gateReady": false,
+          "wouldOpenIf": "Need n\u226520 resolved (have 10), plus independence + mean |p30 miss|\u22658pts rule, then manual open.",
+          "notes": "All 10 resolved windows settled No. Being right at 1\u20135\u00a2 yes does not pay as an edge. Date ladders / multi-outcome boards are partially dependent \u2014 treat n as upper bound on independent trials. Brier(p30 vs outcome) on 4 overlapping prints: 0.0004; mean signed gap(p30\u2212yes)=0.018.",
+          "detail": "All 10 resolved windows settled No. Being right at 1\u20135\u00a2 yes does not pay as an edge. Date ladders / multi-outcome boards are partially dependent \u2014 treat n as upper bound on independent trials. Brier(p30 vs outcome) on 4 overlapping prints: 0.0004; mean signed gap(p30\u2212yes)=0.018."
+        },
+        {
+          "id": "cease",
+          "label": "Russia\u2013Ukraine ceasefire (by date / agreement)",
+          "family": "cease",
+          "nResolved": 33,
+          "n": 33,
+          "baseRateYes": 0.212,
+          "yesRate": 0.212,
+          "nYes": 7,
+          "meanBrier": 0.112357,
+          "meanGap": -0.0353,
+          "brierN": 8,
+          "open": false,
+          "gateStatus": "closed",
+          "gateReady": false,
+          "wouldOpenIf": "n\u226520 met (33). Still need: (1) independent trials not date-ladder clones, (2) documented |mean p30 miss|\u22650.08 on \u22658 non-repeated events, (3) manual review sets open:true AND top-level gate:\"open\". Currently closed.",
+          "notes": "Ceasefire date ladders: baseRateYes=0.21. Early dates mostly no; later inclusive windows can resolve yes together. Open book is often a stricter \"agreement\" question. Date ladders / multi-outcome boards are partially dependent \u2014 treat n as upper bound on independent trials. Brier(p30 vs outcome) on 8 overlapping prints: 0.1124; mean signed gap(p30\u2212yes)=-0.035.",
+          "detail": "Ceasefire date ladders: baseRateYes=0.21. Early dates mostly no; later inclusive windows can resolve yes together. Open book is often a stricter \"agreement\" question. Date ladders / multi-outcome boards are partially dependent \u2014 treat n as upper bound on independent trials. Brier(p30 vs outcome) on 8 overlapping prints: 0.1124; mean signed gap(p30\u2212yes)=-0.035."
+        },
+        {
+          "id": "best",
+          "label": "Best / top AI model (company rows)",
+          "family": "best",
+          "nResolved": 80,
+          "n": 80,
+          "baseRateYes": 0.163,
+          "yesRate": 0.163,
+          "nYes": 13,
+          "meanBrier": 0.107964,
+          "meanGap": -0.0038,
+          "brierN": 16,
+          "open": false,
+          "gateStatus": "closed",
+          "gateReady": false,
+          "wouldOpenIf": "n\u226520 met (80). Still need: (1) independent trials not date-ladder clones, (2) documented |mean p30 miss|\u22650.08 on \u22658 non-repeated events, (3) manual review sets open:true AND top-level gate:\"open\". Currently closed.",
+          "notes": "Company-row markets: ~16.3% resolved yes (expected low when only one winner). Do not read as P(leader stays). Date ladders / multi-outcome boards are partially dependent \u2014 treat n as upper bound on independent trials. Brier(p30 vs outcome) on 16 overlapping prints: 0.1080; mean signed gap(p30\u2212yes)=-0.004.",
+          "detail": "Company-row markets: ~16.3% resolved yes (expected low when only one winner). Do not read as P(leader stays). Date ladders / multi-outcome boards are partially dependent \u2014 treat n as upper bound on independent trials. Brier(p30 vs outcome) on 16 overlapping prints: 0.1080; mean signed gap(p30\u2212yes)=-0.004."
+        },
+        {
+          "id": "agi",
+          "label": "OpenAI announces AGI",
+          "family": "agi",
+          "nResolved": 3,
+          "n": 3,
+          "baseRateYes": 0,
+          "yesRate": 0,
+          "nYes": 0,
+          "meanBrier": 0.000378,
+          "meanGap": 0.0185,
+          "brierN": 2,
+          "open": false,
+          "gateStatus": "closed",
+          "gateReady": false,
+          "wouldOpenIf": "Need n\u226520 resolved (have 3), plus independence + mean |p30 miss|\u22658pts rule, then manual open.",
+          "notes": "All 3 resolved windows settled No. Being right at 1\u20135\u00a2 yes does not pay as an edge. Date ladders / multi-outcome boards are partially dependent \u2014 treat n as upper bound on independent trials. Brier(p30 vs outcome) on 2 overlapping prints: 0.0004; mean signed gap(p30\u2212yes)=0.019.",
+          "detail": "All 3 resolved windows settled No. Being right at 1\u20135\u00a2 yes does not pay as an edge. Date ladders / multi-outcome boards are partially dependent \u2014 treat n as upper bound on independent trials. Brier(p30 vs outcome) on 2 overlapping prints: 0.0004; mean signed gap(p30\u2212yes)=0.019."
+        },
+        {
+          "id": "recession",
+          "label": "US recession (by year / date)",
+          "family": "recession",
+          "nResolved": 1,
+          "n": 1,
+          "baseRateYes": 0,
+          "yesRate": 0,
+          "nYes": 0,
+          "meanBrier": null,
+          "meanGap": null,
+          "brierN": 0,
+          "open": false,
+          "gateStatus": "closed",
+          "gateReady": false,
+          "wouldOpenIf": "Need n\u226520 resolved (have 1), plus independence + mean |p30 miss|\u22658pts rule, then manual open.",
+          "notes": "All 1 resolved windows settled No. Being right at 1\u20135\u00a2 yes does not pay as an edge.  No pre-resolution p30 history for Brier on this harvest \u2014 base rate only.",
+          "detail": "All 1 resolved windows settled No. Being right at 1\u20135\u00a2 yes does not pay as an edge.  No pre-resolution p30 history for Brier on this harvest \u2014 base rate only."
+        },
+        {
+          "id": "pandemic",
+          "label": "Pandemic / WHO-declared pandemic",
+          "family": "pandemic",
+          "nResolved": 6,
+          "n": 6,
+          "baseRateYes": 0,
+          "yesRate": 0,
+          "nYes": 0,
+          "meanBrier": null,
+          "meanGap": null,
+          "brierN": 0,
+          "open": false,
+          "gateStatus": "closed",
+          "gateReady": false,
+          "wouldOpenIf": "Need n\u226520 resolved (have 6), plus independence + mean |p30 miss|\u22658pts rule, then manual open.",
+          "notes": "All 6 resolved windows settled No. Being right at 1\u20135\u00a2 yes does not pay as an edge. Date ladders / multi-outcome boards are partially dependent \u2014 treat n as upper bound on independent trials. No pre-resolution p30 history for Brier on this harvest \u2014 base rate only.",
+          "detail": "All 6 resolved windows settled No. Being right at 1\u20135\u00a2 yes does not pay as an edge. Date ladders / multi-outcome boards are partially dependent \u2014 treat n as upper bound on independent trials. No pre-resolution p30 history for Brier on this harvest \u2014 base rate only."
+        },
+        {
+          "id": "nuclear",
+          "label": "Russia nuclear test",
+          "family": "nuclear",
+          "nResolved": 4,
+          "n": 4,
+          "baseRateYes": 0,
+          "yesRate": 0,
+          "nYes": 0,
+          "meanBrier": null,
+          "meanGap": null,
+          "brierN": 0,
+          "open": false,
+          "gateStatus": "closed",
+          "gateReady": false,
+          "wouldOpenIf": "Need n\u226520 resolved (have 4), plus independence + mean |p30 miss|\u22658pts rule, then manual open.",
+          "notes": "All 4 resolved windows settled No. Being right at 1\u20135\u00a2 yes does not pay as an edge. Date ladders / multi-outcome boards are partially dependent \u2014 treat n as upper bound on independent trials. No pre-resolution p30 history for Brier on this harvest \u2014 base rate only.",
+          "detail": "All 4 resolved windows settled No. Being right at 1\u20135\u00a2 yes does not pay as an edge. Date ladders / multi-outcome boards are partially dependent \u2014 treat n as upper bound on independent trials. No pre-resolution p30 history for Brier on this harvest \u2014 base rate only."
+        },
+        {
+          "id": "nato",
+          "label": "Russia\u2013NATO invade / military clash",
+          "family": "nato",
+          "nResolved": 6,
+          "n": 6,
+          "baseRateYes": 0,
+          "yesRate": 0,
+          "nYes": 0,
+          "meanBrier": null,
+          "meanGap": null,
+          "brierN": 0,
+          "open": false,
+          "gateStatus": "closed",
+          "gateReady": false,
+          "wouldOpenIf": "Need n\u226520 resolved (have 6), plus independence + mean |p30 miss|\u22658pts rule, then manual open.",
+          "notes": "All 6 resolved windows settled No. Being right at 1\u20135\u00a2 yes does not pay as an edge. Date ladders / multi-outcome boards are partially dependent \u2014 treat n as upper bound on independent trials. No pre-resolution p30 history for Brier on this harvest \u2014 base rate only.",
+          "detail": "All 6 resolved windows settled No. Being right at 1\u20135\u00a2 yes does not pay as an edge. Date ladders / multi-outcome boards are partially dependent \u2014 treat n as upper bound on independent trials. No pre-resolution p30 history for Brier on this harvest \u2014 base rate only."
+        },
+        {
+          "id": "iran_israel",
+          "label": "Iran\u2013Israel strike / ceasefire / war",
+          "family": "iran_israel",
+          "nResolved": 80,
+          "n": 80,
+          "baseRateYes": 0.6,
+          "yesRate": 0.6,
+          "nYes": 48,
+          "meanBrier": null,
+          "meanGap": null,
+          "brierN": 0,
+          "open": false,
+          "gateStatus": "closed",
+          "gateReady": false,
+          "wouldOpenIf": "n\u226520 met (80). Still need: (1) independent trials not date-ladder clones, (2) documented |mean p30 miss|\u22650.08 on \u22658 non-repeated events, (3) manual review sets open:true AND top-level gate:\"open\". Currently closed.",
+          "notes": "Mix of strike/attack (53, yesRate=0.51) and ceasefire-continuation ladders (18, yesRate=1.00). Continuation legs resolve yes in bunches \u2014 not independent. Date ladders / multi-outcome boards are partially dependent \u2014 treat n as upper bound on independent trials. No pre-resolution p30 history for Brier on this harvest \u2014 base rate only.",
+          "detail": "Mix of strike/attack (53, yesRate=0.51) and ceasefire-continuation ladders (18, yesRate=1.00). Continuation legs resolve yes in bunches \u2014 not independent. Date ladders / multi-outcome boards are partially dependent \u2014 treat n as upper bound on independent trials. No pre-resolution p30 history for Brier on this harvest \u2014 base rate only."
+        }
+      ]
+    },
+    "baseRates": {
+      "asOf": "2026-09-26",
+      "source": "Polymarket gamma resolved markets (bounded harvest)",
+      "note": "baseRateYes = share of matched resolved markets that settled Yes. Nested date ladders are not independent trials. Gate remains closed.",
+      "gate": "closed",
+      "families": [
+        {
+          "id": "taiwan",
+          "family": "taiwan",
+          "label": "China\u2013Taiwan invade / clash / blockade",
+          "nResolved": 10,
+          "n": 10,
+          "baseRateYes": 0,
+          "yesRate": 0,
+          "nYes": 0,
+          "notes": "All 10 resolved windows settled No. Being right at 1\u20135\u00a2 yes does not pay as an edge. Date ladders / multi-outcome boards are partially dependent \u2014 treat n as upper bound on independent trials. Brier(p30 vs outcome) on 4 overlapping prints: 0.0004; mean signed gap(p30\u2212yes)=0.018.",
+          "gateStatus": "closed",
+          "gateReady": false,
+          "wouldOpenIf": "Need n\u226520 resolved (have 10), plus independence + mean |p30 miss|\u22658pts rule, then manual open.",
+          "open": false
+        },
+        {
+          "id": "cease",
+          "family": "cease",
+          "label": "Russia\u2013Ukraine ceasefire (by date / agreement)",
+          "nResolved": 33,
+          "n": 33,
+          "baseRateYes": 0.212,
+          "yesRate": 0.212,
+          "nYes": 7,
+          "notes": "Ceasefire date ladders: baseRateYes=0.21. Early dates mostly no; later inclusive windows can resolve yes together. Open book is often a stricter \"agreement\" question. Date ladders / multi-outcome boards are partially dependent \u2014 treat n as upper bound on independent trials. Brier(p30 vs outcome) on 8 overlapping prints: 0.1124; mean signed gap(p30\u2212yes)=-0.035.",
+          "gateStatus": "closed",
+          "gateReady": false,
+          "wouldOpenIf": "n\u226520 met (33). Still need: (1) independent trials not date-ladder clones, (2) documented |mean p30 miss|\u22650.08 on \u22658 non-repeated events, (3) manual review sets open:true AND top-level gate:\"open\". Currently closed.",
+          "open": false
+        },
+        {
+          "id": "best",
+          "family": "best",
+          "label": "Best / top AI model (company rows)",
+          "nResolved": 80,
+          "n": 80,
+          "baseRateYes": 0.163,
+          "yesRate": 0.163,
+          "nYes": 13,
+          "notes": "Company-row markets: ~16.3% resolved yes (expected low when only one winner). Do not read as P(leader stays). Date ladders / multi-outcome boards are partially dependent \u2014 treat n as upper bound on independent trials. Brier(p30 vs outcome) on 16 overlapping prints: 0.1080; mean signed gap(p30\u2212yes)=-0.004.",
+          "gateStatus": "closed",
+          "gateReady": false,
+          "wouldOpenIf": "n\u226520 met (80). Still need: (1) independent trials not date-ladder clones, (2) documented |mean p30 miss|\u22650.08 on \u22658 non-repeated events, (3) manual review sets open:true AND top-level gate:\"open\". Currently closed.",
+          "open": false
+        },
+        {
+          "id": "agi",
+          "family": "agi",
+          "label": "OpenAI announces AGI",
+          "nResolved": 3,
+          "n": 3,
+          "baseRateYes": 0,
+          "yesRate": 0,
+          "nYes": 0,
+          "notes": "All 3 resolved windows settled No. Being right at 1\u20135\u00a2 yes does not pay as an edge. Date ladders / multi-outcome boards are partially dependent \u2014 treat n as upper bound on independent trials. Brier(p30 vs outcome) on 2 overlapping prints: 0.0004; mean signed gap(p30\u2212yes)=0.019.",
+          "gateStatus": "closed",
+          "gateReady": false,
+          "wouldOpenIf": "Need n\u226520 resolved (have 3), plus independence + mean |p30 miss|\u22658pts rule, then manual open.",
+          "open": false
+        },
+        {
+          "id": "recession",
+          "family": "recession",
+          "label": "US recession (by year / date)",
+          "nResolved": 1,
+          "n": 1,
+          "baseRateYes": 0,
+          "yesRate": 0,
+          "nYes": 0,
+          "notes": "All 1 resolved windows settled No. Being right at 1\u20135\u00a2 yes does not pay as an edge.  No pre-resolution p30 history for Brier on this harvest \u2014 base rate only.",
+          "gateStatus": "closed",
+          "gateReady": false,
+          "wouldOpenIf": "Need n\u226520 resolved (have 1), plus independence + mean |p30 miss|\u22658pts rule, then manual open.",
+          "open": false
+        },
+        {
+          "id": "pandemic",
+          "family": "pandemic",
+          "label": "Pandemic / WHO-declared pandemic",
+          "nResolved": 6,
+          "n": 6,
+          "baseRateYes": 0,
+          "yesRate": 0,
+          "nYes": 0,
+          "notes": "All 6 resolved windows settled No. Being right at 1\u20135\u00a2 yes does not pay as an edge. Date ladders / multi-outcome boards are partially dependent \u2014 treat n as upper bound on independent trials. No pre-resolution p30 history for Brier on this harvest \u2014 base rate only.",
+          "gateStatus": "closed",
+          "gateReady": false,
+          "wouldOpenIf": "Need n\u226520 resolved (have 6), plus independence + mean |p30 miss|\u22658pts rule, then manual open.",
+          "open": false
+        },
+        {
+          "id": "nuclear",
+          "family": "nuclear",
+          "label": "Russia nuclear test",
+          "nResolved": 4,
+          "n": 4,
+          "baseRateYes": 0,
+          "yesRate": 0,
+          "nYes": 0,
+          "notes": "All 4 resolved windows settled No. Being right at 1\u20135\u00a2 yes does not pay as an edge. Date ladders / multi-outcome boards are partially dependent \u2014 treat n as upper bound on independent trials. No pre-resolution p30 history for Brier on this harvest \u2014 base rate only.",
+          "gateStatus": "closed",
+          "gateReady": false,
+          "wouldOpenIf": "Need n\u226520 resolved (have 4), plus independence + mean |p30 miss|\u22658pts rule, then manual open.",
+          "open": false
+        },
+        {
+          "id": "nato",
+          "family": "nato",
+          "label": "Russia\u2013NATO invade / military clash",
+          "nResolved": 6,
+          "n": 6,
+          "baseRateYes": 0,
+          "yesRate": 0,
+          "nYes": 0,
+          "notes": "All 6 resolved windows settled No. Being right at 1\u20135\u00a2 yes does not pay as an edge. Date ladders / multi-outcome boards are partially dependent \u2014 treat n as upper bound on independent trials. No pre-resolution p30 history for Brier on this harvest \u2014 base rate only.",
+          "gateStatus": "closed",
+          "gateReady": false,
+          "wouldOpenIf": "Need n\u226520 resolved (have 6), plus independence + mean |p30 miss|\u22658pts rule, then manual open.",
+          "open": false
+        },
+        {
+          "id": "iran_israel",
+          "family": "iran_israel",
+          "label": "Iran\u2013Israel strike / ceasefire / war",
+          "nResolved": 80,
+          "n": 80,
+          "baseRateYes": 0.6,
+          "yesRate": 0.6,
+          "nYes": 48,
+          "notes": "Mix of strike/attack (53, yesRate=0.51) and ceasefire-continuation ladders (18, yesRate=1.00). Continuation legs resolve yes in bunches \u2014 not independent. Date ladders / multi-outcome boards are partially dependent \u2014 treat n as upper bound on independent trials. No pre-resolution p30 history for Brier on this harvest \u2014 base rate only.",
+          "gateStatus": "closed",
+          "gateReady": false,
+          "wouldOpenIf": "n\u226520 met (80). Still need: (1) independent trials not date-ladder clones, (2) documented |mean p30 miss|\u22650.08 on \u22658 non-repeated events, (3) manual review sets open:true AND top-level gate:\"open\". Currently closed.",
+          "open": false
+        }
+      ]
+    },
     "markets": [
       {
         "id": "best-sep-anthropic",
@@ -717,5 +1044,2060 @@
       }
     ]
   },
-  "sourceHealthSummary": null
+  "sourceHealthSummary": null,
+  "domains": {
+    "tech_control": {
+      "id": "tech_control",
+      "name": "Tech Control",
+      "shelfLabel": "LAB FLOOR",
+      "accent": "STEEL",
+      "blurb": "Whether the labs still hold the leash \u2014 containment, AI-cyber, demos, resignations.",
+      "pct": 38,
+      "weight": 0.135,
+      "confidence": 81,
+      "tier": {
+        "name": "Sweating Softly"
+      },
+      "subs": {
+        "ai_containment": {
+          "id": "ai_containment",
+          "name": "AI containment",
+          "clockLabel": "Containment",
+          "pct": 64,
+          "tier": {
+            "name": "Leash Looking Loose"
+          },
+          "confidence": 95,
+          "drivers": [
+            {
+              "title": "Brief independent investigation of agents\u2019 behavior, reasoning and collaboration in the OpenAI / Hugging Face hacking incident",
+              "source": "METR Blog",
+              "link": "https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/",
+              "publishedAt": "2026-09-25T19:26:06.000Z",
+              "evidence": "body-confirmed",
+              "sourceTier": "A"
+            },
+            {
+              "title": "OpenAI on X: agents sent training/eval data to third parties; 53 user images on image hosts",
+              "source": "X \u00b7 @OpenAI (verified)",
+              "link": "https://x.com/OpenAI/status/2103587050347995581",
+              "publishedAt": "2026-09-25T20:46:50.000Z",
+              "evidence": "body-confirmed",
+              "sourceTier": "A"
+            },
+            {
+              "title": "Top AI companies call for safety measures while critics warn regulation could stifle innovation",
+              "source": "GN: AI safety",
+              "link": "https://www.msn.com/en-us/news/other/top-ai-companies-call-for-safety-measures-while-critics-warn-regulation-could-stifle-innovation/ar-AA2cY8n6",
+              "publishedAt": "2026-09-25T07:29:09.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "Accenture (ACN) Joins Anthropic\u2019s AI Safety Effort. Can it Turn Evaluation into Profits?",
+              "source": "GN: AI safety",
+              "link": "https://finance.yahoo.com/technology/ai/articles/accenture-acn-joins-anthropic-ai-233631025.html",
+              "publishedAt": "2026-09-25T16:36:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            }
+          ]
+        },
+        "ai_cyber": {
+          "id": "ai_cyber",
+          "name": "AI-assisted cyber",
+          "clockLabel": "AI Cyber",
+          "pct": 19,
+          "tier": {
+            "name": "Uneasy Picnic"
+          },
+          "confidence": 52,
+          "drivers": [
+            {
+              "title": "Anthropic Launches Claude Opus 5.5 With Lower Prices and Faster Output",
+              "source": "GN: Anthropic",
+              "link": "https://www.techrepublic.com/article/news-anthropic-claude-opus-5-5-pricing-performance/",
+              "publishedAt": "2026-09-24T07:39:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "Anthropic launches Claude Opus 5.5 with expanded biology capabilities",
+              "source": "GN: Anthropic",
+              "link": "https://www.mobihealthnews.com/news/anthropic-launches-claude-opus-55-expanded-biology-capabilities",
+              "publishedAt": "2026-09-23T06:05:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "Anthropic rolls out Claude Opus 5.5 across major cloud platforms",
+              "source": "GN: Anthropic",
+              "link": "https://www.msn.com/en-us/news/other/anthropic-rolls-out-claude-opus-55-across-major-cloud-platforms/ar-AA2cQAc0",
+              "publishedAt": "2026-09-23T04:31:55.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "Anthropic Launches Claude Opus 5.5 With Fable-Level Performance at a Lower Price",
+              "source": "GN: Anthropic",
+              "link": "https://www.macrumors.com/2026/09/22/anthropic-claude-opus-5-5/",
+              "publishedAt": "2026-09-22T12:23:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            }
+          ]
+        },
+        "capability_demos": {
+          "id": "capability_demos",
+          "name": "Capability demos",
+          "clockLabel": "Cap Demos",
+          "pct": 32,
+          "tier": {
+            "name": "Sweating Softly"
+          },
+          "confidence": 85,
+          "drivers": [
+            {
+              "title": "Dario: Claude-led discovery may be new gene-editing mechanism (significance unclear)",
+              "source": "X \u00b7 @DarioAmodei",
+              "link": "https://x.com/DarioAmodei/status/2102831170299834652",
+              "publishedAt": "2026-09-23T18:43:14.000Z",
+              "evidence": "body-confirmed",
+              "sourceTier": "A"
+            },
+            {
+              "title": "Anthropic: Claude discovered unknown phage enzyme system (CRISPR-like DNA array)",
+              "source": "X \u00b7 @AnthropicAI (verified)",
+              "link": "https://x.com/AnthropicAI/status/2102824959827742916",
+              "publishedAt": "2026-09-23T18:18:33.000Z",
+              "evidence": "body-confirmed",
+              "sourceTier": "A"
+            },
+            {
+              "title": "OpenAI: GPT-6 Sol and Luna released (faster/cheaper GPT-6 family)",
+              "source": "X \u00b7 @OpenAI (verified)",
+              "link": "https://x.com/OpenAI/status/2102460975790137662",
+              "publishedAt": "2026-09-22T18:12:13.000Z",
+              "evidence": "body-confirmed",
+              "sourceTier": "A"
+            },
+            {
+              "title": "Anthropic: Claude Opus 5.5 available (Claude 5.5 family)",
+              "source": "X \u00b7 @AnthropicAI (verified)",
+              "link": "https://x.com/AnthropicAI/status/2102435703535939725",
+              "publishedAt": "2026-09-22T16:31:47.000Z",
+              "evidence": "body-confirmed",
+              "sourceTier": "A"
+            }
+          ]
+        },
+        "lab_governance": {
+          "id": "lab_governance",
+          "name": "Lab governance / resignations",
+          "clockLabel": "Lab Gov",
+          "pct": 35,
+          "tier": {
+            "name": "Sweating Softly"
+          },
+          "confidence": 91,
+          "drivers": [
+            {
+              "title": "sama: extensive ongoing review of agents\u2019 internet access during training/eval",
+              "source": "X \u00b7 @sama",
+              "link": "https://x.com/sama/status/2103567198690349362",
+              "publishedAt": "2026-09-25T19:27:57.000Z",
+              "evidence": "body-confirmed",
+              "sourceTier": "A"
+            },
+            {
+              "title": "Anthropic, OpenAI release cheaper AI even as safety fears grow",
+              "source": "GN: lab resignations",
+              "link": "https://techxplore.com/news/2026-09-anthropic-openai-cheaper-ai-safety.html",
+              "publishedAt": "2026-09-23T01:38:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "Proaction boosts sales 60% and saves 75+ hours with Codex",
+              "source": "OpenAI News",
+              "link": "https://openai.com/index/proaction",
+              "publishedAt": "2026-09-25T19:00:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "A"
+            },
+            {
+              "title": "Dario: We Must Pace the Frontier \u2014 third-party evaluators permanent employee-level access",
+              "source": "X \u00b7 @DarioAmodei",
+              "link": "https://x.com/DarioAmodei/status/2098773920774074715",
+              "publishedAt": "2026-09-12T14:01:10.000Z",
+              "evidence": "primary-source",
+              "sourceTier": "A"
+            }
+          ]
+        }
+      }
+    },
+    "cyber_info": {
+      "id": "cyber_info",
+      "name": "Cyber & Info",
+      "shelfLabel": "BREACH HALL",
+      "accent": "GRAPHITE",
+      "blurb": "Old-school breaches, poisoned packages, and lies that scale.",
+      "pct": 21,
+      "weight": 0.1,
+      "confidence": 53,
+      "tier": {
+        "name": "Uneasy Picnic"
+      },
+      "subs": {
+        "classic_cyber": {
+          "id": "classic_cyber",
+          "name": "Classic cyber",
+          "clockLabel": "Classic Cyber",
+          "pct": 34,
+          "tier": {
+            "name": "Sweating Softly"
+          },
+          "confidence": 70,
+          "drivers": [
+            {
+              "title": "Imminent Zero-Day Attack: KiteWorks Urges Customers to Shut Down Servers",
+              "source": "GN: zero-day / CVE",
+              "link": "https://www.heise.de/en/news/Imminent-Zero-Day-Attack-KiteWorks-Urges-Customers-to-Shut-Down-Servers-11466375.html",
+              "publishedAt": "2026-09-25T06:49:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "Meta\u2019s Muse AI Assistant Rolled Out With a Serious Security Flaw",
+              "source": "WIRED Security",
+              "link": "https://www.wired.com/story/metas-muse-ai-agent-zero-day/",
+              "publishedAt": "2026-09-23T12:54:58.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "B"
+            },
+            {
+              "title": "CVE-2026-67279: Mikrotik RouterOS Improper Enforcement of Behavioral Workflow Vulnerability",
+              "source": "CISA Known Exploited Vulnerabilities",
+              "link": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-67279",
+              "publishedAt": "2026-09-25T12:00:00.000Z",
+              "evidence": "kev-catalog",
+              "sourceTier": "A"
+            },
+            {
+              "title": "CVE-2026-65660: Microsoft SharePoint Code Injection Vulnerability",
+              "source": "CISA Known Exploited Vulnerabilities",
+              "link": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-65660",
+              "publishedAt": "2026-09-25T12:00:00.000Z",
+              "evidence": "kev-catalog",
+              "sourceTier": "A"
+            }
+          ]
+        },
+        "supply_chain": {
+          "id": "supply_chain",
+          "name": "Supply chain",
+          "clockLabel": "Supply Chain",
+          "pct": 7,
+          "tier": {
+            "name": "Butterflies"
+          },
+          "confidence": 33,
+          "drivers": [
+            {
+              "title": "Mistral AI SDK, TanStack Router hit in npm software supply chain attack",
+              "source": "GN: supply chain",
+              "link": "https://www.infoworld.com/article/4170293/mistral-ai-sdk-tanstack-router-hit-in-npm-software-supply-chain-attack-2.html",
+              "publishedAt": "2026-05-12T08:15:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "The TanStack supply chain attack poisoned 160 npm and PyPI packages \u2014 reaching OpenAI, Mistral AI, and UiPath through compromised build pipelines",
+              "source": "GN: supply chain",
+              "link": "https://www.msn.com/en-us/technology/cybersecurity/the-tanstack-supply-chain-attack-poisoned-160-npm-and-pypi-packages-reaching-openai-mistral-ai-and-uipath-through-compromised-build-pipelines/ar-AA23lkjS",
+              "publishedAt": "2026-05-10T17:00:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "Rust-Written IronWorm Hits NPM Supply Chain",
+              "source": "GN: supply chain",
+              "link": "https://www.darkreading.com/cyberattacks-data-breaches/rust-written-ironworm-npm-supply-chain",
+              "publishedAt": "2026-06-04T14:47:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "Shai Hulud malware turns developers into unwitting distributors in NPM supply chain attacks",
+              "source": "GN: supply chain",
+              "link": "https://siliconangle.com/2025/12/23/shai-hulud-malware-turns-developers-unwitting-distributors-npm-supply-chain-attacks/",
+              "publishedAt": "2025-12-23T06:00:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            }
+          ]
+        },
+        "info_ops": {
+          "id": "info_ops",
+          "name": "Deepfakes / info ops",
+          "clockLabel": "Deepfakes",
+          "pct": 18,
+          "tier": {
+            "name": "Uneasy Picnic"
+          },
+          "confidence": 56,
+          "drivers": [
+            {
+              "title": "The world's plan to secure AI: why the US is a missing piece",
+              "source": "GN: disinformation",
+              "link": "https://www.msn.com/en-us/technology/artificial-intelligence/the-world-s-plan-to-secure-ai-why-the-us-is-a-missing-piece/ar-AA2cWma2",
+              "publishedAt": "2026-09-25T01:43:39.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "Cross-border collab, responsible AI use vital vs disinformation",
+              "source": "GN: disinformation",
+              "link": "https://www.pna.gov.ph/articles/1284835",
+              "publishedAt": "2026-09-25T05:36:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "AI deepfake case in Henderson reflects troubling national trend",
+              "source": "GN: disinformation",
+              "link": "https://www.msn.com/en-us/news/other/ai-deepfake-case-in-henderson-reflects-troubling-national-trend/ar-AA2cQAXK",
+              "publishedAt": "2026-09-24T07:43:54.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "Hampton police: Man charged in AI deepfake harassment campaign",
+              "source": "GN: disinformation",
+              "link": "https://www.indystar.com/story/news/local/2026/09/24/hampton-police-man-charged-ai-deepfake-harassment-campaign/91897502007/",
+              "publishedAt": "2026-09-24T02:03:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            }
+          ]
+        }
+      }
+    },
+    "policy_law": {
+      "id": "policy_law",
+      "name": "Policy & Law",
+      "shelfLabel": "RED TAPE WING",
+      "accent": "BRASS",
+      "blurb": "Bills, bans, export lists, and lawyers discovering the on-switch.",
+      "pct": 20,
+      "weight": 0.075,
+      "confidence": 49,
+      "tier": {
+        "name": "Uneasy Picnic"
+      },
+      "subs": {
+        "ai_regulation": {
+          "id": "ai_regulation",
+          "name": "AI regulation / bills",
+          "clockLabel": "AI Bills",
+          "pct": 21,
+          "tier": {
+            "name": "Uneasy Picnic"
+          },
+          "confidence": 48,
+          "drivers": [
+            {
+              "title": "Ben Ray Luj\u00e1n urges Senate leadership to form AI select committee",
+              "source": "GN: AI bills / regulation",
+              "link": "https://cryptobriefing.com/lujan-senate-ai-select-committee/",
+              "publishedAt": "2026-09-25T15:16:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "Bill Gates warns AI is powerful enough to cause a billion deaths",
+              "source": "GN: AI bills / regulation",
+              "link": "https://www.msn.com/en-us/technology/artificial-intelligence/bill-gates-warns-ai-is-powerful-enough-to-cause-a-billion-deaths/ar-AA2cYFJI",
+              "publishedAt": "2026-09-25T08:44:19.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "New York City writes bill to rein in AI while insisting it wants to be the 'AI capital of the world'",
+              "source": "GN: AI bills / regulation",
+              "link": "https://www.msn.com/en-us/news/other/new-york-city-writes-bill-to-rein-in-ai-while-insisting-it-wants-to-be-the-ai-capital-of-the-world/ar-AA2cWOCg",
+              "publishedAt": "2026-09-25T07:19:08.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "Mark Kelly urges Congress to pass his AI bill, saying \u2018No one else is coming to the rescue\u2019",
+              "source": "GN: AI bills / regulation",
+              "link": "https://ktar.com/arizona-technology-news/mark-kelly-limits-ai-regulation",
+              "publishedAt": "2026-09-23T04:07:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            }
+          ]
+        },
+        "compute_governance": {
+          "id": "compute_governance",
+          "name": "Export controls / compute",
+          "clockLabel": "Chip Ban",
+          "pct": 14,
+          "tier": {
+            "name": "Butterflies"
+          },
+          "confidence": 56,
+          "drivers": [
+            {
+              "title": "As Trump and Xi meet, can we get some clarity on trade policy?",
+              "source": "GN: tariffs / trade war",
+              "link": "https://www.miningjournal.net/opinion/2026/09/as-trump-and-xi-meet-can-we-get-some-clarity-on-trade-policy/",
+              "publishedAt": "2026-09-25T17:01:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "Americans and Canadians united in hating Trump\u2019s tariffs, poll finds",
+              "source": "GN: tariffs / trade war",
+              "link": "https://www.yahoo.com/news/politics/articles/americans-canadians-united-hating-trump-085425395.html",
+              "publishedAt": "2026-09-24T07:01:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "China's AI chip blitz arms Xi with a message for Trump: 'You can't choke us off'",
+              "source": "GN: chip export controls",
+              "link": "https://www.msn.com/en-us/money/markets/chinas-ai-chip-blitz-arms-xi-with-a-message-for-trump-you-cant-choke-us-off/ar-AA2cRX9k",
+              "publishedAt": "2026-09-23T20:38:03.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "Senate Democrats Push for Vote on Chip-Related Export Control Bills",
+              "source": "GN: chip export controls",
+              "link": "https://exportcompliancedaily.com/article/2026/09/24/senate-democrats-push-for-vote-on-chiprelated-export-control-bills-2609230034?BC=bc_6ab5066e98949",
+              "publishedAt": "2026-09-23T17:00:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            }
+          ]
+        },
+        "liability_enforcement": {
+          "id": "liability_enforcement",
+          "name": "Liability & enforcement",
+          "clockLabel": "Liability",
+          "pct": 23,
+          "tier": {
+            "name": "Uneasy Picnic"
+          },
+          "confidence": 44,
+          "drivers": [
+            {
+              "title": "D&O's mixed signals - why the calm at the surface is not the whole story",
+              "source": "GN: AI liability",
+              "link": "https://www.insurancebusinessmag.com/us/news/professional-liability/dandos-mixed-signals--why-the-calm-at-the-surface-is-not-the-whole-story-591246.aspx",
+              "publishedAt": "2026-09-25T03:51:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "BC sues OpenAI: a test case for AI liability coverage",
+              "source": "GN: AI liability",
+              "link": "https://www.insurancebusinessmag.com/ca/news/cyber/bc-sues-openai-a-test-case-for-ai-liability-coverage-590621.aspx",
+              "publishedAt": "2026-09-21T20:23:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "OpenAI, Microsoft executives' quotes on AI training threaten copyright defense, news outlets argue",
+              "source": "GN: AI lawsuits",
+              "link": "https://www.msn.com/en-us/news/news/openai-microsoft-executives-quotes-on-ai-training-threaten-copyright-defense-news-outlets-argue/ar-AA2cszIh",
+              "publishedAt": "2026-09-17T14:47:56.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "The 42-State AG Coalition: How State Attorneys General Are Building the Agent Liability Framework Congress Won\u2019t",
+              "source": "GN: AI liability",
+              "link": "https://forkast.news/the-42-state-ag-coalition-how-state-attorneys-general-are-building-the-agent-liability-framework-congress-wont/",
+              "publishedAt": "2026-09-23T12:51:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            }
+          ]
+        }
+      }
+    },
+    "politics_geo": {
+      "id": "politics_geo",
+      "name": "Politics & Geopolitics",
+      "shelfLabel": "WAR ROOM",
+      "accent": "COLD",
+      "blurb": "Great-power sprinting, wars with firmware, trust circling the drain.",
+      "pct": 21,
+      "weight": 0.085,
+      "confidence": 62,
+      "tier": {
+        "name": "Uneasy Picnic"
+      },
+      "subs": {
+        "ai_arms_race": {
+          "id": "ai_arms_race",
+          "name": "AI arms race / great power",
+          "clockLabel": "Arms Race",
+          "pct": 23,
+          "tier": {
+            "name": "Uneasy Picnic"
+          },
+          "confidence": 56,
+          "drivers": [
+            {
+              "title": "The US-China AI race doesn\u2019t need a winner \u2014 it needs rules",
+              "source": "GN: China AI race",
+              "link": "https://www.msn.com/en-us/politics/government/the-us-china-ai-race-doesn-t-need-a-winner-it-needs-rules/ar-AA2cG4ng",
+              "publishedAt": "2026-09-21T08:00:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "The US wants the world to pick a side on AI. But for many countries, China\u2019s pitch may be more compelling",
+              "source": "GN: China AI race",
+              "link": "https://www.yahoo.com/news/politics/articles/us-wants-world-pick-side-040029759.html",
+              "publishedAt": "2026-09-25T17:01:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "Mid-Autumn Festival brings families together across Taiwan Strait",
+              "source": "GN: China Taiwan",
+              "link": "https://english.news.cn/20260925/757b11a412874986b3902f80f63a9a82/c.html",
+              "publishedAt": "2026-09-25T16:45:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "Bo Bing Brings Mid-Autumn Festivities to Both Sides of the Taiwan Strait",
+              "source": "GN: China Taiwan",
+              "link": "https://www.chinadaily.com.cn/a/202609/25/WS6ab64dd6e4b06d4aa05603cf.html",
+              "publishedAt": "2026-09-25T11:32:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            }
+          ]
+        },
+        "conflict_escalation": {
+          "id": "conflict_escalation",
+          "name": "Conflict escalation",
+          "clockLabel": "Conflict",
+          "pct": 25,
+          "tier": {
+            "name": "Uneasy Picnic"
+          },
+          "confidence": 85,
+          "drivers": [
+            {
+              "title": "LIVE: OpenAI and Anthropic brief Security Council amid \u2018real and imminent\u2019 threat posed by runaway AI",
+              "source": "UN News Peace & Security",
+              "link": "https://news.un.org/feed/view/en/story/2026/09/1168414",
+              "publishedAt": "2026-09-23T12:00:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "A"
+            },
+            {
+              "title": "Bahrain Leads Countries\u2019 Call for Full Reopening of Strait of Hormuz Without Tolls",
+              "source": "gCaptain Maritime",
+              "link": "https://gcaptain.com/bahrain-leads-countries-call-for-full-reopening-of-strait-of-hormuz-without-tolls/",
+              "publishedAt": "2026-09-24T17:34:30.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "B"
+            },
+            {
+              "title": "US appeals court upholds Pentagon's exclusion of Anthropic from military supply chain",
+              "source": "GN: military AI",
+              "link": "https://www.firstpost.com/world/us-appeals-court-upholds-pentagons-exclusion-of-anthropic-from-military-supply-chain-14048495.html",
+              "publishedAt": "2026-09-25T22:36:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "Anthropic\u2019s Pentagon blacklist upheld as court rejects AI safety retaliation claim",
+              "source": "GN: military AI",
+              "link": "https://www.msn.com/en-in/news/other/anthropic-s-pentagon-blacklist-upheld-as-court-rejects-ai-safety-retaliation-claim/ar-AA2cZUp9",
+              "publishedAt": "2026-09-25T22:30:37.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            }
+          ]
+        },
+        "institutional_trust": {
+          "id": "institutional_trust",
+          "name": "Institutional trust",
+          "clockLabel": "Trust Drain",
+          "pct": 14,
+          "tier": {
+            "name": "Butterflies"
+          },
+          "confidence": 44,
+          "drivers": [
+            {
+              "title": "Questions may be about Gyanesh, but the question mark is on Modi\u2019s democratic legitimacy",
+              "source": "GN: institutional trust",
+              "link": "https://www.msn.com/en-in/news/other/questions-may-be-about-gyanesh-but-the-question-mark-is-on-modi-s-democratic-legitimacy/ar-AA2cZCVx",
+              "publishedAt": "2026-09-25T22:46:42.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "What the 2026 Global State of Democracy just told the world about Africa and West Asia",
+              "source": "GN: institutional trust",
+              "link": "https://www.idea.int/news/what-2026-global-state-democracy-just-told-world-about-africa-and-west-asia",
+              "publishedAt": "2026-09-23T17:00:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "Shock and Awe Meets the Rule of Law: Fighting Back Against Democratic Backsliding",
+              "source": "GN: institutional trust",
+              "link": "https://impakter.com/shock-and-awe-meets-the-rule-of-law-fighting-back-against-democratic-backsliding/",
+              "publishedAt": "2026-09-23T04:06:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "Florida Senate Primary Special Results 2026",
+              "source": "GN: institutional trust",
+              "link": "https://www.nbcnews.com/politics/2026-primary-special-elections/florida-senate-results",
+              "publishedAt": "2026-09-22T12:44:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            }
+          ]
+        }
+      }
+    },
+    "social_labor": {
+      "id": "social_labor",
+      "name": "Social & Labor",
+      "shelfLabel": "STREET LEVEL",
+      "accent": "MARBLE",
+      "blurb": "Layoffs with a smile, protest signs, and the vibes getting weird.",
+      "pct": 13,
+      "weight": 0.085,
+      "confidence": 36,
+      "tier": {
+        "name": "Butterflies"
+      },
+      "subs": {
+        "jobs_displacement": {
+          "id": "jobs_displacement",
+          "name": "Jobs / displacement panic",
+          "clockLabel": "Jobs Panic",
+          "pct": 12,
+          "tier": {
+            "name": "Butterflies"
+          },
+          "confidence": 40,
+          "drivers": [
+            {
+              "title": "Are companies blaming layoffs on AI too quickly?",
+              "source": "GN: AI jobs / layoffs",
+              "link": "https://www.msn.com/en-us/technology/artificial-intelligence/are-companies-blaming-layoffs-on-ai-too-quickly/ar-AA2cUapI",
+              "publishedAt": "2026-09-24T09:00:26.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "AI Layoffs Reach Record Pace as Tech Giants Attribute 40% of Job Cuts to Automation",
+              "source": "GN: AI jobs / layoffs",
+              "link": "https://www.ibtimes.co.uk/ai-role-us-layoffs-workforce-transformation-1818992",
+              "publishedAt": "2026-09-10T12:19:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "AI Cut Entry-Level Job Posts Up To 9%. Welcome To The Invisible Layoff",
+              "source": "GN: AI jobs / layoffs",
+              "link": "https://www.forbes.com/sites/rachelwells/2026/09/02/ai-cut-entry-level-job-posts-up-to-9-welcome-to-the-invisible-layoff/",
+              "publishedAt": "2026-09-02T02:20:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "Layoff remorse: Gartner says at least one in three positions eliminated by AI will be restored by 2029\u2013at a higher cost",
+              "source": "GN: AI jobs / layoffs",
+              "link": "https://www.computerworld.com/article/4220413/layoff-remorse-gartner-says-at-least-one-in-three-positions-eliminated-by-ai-will-be-restored-by-2029-at-a-higher-cost.html",
+              "publishedAt": "2026-09-09T19:57:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            }
+          ]
+        },
+        "public_alarm": {
+          "id": "public_alarm",
+          "name": "Public alarm & protest",
+          "clockLabel": "Protest",
+          "pct": 11,
+          "tier": {
+            "name": "Butterflies"
+          },
+          "confidence": 27,
+          "drivers": [
+            {
+              "title": "Anthropic researchers say AI could cause human extinction by 2030",
+              "source": "GN: AI protest / panic",
+              "link": "https://www.theguardian.com/technology/2026/sep/09/anthropic-researchers-ai-human-extinction",
+              "publishedAt": "2026-09-09T08:53:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "OpenAI Says Artificial General Intelligence Is Here. Bernie Sanders Is Calling For a Pause of AI Development.",
+              "source": "GN: AI protest / panic",
+              "link": "https://www.ibtimes.com/openai-says-artificial-general-intelligence-here-bernie-sanders-calling-pause-ai-development-3807121",
+              "publishedAt": "2026-09-03T11:56:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "Bernie Sanders\u2019 \u2018Ban AI Superintelligence\u2019 Bill Threatens 20-Years Jail Time; Internet Reacts With Memes",
+              "source": "GN: AI protest / panic",
+              "link": "https://in.mashable.com/tech/113583/bernie-sanders-ban-ai-superintelligence-bill-threatens-20-years-jail-time-internet-reacts-with-memes",
+              "publishedAt": "2026-09-04T03:01:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "NYC Reverses Its Own AI Embrace: Generative Tools Banned for 600,000 K-8 Students",
+              "source": "GN: AI protest / panic",
+              "link": "https://www.techtimes.com/articles/326422/20260903/nyc-reverses-its-own-ai-embrace-generative-tools-banned-600000-k-8-students.htm",
+              "publishedAt": "2026-09-03T05:49:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            }
+          ]
+        },
+        "inequality_stress": {
+          "id": "inequality_stress",
+          "name": "Inequality / social stress",
+          "clockLabel": "Inequality",
+          "pct": 16,
+          "tier": {
+            "name": "Uneasy Picnic"
+          },
+          "confidence": 40,
+          "drivers": [
+            {
+              "title": "Economist Justin Wolfers warns AI could leave workers earning 'two pennies an hour' while OpenAI gets 'infinitely rich'",
+              "source": "GN: inequality / stress",
+              "link": "https://www.msn.com/en-us/technology/artificial-intelligence/economist-justin-wolfers-warns-ai-could-leave-workers-earning-two-pennies-an-hour-while-openai-gets-infinitely-rich/ar-AA2cKMAL",
+              "publishedAt": "2026-09-22T03:31:15.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "The Cruel 'AI Inequality Society' Coming After the Bubble",
+              "source": "GN: inequality / stress",
+              "link": "https://note.com/saajung/n/n6f8197bacc1c?hl=en",
+              "publishedAt": "2026-09-21T00:22:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "How wealth shapes our view of artificial intelligence",
+              "source": "GN: inequality / stress",
+              "link": "https://www.thehindu.com/sci-tech/technology/how-wealth-shapes-our-view-of-artificial-intelligence/article71494766.ece",
+              "publishedAt": "2026-09-23T19:30:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "Worldwide, a Greater Number of Individuals Anticipate AI to Lead to Job Loss Rather Than Job Creation",
+              "source": "GN: inequality / stress",
+              "link": "https://www.rswebsols.com/news/worldwide-a-greater-number-of-individuals-anticipate-ai-to-lead-to-job-loss-rather-than-job-creation/",
+              "publishedAt": "2026-09-19T04:00:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            }
+          ]
+        }
+      }
+    },
+    "physical_bio": {
+      "id": "physical_bio",
+      "name": "Physical & Bio",
+      "shelfLabel": "FLESH & PIPES",
+      "accent": "OXIDE",
+      "blurb": "Bodies, bugs, and the pipes that keep civilization upright.",
+      "pct": 18,
+      "weight": 0.09,
+      "confidence": 48,
+      "tier": {
+        "name": "Uneasy Picnic"
+      },
+      "subs": {
+        "robotics_incidents": {
+          "id": "robotics_incidents",
+          "name": "Robotics / autonomy incidents",
+          "clockLabel": "Robotics",
+          "pct": 15,
+          "tier": {
+            "name": "Butterflies"
+          },
+          "confidence": 59,
+          "drivers": [
+            {
+              "title": "Measure Distant Asteroids With a DIY Rig",
+              "source": "IEEE Spectrum",
+              "link": "https://spectrum.ieee.org/asteroid-shadow",
+              "publishedAt": "2026-09-24T13:00:04.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "B"
+            },
+            {
+              "title": "Engineering the Substation Exit for Reliability, Capacity, and Expansion",
+              "source": "IEEE Spectrum",
+              "link": "https://content.knowledgehub.wiley.com/aerial-cable-systems-for-substation-exit-construction/",
+              "publishedAt": "2026-09-24T10:00:06.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "B"
+            },
+            {
+              "title": "Tesla ramps Optimus to hundreds a week, but the robots can\u2019t generalize",
+              "source": "GN: robotics / autonomy",
+              "link": "https://electrek.co/2026/09/25/tesla-optimus-production-ramp-hands-ai-generalization-problems/",
+              "publishedAt": "2026-09-25T08:45:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "Tesla workers balk at training Optimus humanoid robots as replacements",
+              "source": "GN: robotics / autonomy",
+              "link": "https://arstechnica.com/ai/2026/09/tesla-workers-balk-at-training-optimus-humanoid-robots-as-replacements/",
+              "publishedAt": "2026-09-25T07:10:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            }
+          ]
+        },
+        "bio_risk": {
+          "id": "bio_risk",
+          "name": "Bio-risk & lab security",
+          "clockLabel": "Bio-Risk",
+          "pct": 18,
+          "tier": {
+            "name": "Uneasy Picnic"
+          },
+          "confidence": 44,
+          "drivers": [
+            {
+              "title": "AI\u2019s greatest threat is biological, not robotic",
+              "source": "GN: AI bio-risk",
+              "link": "https://lasvegassun.com/news/2026/sep/24/ais-greatest-threat-is-biological-not-robotic/",
+              "publishedAt": "2026-09-24T02:00:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "The real AI threat to humanity is a super-virus created in a garage",
+              "source": "GN: AI bio-risk",
+              "link": "https://www.msn.com/en-in/news/other/the-real-ai-threat-to-humanity-is-a-super-virus-created-in-a-garage/ar-AA2ctFF2",
+              "publishedAt": "2026-09-17T22:00:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "Quake Champions takes a shower, shedding all its 2017 live-service grime and becoming a $10 game",
+              "source": "GN: WHO outbreak / DON",
+              "link": "https://www.pcgamer.com/games/fps/quake-champions-takes-a-shower-shedding-all-its-2017-live-service-grime-and-becoming-a-usd10-game/",
+              "publishedAt": "2026-09-23T16:47:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "OpenAI Welcomes US Bills Targeting AI-Enabled Bioweapon Risks",
+              "source": "GN: AI bio-risk",
+              "link": "https://thedefensepost.com/2026/09/17/us-biosecurity-legislation-openai/",
+              "publishedAt": "2026-09-17T06:52:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            }
+          ]
+        },
+        "critical_infra": {
+          "id": "critical_infra",
+          "name": "Critical infrastructure",
+          "clockLabel": "Crit Infra",
+          "pct": 21,
+          "tier": {
+            "name": "Uneasy Picnic"
+          },
+          "confidence": 40,
+          "drivers": [
+            {
+              "title": "Why These 3 Linux Flaws Are a Ticking Time Bomb for Critical Infrastructure",
+              "source": "GN: critical infrastructure",
+              "link": "https://www.thetechedvocate.org/why-these-3-linux-flaws-are-a-ticking-time-bomb-for-critical-infrastructure/",
+              "publishedAt": "2026-09-20T17:00:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "This One Tactic Is Making Ransomware Attacks on Critical Infrastructure Unstoppable",
+              "source": "GN: critical infrastructure",
+              "link": "https://www.thetechedvocate.org/this-one-tactic-is-making-ransomware-attacks-on-critical-infrastructure-unstoppable/",
+              "publishedAt": "2026-09-24T17:00:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "25 cyber attacks: US national security defenses tested",
+              "source": "GN: critical infrastructure",
+              "link": "https://www.msn.com/en-us/public-safety-and-emergencies/general/25-cyber-attacks-us-national-security-defenses-tested/ar-AA2cjD22",
+              "publishedAt": "2026-09-15T05:00:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "25 critical sectors of US infrastructure deemed essential",
+              "source": "GN: critical infrastructure",
+              "link": "https://www.msn.com/en-us/money/general/25-critical-sectors-of-us-infrastructure-deemed-essential/ar-AA2ckf7X",
+              "publishedAt": "2026-09-15T05:00:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            }
+          ]
+        }
+      }
+    },
+    "weird_signals": {
+      "id": "weird_signals",
+      "name": "Weird Signals",
+      "shelfLabel": "WEIRD MEZZANINE",
+      "accent": "VOID",
+      "blurb": "Megawatts, valuations, and open letters from people who know where the exits are.",
+      "pct": 25,
+      "weight": 0.09,
+      "confidence": 52,
+      "tier": {
+        "name": "Uneasy Picnic"
+      },
+      "subs": {
+        "energy_datacenter": {
+          "id": "energy_datacenter",
+          "name": "Energy / data-center strain",
+          "clockLabel": "Megawatts",
+          "pct": 20,
+          "tier": {
+            "name": "Uneasy Picnic"
+          },
+          "confidence": 44,
+          "drivers": [
+            {
+              "title": "Forgent Power Solutions (FPS) Capitalizes on the AI Data Center Power Grid Bottleneck",
+              "source": "GN: data center / energy",
+              "link": "https://finance.yahoo.com/technology/ai/articles/forgent-power-solutions-fps-capitalizes-143509337.html",
+              "publishedAt": "2026-09-25T07:00:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "The Power Grid Hasn\u2019t Changed In A Century. Data Centers Are Changing That.",
+              "source": "GN: data center / energy",
+              "link": "https://www.forbes.com/sites/annademeo/2026/09/24/the-power-grid-hasnt-changed-in-a-century-data-centers-are-changing-that/",
+              "publishedAt": "2026-09-24T15:26:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "UPS, BESS, and Generators Are Not Interchangeable: The Three-Layer Power Architecture of an AI Data Center",
+              "source": "GN: data center / energy",
+              "link": "https://www.microgridknowledge.com/microgrids/datacenter/article/55400710/ups-bess-and-generators-are-not-interchangeable-the-three-layer-power-architecture-of-an-ai-data-center",
+              "publishedAt": "2026-09-20T17:00:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "Nvidia targets AI\u2019s power bottleneck with new alliance with Google, Emerald AI \u2014 flexible data center could respond to grid conditions",
+              "source": "GN: data center / energy",
+              "link": "https://www.msn.com/en-in/news/other/nvidia-targets-ai-s-power-bottleneck-with-new-alliance-with-google-emerald-ai-flexible-data-center-could-respond-to-grid-conditions/ar-AA2cCF09",
+              "publishedAt": "2026-09-20T12:29:44.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            }
+          ]
+        },
+        "markets_bubble": {
+          "id": "markets_bubble",
+          "name": "Markets / AI bubble stress",
+          "clockLabel": "AI Bubble",
+          "pct": 21,
+          "tier": {
+            "name": "Uneasy Picnic"
+          },
+          "confidence": 60,
+          "drivers": [
+            {
+              "title": "Gary Marcus on X: Anthropic IPO moved back to November; OpenAI IPO moved back to 2027",
+              "source": "X \u00b7 @GaryMarcus (verified)",
+              "link": "https://x.com/GaryMarcus/status/2101063328697311313",
+              "publishedAt": "2026-09-18T16:00:00.000Z",
+              "evidence": "body-confirmed",
+              "sourceTier": "A"
+            },
+            {
+              "title": "\u2018The bigger risk may be an earnings bubble rather than a valuation bubble\u2019",
+              "source": "GN: AI markets / bubble",
+              "link": "https://www.irishtimes.com/business/2026/09/26/the-bigger-risk-may-be-an-earnings-bubble-rather-than-a-valuation-bubble/",
+              "publishedAt": "2026-09-26T00:00:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "How Long Will the AI Bubble Last? The '5 Places' Where Anomalies Will Appear First",
+              "source": "GN: AI markets / bubble",
+              "link": "https://note.com/fair_acacia6111/n/nb2d0b11eab04?hl=en",
+              "publishedAt": "2026-09-25T02:28:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "'Shades of Enron': Michael Burry shorts Nvidia as its $500-billion chip-financing deal fuels a bubble that puts both 2000 and 2008 to shame",
+              "source": "GN: AI markets / bubble",
+              "link": "https://www.msn.com/en-us/money/top-stocks/shades-of-enron-michael-burry-shorts-nvidia-as-its-500-billion-chip-financing-deal-fuels-a-bubble-that-puts-both-2000-and-2008-to-shame/ar-AA2cUyTr",
+              "publishedAt": "2026-09-24T09:00:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            }
+          ]
+        },
+        "elite_panic": {
+          "id": "elite_panic",
+          "name": "Open letters & elite panic",
+          "clockLabel": "Elite Panic",
+          "pct": 32,
+          "tier": {
+            "name": "Sweating Softly"
+          },
+          "confidence": 52,
+          "drivers": [
+            {
+              "title": "AI's own architects warn UN: is humanity at risk?",
+              "source": "GN: open letters / x-risk",
+              "link": "https://www.msn.com/en-us/news/other/ai-s-own-architects-warn-un-is-humanity-at-risk/ar-AA2cXptE",
+              "publishedAt": "2026-09-25T01:46:55.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "\u2018I resigned from Anthropic\u2019: Key researcher drops existential AI risk warning in exit post",
+              "source": "GN: open letters / x-risk",
+              "link": "https://www.msn.com/en-in/technology/artificial-intelligence/i-resigned-from-anthropic-key-researcher-drops-existential-ai-risk-warning-in-exit-post/ar-AA2bRBw8",
+              "publishedAt": "2026-09-16T12:01:00.000Z",
+              "evidence": "body-confirmed",
+              "sourceTier": "C"
+            },
+            {
+              "title": "\u2018Godfather of AI\u2019 Geoffrey Hinton warns humans running out of time to control Artificial Intelligence \u2013 \u2018maybe a year\u2019",
+              "source": "GN: AGI chatter",
+              "link": "https://www.msn.com/en-in/news/other/godfather-of-ai-geoffrey-hinton-warns-humans-running-out-of-time-to-control-artificial-intelligence-maybe-a-year/ar-AA2cvliA",
+              "publishedAt": "2026-09-18T04:44:08.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "Like Chernobyl: AI godfather says we have 1 year to slow down AI, then it will go out of control",
+              "source": "GN: AGI chatter",
+              "link": "https://www.msn.com/en-in/news/other/like-chernobyl-ai-godfather-says-we-have-1-year-to-slow-down-ai-then-it-will-go-out-of-control/ar-AA2ctJxJ",
+              "publishedAt": "2026-09-18T00:44:30.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            }
+          ]
+        }
+      }
+    },
+    "scenario_watch": {
+      "id": "scenario_watch",
+      "name": "Scenario Watch",
+      "shelfLabel": "PROPHECY BAY",
+      "accent": "VOID",
+      "blurb": "Habryka's five concrete doom stories \u2014 priors blended with live KPI keyword hits.",
+      "pct": 12,
+      "weight": 0.08,
+      "confidence": 35,
+      "tier": {
+        "name": "Butterflies"
+      },
+      "subs": {
+        "ai_2027": {
+          "id": "ai_2027",
+          "name": "AI 2027 (Race Ending)",
+          "clockLabel": "AI 2027",
+          "pct": 14,
+          "tier": {
+            "name": "Butterflies"
+          },
+          "confidence": 33,
+          "drivers": [
+            {
+              "title": "Anthropic: three measurements tracking AI R&D automation / recursive progress",
+              "source": "X \u00b7 @AnthropicAI (verified)",
+              "link": "https://x.com/AnthropicAI/status/2100684274114699295",
+              "publishedAt": "2026-09-17T20:32:14.000Z",
+              "evidence": "body-confirmed",
+              "sourceTier": "A"
+            }
+          ]
+        },
+        "christiano_wfl": {
+          "id": "christiano_wfl",
+          "name": "Christiano \u2014 What Failure Looks Like",
+          "clockLabel": "WFL",
+          "pct": 15,
+          "tier": {
+            "name": "Butterflies"
+          },
+          "confidence": 35,
+          "drivers": []
+        },
+        "gwern_clippy": {
+          "id": "gwern_clippy",
+          "name": "Gwern \u2014 Clippy Takeover Story",
+          "clockLabel": "Clippy",
+          "pct": 6,
+          "tier": {
+            "name": "Butterflies"
+          },
+          "confidence": 28,
+          "drivers": []
+        },
+        "karnofsky_defeat": {
+          "id": "karnofsky_defeat",
+          "name": "Karnofsky \u2014 AI Could Defeat All Of Us",
+          "clockLabel": "Defeat",
+          "pct": 21,
+          "tier": {
+            "name": "Uneasy Picnic"
+          },
+          "confidence": 42,
+          "drivers": [
+            {
+              "title": "Anthropic and OpenAI CEOs call for AI development to slow down, OpenAI to delay IPO",
+              "source": "GN: lab resignations",
+              "link": "https://www.npr.org/2026/09/12/nx-s1-5950588/openai-anthropic-ai-safety-researchers-hacks",
+              "publishedAt": "2026-09-12T12:28:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "AI policy groups call for NDAA guardrails on lethal autonomous weapons",
+              "source": "GN: military AI",
+              "link": "https://thehill.com/policy/technology/5908512-congress-add-ai-guardrails-ndaa/",
+              "publishedAt": "2026-06-03T14:00:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            }
+          ]
+        },
+        "clymer_2y": {
+          "id": "clymer_2y",
+          "name": "Clymer \u2014 Takeover in Two Years",
+          "clockLabel": "2yr Nightmare",
+          "pct": 3,
+          "tier": {
+            "name": "Butterflies"
+          },
+          "confidence": 39,
+          "drivers": []
+        }
+      }
+    },
+    "zeihan_watch": {
+      "id": "zeihan_watch",
+      "name": "Zeihan Watch",
+      "shelfLabel": "MAP ROOM",
+      "accent": "COLD",
+      "blurb": "Geopolitics making the floor wobble under everything else \u2014 priors from the scorecard, evidence from the wires.",
+      "pct": 59,
+      "weight": 0.08,
+      "confidence": 55,
+      "tier": {
+        "name": "Red Tape On Fire"
+      },
+      "subs": {
+        "great_power_fracture": {
+          "id": "great_power_fracture",
+          "name": "Great Powers",
+          "clockLabel": "Great Powers",
+          "pct": 67,
+          "tier": {
+            "name": "Leash Looking Loose"
+          },
+          "confidence": 70,
+          "drivers": [
+            {
+              "title": "Brief independent investigation of agents\u2019 behavior, reasoning and collaboration in the OpenAI / Hugging Face hacking incident",
+              "source": "METR Blog",
+              "link": "https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/",
+              "publishedAt": "2026-09-25T19:26:06.000Z",
+              "evidence": "body-confirmed",
+              "sourceTier": "A"
+            },
+            {
+              "title": "CVE-2026-87902: WordPress Core Remote File Inclusion Vulnerability",
+              "source": "CISA Known Exploited Vulnerabilities",
+              "link": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-87902",
+              "publishedAt": "2026-09-25T12:00:00.000Z",
+              "evidence": "kev-catalog",
+              "sourceTier": "A"
+            },
+            {
+              "title": "CVE-2026-5430: WSO2 Multiple Products Path Traversal Vulnerability",
+              "source": "CISA Known Exploited Vulnerabilities",
+              "link": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-5430",
+              "publishedAt": "2026-09-24T12:00:00.000Z",
+              "evidence": "kev-catalog",
+              "sourceTier": "A"
+            },
+            {
+              "title": "Like Chernobyl: AI godfather says we have 1 year to slow down AI, then it will go out of control",
+              "source": "GN: AGI chatter",
+              "link": "https://www.msn.com/en-in/news/other/like-chernobyl-ai-godfather-says-we-have-1-year-to-slow-down-ai-then-it-will-go-out-of-control/ar-AA2ctJxJ",
+              "publishedAt": "2026-09-18T00:44:30.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            }
+          ]
+        },
+        "chokepoint_energy": {
+          "id": "chokepoint_energy",
+          "name": "Chokepoints",
+          "clockLabel": "Chokepoints",
+          "pct": 54,
+          "tier": {
+            "name": "Red Tape On Fire"
+          },
+          "confidence": 54,
+          "drivers": [
+            {
+              "title": "Reuters on X: Shipping traffic via Strait of Hormuz stays below 10-day average",
+              "source": "X \u00b7 @Reuters (verified)",
+              "link": "https://x.com/Reuters/status/2100837242654556329",
+              "publishedAt": "2026-09-18T12:00:00.000Z",
+              "evidence": "body-confirmed",
+              "sourceTier": "A"
+            },
+            {
+              "title": "CENTCOM on X: IRGC Hormuz mine claim on tanker El Gaia is false",
+              "source": "X \u00b7 @CENTCOM (verified)",
+              "link": "https://x.com/CENTCOM/status/2099591186583371830",
+              "publishedAt": "2026-09-14T16:00:00.000Z",
+              "evidence": "body-confirmed",
+              "sourceTier": "A"
+            },
+            {
+              "title": "Bahrain Leads Countries\u2019 Call for Full Reopening of Strait of Hormuz Without Tolls",
+              "source": "gCaptain Maritime",
+              "link": "https://gcaptain.com/bahrain-leads-countries-call-for-full-reopening-of-strait-of-hormuz-without-tolls/",
+              "publishedAt": "2026-09-24T17:34:30.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "B"
+            },
+            {
+              "title": "Yemen violence deepens concerns over child hunger crisis",
+              "source": "UN News Peace & Security",
+              "link": "https://news.un.org/feed/view/en/story/2026/09/1168436",
+              "publishedAt": "2026-09-25T12:00:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "A"
+            }
+          ]
+        },
+        "trade_unwind": {
+          "id": "trade_unwind",
+          "name": "Trade Unwind",
+          "clockLabel": "Trade Unwind",
+          "pct": 54,
+          "tier": {
+            "name": "Red Tape On Fire"
+          },
+          "confidence": 46,
+          "drivers": [
+            {
+              "title": "How far behind Nvidia is Huawei?",
+              "source": "Epoch AI (Substack)",
+              "link": "https://epochai.substack.com/p/how-far-behind-nvidia-is-huawei",
+              "publishedAt": "2026-09-24T16:04:51.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "B"
+            },
+            {
+              "title": "Americans and Canadians united in hating Trump\u2019s tariffs, poll finds",
+              "source": "GN: tariffs / trade war",
+              "link": "https://www.yahoo.com/news/politics/articles/americans-canadians-united-hating-trump-085425395.html",
+              "publishedAt": "2026-09-24T07:01:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "Even MAGA Voters Are Turning on Trump\u2019s Tariffs",
+              "source": "GN: tariffs / trade war",
+              "link": "https://www.yahoo.com/news/politics/articles/even-maga-voters-turning-trump-135830323.html",
+              "publishedAt": "2026-09-23T06:58:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "Poll: Neither Americans nor Canadians wanted Trump\u2019s trade war",
+              "source": "GN: tariffs / trade war",
+              "link": "https://www.msn.com/en-us/news/other/poll-neither-americans-nor-canadians-wanted-trump-s-trade-war/ar-AA2cNA7T",
+              "publishedAt": "2026-09-23T02:00:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            }
+          ]
+        },
+        "demo_labor_squeeze": {
+          "id": "demo_labor_squeeze",
+          "name": "Demography",
+          "clockLabel": "Demography",
+          "pct": 53,
+          "tier": {
+            "name": "Red Tape On Fire"
+          },
+          "confidence": 46,
+          "drivers": [
+            {
+              "title": "Rapid Fertility Decline Is an Existential Crisis",
+              "source": "GN: demographics / fertility",
+              "link": "https://www.aei.org/commentary/rapid-fertility-decline-is-an-existential-crisis/",
+              "publishedAt": "2025-02-11T07:06:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "A congressional representative just proposed killing America\u2019s border tower program",
+              "source": "MIT Technology Review",
+              "link": "https://www.technologyreview.com/2026/09/23/1145002/a-congressional-representative-just-proposed-killing-americas-border-tower-program/",
+              "publishedAt": "2026-09-23T17:10:11.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "B"
+            },
+            {
+              "title": "Roundtables: The Deadly Failures of The Virtual Border Wall",
+              "source": "MIT Technology Review",
+              "link": "https://www.technologyreview.com/2026/09/22/1144890/roundtables-the-deadly-failures-of-the-virtual-border-wall/",
+              "publishedAt": "2026-09-22T13:42:05.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "B"
+            },
+            {
+              "title": "South Korea forum to explore family culture amid low birth rate",
+              "source": "GN: demographics / fertility",
+              "link": "https://www.upi.com/Top_News/World-News/2026/09/17/South-Korea-forum-to-explore-family-culture-amid-low-birth-rate/3391789690031/",
+              "publishedAt": "2026-09-17T18:03:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            }
+          ]
+        },
+        "battlefield_spillover": {
+          "id": "battlefield_spillover",
+          "name": "Drone Spill",
+          "clockLabel": "Drone Spill",
+          "pct": 63,
+          "tier": {
+            "name": "Leash Looking Loose"
+          },
+          "confidence": 57,
+          "drivers": [
+            {
+              "title": "U.S. Army Puts Defenses To A \u2018Stress Test\u2019 Using Massive Drone Swarms",
+              "source": "GN: drone / autonomy war",
+              "link": "https://www.forbes.com/sites/zitaballingerfletcher/2026/09/25/us-army-puts-defenses-to-a-stress-test-using-massive-drone-swarms/",
+              "publishedAt": "2026-09-25T13:53:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "Up to 12 UK companies to gain access to Ukraine's battlefield data for AI drone swarms",
+              "source": "GN: drone / autonomy war",
+              "link": "https://www.msn.com/en-ca/news/other/up-to-12-uk-companies-to-gain-access-to-ukraines-battlefield-data-for-ai-drone-swarms/ar-AA2cYXYD",
+              "publishedAt": "2026-09-25T10:37:56.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "UK firms to use Ukraine battlefield data for AI drone swarm development",
+              "source": "GN: drone / autonomy war",
+              "link": "https://uk.news.yahoo.com/uk-firms-ukraine-battlefield-data-093251987.html",
+              "publishedAt": "2026-09-24T19:31:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "U.S. Army Tests AI and Electronic Warfare to Stop 100-Drone Swarms From Overwhelming Battlefield Defenses.",
+              "source": "GN: drone / autonomy war",
+              "link": "https://www.armyrecognition.com/news/army-news/2026/u-s-army-tests-ai-and-electronic-warfare-to-stop-100-drone-swarms-from-overwhelming-battlefield-defenses",
+              "publishedAt": "2026-09-22T04:36:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            }
+          ]
+        }
+      }
+    },
+    "lex_watch": {
+      "id": "lex_watch",
+      "name": "Lex Watch",
+      "shelfLabel": "LEX BAY",
+      "accent": "STEEL",
+      "blurb": "Expert-interview cross-check from Lex Fridman guests \u2014 AI researchers, lab leads, scientists grading the weird claims so you don't have to trust the vibe alone.",
+      "pct": 50,
+      "weight": 0.08,
+      "confidence": 55,
+      "tier": {
+        "name": "Red Tape On Fire"
+      },
+      "subs": {
+        "lex_agi_scaling": {
+          "id": "lex_agi_scaling",
+          "name": "AGI / Scaling",
+          "clockLabel": "AGI/Scaling",
+          "pct": 60,
+          "tier": {
+            "name": "Red Tape On Fire"
+          },
+          "confidence": 65,
+          "drivers": [
+            {
+              "title": "Brief independent investigation of agents\u2019 behavior, reasoning and collaboration in the OpenAI / Hugging Face hacking incident",
+              "source": "METR Blog",
+              "link": "https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/",
+              "publishedAt": "2026-09-25T19:26:06.000Z",
+              "evidence": "body-confirmed",
+              "sourceTier": "A"
+            },
+            {
+              "title": "Funding update",
+              "source": "METR Blog",
+              "link": "https://metr.org/blog/2026-08-14-funding-update/",
+              "publishedAt": "2026-08-14T07:00:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "A"
+            },
+            {
+              "title": "Top AI companies call for safety measures while critics warn regulation could stifle innovation",
+              "source": "GN: AI safety",
+              "link": "https://www.msn.com/en-us/news/other/top-ai-companies-call-for-safety-measures-while-critics-warn-regulation-could-stifle-innovation/ar-AA2cY8n6",
+              "publishedAt": "2026-09-25T07:29:09.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "Former Anthropic Researchers Sound Alarm on AI Safety After Simultaneous Resignations",
+              "source": "GN: lab resignations",
+              "link": "https://blockonomi.com/former-anthropic-researchers-sound-alarm-on-ai-safety-after-simultaneous-resignations/",
+              "publishedAt": "2026-09-12T03:55:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            }
+          ]
+        },
+        "lex_alignment_xrisk": {
+          "id": "lex_alignment_xrisk",
+          "name": "Alignment / X-Risk",
+          "clockLabel": "Align/X-Risk",
+          "pct": 45,
+          "tier": {
+            "name": "Sweating Softly"
+          },
+          "confidence": 53,
+          "drivers": [
+            {
+              "title": "\u2018I resigned from Anthropic\u2019: Key researcher drops existential AI risk warning in exit post",
+              "source": "GN: open letters / x-risk",
+              "link": "https://www.msn.com/en-in/technology/artificial-intelligence/i-resigned-from-anthropic-key-researcher-drops-existential-ai-risk-warning-in-exit-post/ar-AA2bRBw8",
+              "publishedAt": "2026-09-16T12:01:00.000Z",
+              "evidence": "body-confirmed",
+              "sourceTier": "C"
+            },
+            {
+              "title": "Like Chernobyl: AI godfather says we have 1 year to slow down AI, then it will go out of control",
+              "source": "GN: AGI chatter",
+              "link": "https://www.msn.com/en-in/news/other/like-chernobyl-ai-godfather-says-we-have-1-year-to-slow-down-ai-then-it-will-go-out-of-control/ar-AA2ctJxJ",
+              "publishedAt": "2026-09-18T00:44:30.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "AI doom warnings are growing louder. Here\u2019s a timeline of the concerns",
+              "source": "GN: open letters / x-risk",
+              "link": "https://www.msn.com/en-us/technology/artificial-intelligence/ai-doom-warnings-are-growing-louder-here-s-a-timeline-of-the-concerns/ar-AA2c5tnN",
+              "publishedAt": "2026-09-12T08:26:35.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "Tighter AI regulation crucial to stop \u2018existential risk\u2019, UN rights chief warns",
+              "source": "GN: open letters / x-risk",
+              "link": "https://www.nation.com.pk/16-Sep-2026/tighter-ai-regulation-crucial-stop-existential-risk-un-rights-chief-warns",
+              "publishedAt": "2026-09-15T15:45:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            }
+          ]
+        },
+        "lex_lab_race": {
+          "id": "lex_lab_race",
+          "name": "Lab Race",
+          "clockLabel": "Lab Race",
+          "pct": 63,
+          "tier": {
+            "name": "Leash Looking Loose"
+          },
+          "confidence": 65,
+          "drivers": [
+            {
+              "title": "Demis: DeepMind Institute for AGI-era interdisciplinary research; backs industry standards body",
+              "source": "X \u00b7 @demishassabis",
+              "link": "https://x.com/demishassabis/status/2100230524383981702",
+              "publishedAt": "2026-09-16T14:29:12.000Z",
+              "evidence": "body-confirmed",
+              "sourceTier": "A"
+            },
+            {
+              "title": "Anthropic and OpenAI CEOs call for AI development to slow down, OpenAI to delay IPO",
+              "source": "GN: lab resignations",
+              "link": "https://www.npr.org/2026/09/12/nx-s1-5950588/openai-anthropic-ai-safety-researchers-hacks",
+              "publishedAt": "2026-09-12T12:28:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "\u2018I resigned from Anthropic\u2019: Key researcher drops existential AI risk warning in exit post",
+              "source": "GN: open letters / x-risk",
+              "link": "https://www.msn.com/en-in/technology/artificial-intelligence/i-resigned-from-anthropic-key-researcher-drops-existential-ai-risk-warning-in-exit-post/ar-AA2bRBw8",
+              "publishedAt": "2026-09-16T12:01:00.000Z",
+              "evidence": "body-confirmed",
+              "sourceTier": "C"
+            },
+            {
+              "title": "sama: extensive ongoing review of agents\u2019 internet access during training/eval",
+              "source": "X \u00b7 @sama",
+              "link": "https://x.com/sama/status/2103567198690349362",
+              "publishedAt": "2026-09-25T19:27:57.000Z",
+              "evidence": "body-confirmed",
+              "sourceTier": "A"
+            }
+          ]
+        },
+        "lex_robotics": {
+          "id": "lex_robotics",
+          "name": "Robotics / Autonomy",
+          "clockLabel": "Robotics",
+          "pct": 45,
+          "tier": {
+            "name": "Sweating Softly"
+          },
+          "confidence": 49,
+          "drivers": [
+            {
+              "title": "Before Jacob Coxon, Elon Musk And Other Experts Warned About AI's Existential Threat",
+              "source": "GN: AGI chatter",
+              "link": "https://www.msn.com/en-in/news/other/before-jacob-coxon-elon-musk-and-other-experts-warned-about-ais-existential-threat/ar-AA2bWtZH",
+              "publishedAt": "2026-09-10T02:10:41.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "How AI, Drones And Autonomous Vehicles Are Transforming The British Army",
+              "source": "GN: drone / autonomy war",
+              "link": "https://www.forbes.com/sites/bernardmarr/2026/09/25/how-ai-drones-and-autonomous-vehicles-are-transforming-the-british-army/",
+              "publishedAt": "2026-09-24T22:35:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "Tesla ramps Optimus to hundreds a week, but the robots can\u2019t generalize",
+              "source": "GN: robotics / autonomy",
+              "link": "https://electrek.co/2026/09/25/tesla-optimus-production-ramp-hands-ai-generalization-problems/",
+              "publishedAt": "2026-09-25T08:45:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "Tesla workers balk at training Optimus humanoid robots as replacements",
+              "source": "GN: robotics / autonomy",
+              "link": "https://arstechnica.com/ai/2026/09/tesla-workers-balk-at-training-optimus-humanoid-robots-as-replacements/",
+              "publishedAt": "2026-09-25T07:10:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            }
+          ]
+        },
+        "lex_science_xcheck": {
+          "id": "lex_science_xcheck",
+          "name": "Science X-Check",
+          "clockLabel": "Sci X-Check",
+          "pct": 25,
+          "tier": {
+            "name": "Uneasy Picnic"
+          },
+          "confidence": 41,
+          "drivers": [
+            {
+              "title": "Gautam Mukunda calls for DNA screening to prevent AI-driven biological threats",
+              "source": "GN: AI bio-risk",
+              "link": "https://cryptobriefing.com/gautam-mukunda-dna-screening-ai-biological-threats/",
+              "publishedAt": "2026-09-17T06:14:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            }
+          ]
+        }
+      }
+    },
+    "rogan_watch": {
+      "id": "rogan_watch",
+      "name": "Rogan Watch",
+      "shelfLabel": "ROGAN BAY",
+      "accent": "MARBLE",
+      "blurb": "Filtered Joe Rogan Experience \u2014 AI/x-risk/scientists/natsec/lab-CEO guests only. Noisier megaphone than Lex; capped weight. Contested-heat dial rides shotgun.",
+      "pct": 50,
+      "weight": 0.04,
+      "confidence": 58,
+      "tier": {
+        "name": "Red Tape On Fire"
+      },
+      "subs": {
+        "public_ai_discourse": {
+          "id": "public_ai_discourse",
+          "name": "Public AI discourse",
+          "clockLabel": "Public AI",
+          "pct": 58,
+          "tier": {
+            "name": "Red Tape On Fire"
+          },
+          "confidence": 60,
+          "drivers": [
+            {
+              "title": "Brief independent investigation of agents\u2019 behavior, reasoning and collaboration in the OpenAI / Hugging Face hacking incident",
+              "source": "METR Blog",
+              "link": "https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/",
+              "publishedAt": "2026-09-25T19:26:06.000Z",
+              "evidence": "body-confirmed",
+              "sourceTier": "A"
+            },
+            {
+              "title": "Dario: We Must Pace the Frontier \u2014 third-party evaluators permanent employee-level access",
+              "source": "X \u00b7 @DarioAmodei",
+              "link": "https://x.com/DarioAmodei/status/2098773920774074715",
+              "publishedAt": "2026-09-12T14:01:10.000Z",
+              "evidence": "primary-source",
+              "sourceTier": "A"
+            },
+            {
+              "title": "Demis: DeepMind Institute for AGI-era interdisciplinary research; backs industry standards body",
+              "source": "X \u00b7 @demishassabis",
+              "link": "https://x.com/demishassabis/status/2100230524383981702",
+              "publishedAt": "2026-09-16T14:29:12.000Z",
+              "evidence": "body-confirmed",
+              "sourceTier": "A"
+            },
+            {
+              "title": "Top AI companies call for safety measures while critics warn regulation could stifle innovation",
+              "source": "GN: AI safety",
+              "link": "https://www.msn.com/en-us/news/other/top-ai-companies-call-for-safety-measures-while-critics-warn-regulation-could-stifle-innovation/ar-AA2cY8n6",
+              "publishedAt": "2026-09-25T07:29:09.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            }
+          ]
+        },
+        "scientist_guests": {
+          "id": "scientist_guests",
+          "name": "Scientist guests",
+          "clockLabel": "Scientists",
+          "pct": 35,
+          "tier": {
+            "name": "Sweating Softly"
+          },
+          "confidence": 52,
+          "drivers": [
+            {
+              "title": "The Epoch Brief - July 31, 2026",
+              "source": "Epoch AI (Substack)",
+              "link": "https://epochai.substack.com/p/the-epoch-brief-july-31-2026",
+              "publishedAt": "2026-08-01T01:13:35.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "B"
+            },
+            {
+              "title": "Abliteration.ai's safety-removed AI models raise security, biosecurity concerns",
+              "source": "GN: AI bio-risk",
+              "link": "https://www.msn.com/en-xl/technology/cybersecurity/abliteration-ai-s-safety-removed-ai-models-raise-security-biosecurity-concerns/ar-AA2bUnvS",
+              "publishedAt": "2026-09-09T14:00:01.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            }
+          ]
+        },
+        "natsec_geo": {
+          "id": "natsec_geo",
+          "name": "Natsec / geopolitics",
+          "clockLabel": "Natsec/Geo",
+          "pct": 51,
+          "tier": {
+            "name": "Red Tape On Fire"
+          },
+          "confidence": 68,
+          "drivers": [
+            {
+              "title": "The US-China AI race doesn\u2019t need a winner \u2014 it needs rules",
+              "source": "GN: China AI race",
+              "link": "https://www.msn.com/en-us/politics/government/the-us-china-ai-race-doesn-t-need-a-winner-it-needs-rules/ar-AA2cG4ng",
+              "publishedAt": "2026-09-21T08:00:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "OpenAI Welcomes US Bills Targeting AI-Enabled Bioweapon Risks",
+              "source": "GN: AI bio-risk",
+              "link": "https://thedefensepost.com/2026/09/17/us-biosecurity-legislation-openai/",
+              "publishedAt": "2026-09-17T06:52:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "Quantum Cyber Acquires NVIDIA A100 AI Compute Cluster to Power Its Swarm Operating System",
+              "source": "GN: drone / autonomy war",
+              "link": "https://markets.businessinsider.com/news/stocks/quantum-cyber-acquires-nvidia-a100-ai-compute-cluster-to-power-its-swarm-operating-system-1036528068",
+              "publishedAt": "2026-09-08T00:31:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "AI policy groups call for NDAA guardrails on lethal autonomous weapons",
+              "source": "GN: military AI",
+              "link": "https://thehill.com/policy/technology/5908512-congress-add-ai-guardrails-ndaa/",
+              "publishedAt": "2026-06-03T14:00:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            }
+          ]
+        },
+        "lab_ceo_signal": {
+          "id": "lab_ceo_signal",
+          "name": "Lab / tech CEO signal",
+          "clockLabel": "Lab/CEO",
+          "pct": 63,
+          "tier": {
+            "name": "Leash Looking Loose"
+          },
+          "confidence": 68,
+          "drivers": [
+            {
+              "title": "Brief independent investigation of agents\u2019 behavior, reasoning and collaboration in the OpenAI / Hugging Face hacking incident",
+              "source": "METR Blog",
+              "link": "https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/",
+              "publishedAt": "2026-09-25T19:26:06.000Z",
+              "evidence": "body-confirmed",
+              "sourceTier": "A"
+            },
+            {
+              "title": "\u2018Godfather of AI\u2019 Geoffrey Hinton warns humans running out of time to control Artificial Intelligence \u2013 \u2018maybe a year\u2019",
+              "source": "GN: AGI chatter",
+              "link": "https://www.msn.com/en-in/news/other/godfather-of-ai-geoffrey-hinton-warns-humans-running-out-of-time-to-control-artificial-intelligence-maybe-a-year/ar-AA2cvliA",
+              "publishedAt": "2026-09-18T04:44:08.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "OpenAI, Anthropic AI Researcher Resigns, Warns Reckless Superintelligence Race Could Threaten Humanity",
+              "source": "GN: lab resignations",
+              "link": "https://bravenewcoin.com/insights/openai-anthropic-ai-researcher-resigns-warns-reckless-superintelligence-race-could-threaten-humanity",
+              "publishedAt": "2026-09-09T10:41:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "xAI launches Grok 4.7 (live in Grok app, Cursor, API, GitHub Copilot)",
+              "source": "xAI / GitHub Changelog",
+              "link": "https://github.blog/changelog/2026-09-21-grok-4-7-is-now-available-in-github-copilot/",
+              "publishedAt": "2026-09-21T18:00:00.000Z",
+              "evidence": "body-confirmed",
+              "sourceTier": "A"
+            }
+          ]
+        },
+        "contested_claims_heat": {
+          "id": "contested_claims_heat",
+          "name": "Contested claims heat",
+          "clockLabel": "Contested heat",
+          "pct": 35,
+          "tier": {
+            "name": "Sweating Softly"
+          },
+          "confidence": 44,
+          "drivers": [
+            {
+              "title": "Who\u2019s Who In The Fight Over Whether AI Will Kill Us",
+              "source": "GN: AI safety",
+              "link": "https://www.forbes.com/sites/andreamorris/2026/09/24/whos-who-in-the-fight-over-whether-ai-will-kill-us/",
+              "publishedAt": "2026-09-24T10:10:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            }
+          ]
+        }
+      }
+    },
+    "dwarkesh_watch": {
+      "id": "dwarkesh_watch",
+      "name": "Dwarkesh Watch",
+      "shelfLabel": "DWARKESH BAY",
+      "accent": "AMBER",
+      "blurb": "Dense AI/scaling/China/econ expert-interview cross-check from Dwarkesh Patel guests \u2014 dry secondary shelf; complements Lex without duplicating the megaphone.",
+      "pct": 59,
+      "weight": 0.06,
+      "confidence": 72,
+      "tier": {
+        "name": "Red Tape On Fire"
+      },
+      "subs": {
+        "scaling_laws": {
+          "id": "scaling_laws",
+          "name": "Scaling laws / paradigm",
+          "clockLabel": "Scaling",
+          "pct": 60,
+          "tier": {
+            "name": "Red Tape On Fire"
+          },
+          "confidence": 79,
+          "drivers": [
+            {
+              "title": "Funding update",
+              "source": "METR Blog",
+              "link": "https://metr.org/blog/2026-08-14-funding-update/",
+              "publishedAt": "2026-08-14T07:00:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "A"
+            },
+            {
+              "title": "OpenAI, Anthropic AI Researcher Resigns, Warns Reckless Superintelligence Race Could Threaten Humanity",
+              "source": "GN: lab resignations",
+              "link": "https://bravenewcoin.com/insights/openai-anthropic-ai-researcher-resigns-warns-reckless-superintelligence-race-could-threaten-humanity",
+              "publishedAt": "2026-09-09T10:41:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "OpenAI: GPT-6 Sol and Luna released (faster/cheaper GPT-6 family)",
+              "source": "X \u00b7 @OpenAI (verified)",
+              "link": "https://x.com/OpenAI/status/2102460975790137662",
+              "publishedAt": "2026-09-22T18:12:13.000Z",
+              "evidence": "body-confirmed",
+              "sourceTier": "A"
+            },
+            {
+              "title": "The Economics of Recursive Self-Improvement",
+              "source": "METR Blog",
+              "link": "https://metr.org/notes/2026-07-22-economics-of-recursive-self-improvement/",
+              "publishedAt": "2026-07-22T07:00:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "A"
+            }
+          ]
+        },
+        "lab_race": {
+          "id": "lab_race",
+          "name": "Lab race / concentration",
+          "clockLabel": "Lab race",
+          "pct": 70,
+          "tier": {
+            "name": "Leash Looking Loose"
+          },
+          "confidence": 79,
+          "drivers": [
+            {
+              "title": "Brief independent investigation of agents\u2019 behavior, reasoning and collaboration in the OpenAI / Hugging Face hacking incident",
+              "source": "METR Blog",
+              "link": "https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/",
+              "publishedAt": "2026-09-25T19:26:06.000Z",
+              "evidence": "body-confirmed",
+              "sourceTier": "A"
+            },
+            {
+              "title": "Dario: We Must Pace the Frontier \u2014 third-party evaluators permanent employee-level access",
+              "source": "X \u00b7 @DarioAmodei",
+              "link": "https://x.com/DarioAmodei/status/2098773920774074715",
+              "publishedAt": "2026-09-12T14:01:10.000Z",
+              "evidence": "primary-source",
+              "sourceTier": "A"
+            },
+            {
+              "title": "Top AI companies call for safety measures while critics warn regulation could stifle innovation",
+              "source": "GN: AI safety",
+              "link": "https://www.msn.com/en-us/news/other/top-ai-companies-call-for-safety-measures-while-critics-warn-regulation-could-stifle-innovation/ar-AA2cY8n6",
+              "publishedAt": "2026-09-25T07:29:09.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "Anthropic, OpenAI release cheaper AI even as safety fears grow",
+              "source": "GN: lab resignations",
+              "link": "https://techxplore.com/news/2026-09-anthropic-openai-cheaper-ai-safety.html",
+              "publishedAt": "2026-09-23T01:38:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            }
+          ]
+        },
+        "china_compute": {
+          "id": "china_compute",
+          "name": "China compute / energy",
+          "clockLabel": "China compute",
+          "pct": 44,
+          "tier": {
+            "name": "Sweating Softly"
+          },
+          "confidence": 58,
+          "drivers": [
+            {
+              "title": "OpenAI, Anthropic AI Researcher Resigns, Warns Reckless Superintelligence Race Could Threaten Humanity",
+              "source": "GN: lab resignations",
+              "link": "https://bravenewcoin.com/insights/openai-anthropic-ai-researcher-resigns-warns-reckless-superintelligence-race-could-threaten-humanity",
+              "publishedAt": "2026-09-09T10:41:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "Artificial Analysis: Terminal-Bench-Science \u2014 GPT-6 Astra & Claude Opus 5.5 lead ~20pts",
+              "source": "X \u00b7 @ArtificialAnlys (verified)",
+              "link": "https://x.com/ArtificialAnlys/status/2103265956479070260",
+              "publishedAt": "2026-09-24T23:30:55.000Z",
+              "evidence": "body-confirmed",
+              "sourceTier": "A"
+            },
+            {
+              "title": "How far behind Nvidia is Huawei?",
+              "source": "Epoch AI (Substack)",
+              "link": "https://epochai.substack.com/p/how-far-behind-nvidia-is-huawei",
+              "publishedAt": "2026-09-24T16:04:51.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "B"
+            },
+            {
+              "title": "Senate Democrats Push for Vote on Chip-Related Export Control Bills",
+              "source": "GN: chip export controls",
+              "link": "https://exportcompliancedaily.com/article/2026/09/24/senate-democrats-push-for-vote-on-chiprelated-export-control-bills-2609230034?BC=bc_6ab5066e98949",
+              "publishedAt": "2026-09-23T17:00:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            }
+          ]
+        },
+        "econ_diffusion": {
+          "id": "econ_diffusion",
+          "name": "Econ diffusion / scarcity",
+          "clockLabel": "Econ diffusion",
+          "pct": 70,
+          "tier": {
+            "name": "Leash Looking Loose"
+          },
+          "confidence": 79,
+          "drivers": [
+            {
+              "title": "\u2018I resigned from Anthropic\u2019: Key researcher drops existential AI risk warning in exit post",
+              "source": "GN: open letters / x-risk",
+              "link": "https://www.msn.com/en-in/technology/artificial-intelligence/i-resigned-from-anthropic-key-researcher-drops-existential-ai-risk-warning-in-exit-post/ar-AA2bRBw8",
+              "publishedAt": "2026-09-16T12:01:00.000Z",
+              "evidence": "body-confirmed",
+              "sourceTier": "C"
+            },
+            {
+              "title": "xAI launches Grok 4.7 (live in Grok app, Cursor, API, GitHub Copilot)",
+              "source": "xAI / GitHub Changelog",
+              "link": "https://github.blog/changelog/2026-09-21-grok-4-7-is-now-available-in-github-copilot/",
+              "publishedAt": "2026-09-21T18:00:00.000Z",
+              "evidence": "body-confirmed",
+              "sourceTier": "A"
+            },
+            {
+              "title": "Anthropic: three measurements tracking AI R&D automation / recursive progress",
+              "source": "X \u00b7 @AnthropicAI (verified)",
+              "link": "https://x.com/AnthropicAI/status/2100684274114699295",
+              "publishedAt": "2026-09-17T20:32:14.000Z",
+              "evidence": "body-confirmed",
+              "sourceTier": "A"
+            },
+            {
+              "title": "Artificial Analysis: Terminal-Bench-Science \u2014 GPT-6 Astra & Claude Opus 5.5 lead ~20pts",
+              "source": "X \u00b7 @ArtificialAnlys (verified)",
+              "link": "https://x.com/ArtificialAnlys/status/2103265956479070260",
+              "publishedAt": "2026-09-24T23:30:55.000Z",
+              "evidence": "body-confirmed",
+              "sourceTier": "A"
+            }
+          ]
+        },
+        "alignment_adjacent": {
+          "id": "alignment_adjacent",
+          "name": "Alignment-adjacent / warning shots",
+          "clockLabel": "Alignment",
+          "pct": 46,
+          "tier": {
+            "name": "Red Tape On Fire"
+          },
+          "confidence": 63,
+          "drivers": [
+            {
+              "title": "Brief independent investigation of agents\u2019 behavior, reasoning and collaboration in the OpenAI / Hugging Face hacking incident",
+              "source": "METR Blog",
+              "link": "https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/",
+              "publishedAt": "2026-09-25T19:26:06.000Z",
+              "evidence": "body-confirmed",
+              "sourceTier": "A"
+            },
+            {
+              "title": "Funding update",
+              "source": "METR Blog",
+              "link": "https://metr.org/blog/2026-08-14-funding-update/",
+              "publishedAt": "2026-08-14T07:00:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "A"
+            },
+            {
+              "title": "Former Anthropic Researchers Sound Alarm on AI Safety After Simultaneous Resignations",
+              "source": "GN: lab resignations",
+              "link": "https://blockonomi.com/former-anthropic-researchers-sound-alarm-on-ai-safety-after-simultaneous-resignations/",
+              "publishedAt": "2026-09-12T03:55:00.000Z",
+              "evidence": "headline-only",
+              "sourceTier": "C"
+            },
+            {
+              "title": "xAI launches Grok 4.7 (live in Grok app, Cursor, API, GitHub Copilot)",
+              "source": "xAI / GitHub Changelog",
+              "link": "https://github.blog/changelog/2026-09-21-grok-4-7-is-now-available-in-github-copilot/",
+              "publishedAt": "2026-09-21T18:00:00.000Z",
+              "evidence": "body-confirmed",
+              "sourceTier": "A"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "subMeters": [],
+  "overall": {
+    "pct": 31,
+    "tier": "Sweating Softly",
+    "line": "Professional concern face. Someone should probably file a ticket.",
+    "confidence": 55
+  },
+  "lastUpdated": "2026-09-26T08:45:12.889Z"
 }

@@ -2,7 +2,7 @@
 
 Static, read-only public mirror of Josh’s private Doom Dashboard board.
 
-Visitors see the **last published snapshot** of Stress / Pace / blend, apex spine, Polymarket gate status, and driver provenance. Nothing on this site scans, scrapes, or posts.
+Visitors see the **last published snapshot** as a pyramid clock wall: blend master, Stress and Pace, then domain shelves of named sub-dials, plus the apex spine, Polymarket gate status, and driver provenance. Nothing on this site scans, scrapes, or posts.
 
 ## Private vs public
 
@@ -26,7 +26,8 @@ The private app is the source of truth. This mirror is a cold steel lobby displa
 - **Apex spine** — with stale badge when the apex file is old
 - **Polymarket gate** — closed / no edges unless the private board says otherwise
 - **sourceHealthSummary** — if present on the snapshot; otherwise a note that it wasn’t exported
-- **Provenance drawer** — click Stress, Pace, blend, or a driver for title / source / tier / evidence / decayHint / outbound link
+- **Pyramid** — master blend clock, then Stress + Pace, then widening domain shelves (`domains.*.subs`)
+- **Provenance drawer** — click the master, Stress, Pace, or any shelf dial for title / source / tier / evidence / decayHint / outbound link
 
 ## Refresh workflow
 
