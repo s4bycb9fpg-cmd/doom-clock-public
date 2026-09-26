@@ -226,6 +226,39 @@
     )}</strong> · blend is blend, not prophecy · board will not invent edges.</p>`;
   }
 
+  function formatChecked(iso) {
+    if (!iso) return "—";
+    const match = String(iso).match(/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/);
+    if (!match) return fmtTime(iso);
+    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    const month = months[Number(match[2]) - 1];
+    if (!month) return fmtTime(iso);
+    let hour = Number(match[4]);
+    const ampm = hour >= 12 ? "PM" : "AM";
+    hour = hour % 12 || 12;
+    return `${month} ${Number(match[3])}, ${match[1]}, ${hour}:${match[5]} ${ampm}`;
+  }
+
+  function formatAsOf(raw) {
+    const s = String(raw || "").trim();
+    if (!s || s === "—") return "—";
+    const month = s.match(/^(\d{4})-(\d{2})$/);
+    if (month) {
+      const names = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+      const idx = Number(month[2]) - 1;
+      return idx >= 0 && idx < 12 ? `${names[idx]} ${month[1]}` : s;
+    }
+    return s;
+  }
+
+  function scoreFold(inner) {
+    return `<details class="score-details"><summary>How this dial scores</summary><div class="score-details-body">${inner}</div></details>`;
+  }
+
+  function weightPct(w) {
+    return typeof w === "number" ? `${(w * 100).toFixed(0)}%` : null;
+  }
+
   function openProvenanceDrawer(kind, dialOpts) {
     const data = lastPayload;
     if (!data) return;
@@ -237,42 +270,52 @@
     if (kind === "stress") {
       const s = data.stress || {};
       titleEl.textContent = `Provenance · Stress ${s.pct ?? "—"}%`;
+      const stressDrivers = s.drivers || [];
       bodyEl.innerHTML = `
         <p class="trust-kicker">Trust drawer · Stress Index</p>
         <div class="trust-pct-row">
           <span class="trust-pct">${s.pct == null ? "—" : Math.round(s.pct)}</span>
           <span class="trust-tier">${escapeHtml(tierName(s.tier) || (s.refused ? "Demo refused" : "—"))}</span>
         </div>
-        <pre class="trust-formula">${escapeHtml(
-          s.methodNotes ||
-            "Stress = confirmation-gated cyber+conflict+infra+bio incident heat. Body-confirmed or Tier A/B; remediation excluded; ~10d half-life; quiet floor ~7%; ±12 delta cap. Demo never feeds."
-        )}</pre>
-        ${
-          s.refused
-            ? `<p class="trust-banner warn">${escapeHtml(s.note || "Stress refuses demo seed.")}</p>`
-            : gateBanner
-        }
         ${s.line ? `<p>${escapeHtml(s.line)}</p>` : ""}
         <h3>Top drivers</h3>
-        ${provenanceDriversHtml(s.drivers)}
-        <p class="muted tiny">Computed ${escapeHtml(fmtTime(s.computedAt))} · eligible ${s.eligibleCount ?? "—"} · confidence ${s.confidence ?? "—"}%</p>
+        ${provenanceDriversHtml(stressDrivers, 3)}
+        ${scoreFold(`
+          <pre class="trust-formula">${escapeHtml(
+            s.methodNotes ||
+              "Stress = confirmation-gated cyber+conflict+infra+bio incident heat. Body-confirmed or Tier A/B; remediation excluded; ~10d half-life; quiet floor ~7%; ±12 delta cap. Demo never feeds."
+          )}</pre>
+          ${
+            s.refused
+              ? `<p class="trust-banner warn">${escapeHtml(s.note || "Stress refuses demo seed.")}</p>`
+              : gateBanner
+          }
+          ${
+            stressDrivers.length > 3
+              ? `<h3>More drivers</h3>${provenanceDriversHtml(stressDrivers.slice(3), 12)}`
+              : ""
+          }
+          <p class="muted tiny">Computed ${escapeHtml(fmtTime(s.computedAt))} · eligible ${s.eligibleCount ?? "—"} · confidence ${s.confidence ?? "—"}%</p>
+        `)}
       `;
     } else if (kind === "pace") {
       const p = data.pace || {};
       const apex = data.apex || {};
       const updated = p.apexUpdatedAt || apex.updatedAt || null;
       titleEl.textContent = `Provenance · Pace ${p.pct ?? "—"}%`;
+      const asOfLabel = formatAsOf(p.apexAsOf || apex.asOf || "—");
+      const measurementStale = p.apexStale || apex.stale;
       const spine = `
         <div class="apex-spine-grid" aria-label="Apex spine">
           <div class="apex-spine-cell"><span class="lbl">Recursive AI</span><span class="val">${p.recursiveAiPct ?? "—"}%</span></div>
           <div class="apex-spine-cell"><span class="lbl">AGI here</span><span class="val">${p.agiHerePct ?? "—"}%</span></div>
           <div class="apex-spine-cell"><span class="lbl">Closed-loop</span><span class="val">${p.closedLoopPct ?? "—"}%</span></div>
         </div>
-        <p class="muted tiny">Apex asOf ${escapeHtml(p.apexAsOf || apex.asOf || "—")} · last updated ${escapeHtml(
-          fmtTime(updated)
+        <p class="muted tiny">Measurement as-of ${escapeHtml(asOfLabel)} · last checked ${escapeHtml(
+          formatChecked(updated)
         )} · dial shelf ${p.dialPct ?? "—"}% · apexPace ${p.apexPace ?? "—"}${
-          p.apexStale || apex.stale
-            ? ` · <strong>stale ${p.apexStaleDays ?? apex.staleDays ?? "?"}d</strong>`
+          measurementStale
+            ? ` · <strong>measurement stale ${p.apexStaleDays ?? apex.staleDays ?? "?"}d</strong>`
             : ""
         }</p>`;
       const srcList = (p.apexSources || apex.sources || [])
@@ -288,25 +331,33 @@
           }</div></li>`;
         })
         .join("");
+      const paceDrivers = p.drivers || [];
       bodyEl.innerHTML = `
         <p class="trust-kicker">Trust drawer · Pace Index</p>
         <div class="trust-pct-row">
           <span class="trust-pct">${p.pct == null ? "—" : Math.round(p.pct)}</span>
           <span class="trust-tier">${escapeHtml(tierName(p.tier) || "—")}</span>
         </div>
-        <pre class="trust-formula">${escapeHtml(
-          p.methodNotes ||
-            "Pace = 0.55×dial haircut + 0.45×apex spine (recursiveAi×1.15 + agiHere×0.55 + closedLoop×1.5) + primary/fresh boosts."
-        )}</pre>
-        ${gateBanner}
         ${p.line ? `<p>${escapeHtml(p.line)}</p>` : ""}
-        <h3>Apex spine</h3>
-        ${spine}
-        <h3>Apex sources</h3>
-        <ul class="prov-driver-list">${srcList || "<li class='muted tiny'>No apex sources packed. The spine is still a guess with a date on it.</li>"}</ul>
         <h3>Top drivers</h3>
-        ${provenanceDriversHtml(p.drivers)}
-        <p class="muted tiny">Computed ${escapeHtml(fmtTime(p.computedAt))} · primaryBoost ${p.primaryBoost ?? 0} · freshBoost ${p.freshBoost ?? 0} · freshReleaseBoost ${p.freshReleaseBoost ?? 0}</p>
+        ${provenanceDriversHtml(paceDrivers, 3)}
+        ${scoreFold(`
+          <pre class="trust-formula">${escapeHtml(
+            p.methodNotes ||
+              "Pace = 0.55×dial haircut + 0.45×apex spine (recursiveAi×1.15 + agiHere×0.55 + closedLoop×1.5) + primary/fresh boosts."
+          )}</pre>
+          ${gateBanner}
+          <h3>Apex spine</h3>
+          ${spine}
+          <h3>Apex sources</h3>
+          <ul class="prov-driver-list">${srcList || "<li class='muted tiny'>No apex sources packed. The spine is still a guess with a date on it.</li>"}</ul>
+          ${
+            paceDrivers.length > 3
+              ? `<h3>More drivers</h3>${provenanceDriversHtml(paceDrivers.slice(3), 12)}`
+              : ""
+          }
+          <p class="muted tiny">Computed ${escapeHtml(fmtTime(p.computedAt))} · primaryBoost ${p.primaryBoost ?? 0} · freshBoost ${p.freshBoost ?? 0} · freshReleaseBoost ${p.freshReleaseBoost ?? 0}</p>
+        `)}
       `;
     } else if (kind === "blend" || kind === "overall") {
       const b = data.blend || {};
@@ -321,19 +372,23 @@
           <span class="trust-pct">${face == null ? "—" : Math.round(face)}</span>
           <span class="trust-tier">${escapeHtml(tierName(b.tier) || tierName(o.tier) || "—")}</span>
         </div>
-        <pre class="trust-formula">${escapeHtml(b.formula || "0.55×Stress + 0.45×Pace")}
+        <h3>Top drivers</h3>
+        <ul class="prov-driver-list">
+          <li class="prov-driver"><div>Stress ${s.pct ?? "—"}%</div><div class="prov-meta">${provChip(tierName(s.tier) || "stress")}${provChip("weight 0.55")}</div></li>
+          <li class="prov-driver"><div>Pace ${p.pct ?? "—"}%</div><div class="prov-meta">${provChip(tierName(p.tier) || "pace")}${provChip("weight 0.45")}</div></li>
+        </ul>
+        ${scoreFold(`
+          <pre class="trust-formula">${escapeHtml(b.formula || "0.55×Stress + 0.45×Pace")}
 label: ${escapeHtml(b.label || "board temperature (blend, not prophecy)")}</pre>
-        <p class="trust-banner"><strong>Blend is blend, not prophecy.</strong> It is a weighted mix of Stress and Pace for board temperature only — not an AGI timeline, not a forecast, not a trade signal.</p>
-        ${gateBanner}
-        <div class="detail-stats">
-          <span>Stress ${s.pct ?? "—"}%</span>
-          <span>Pace ${p.pct ?? "—"}%</span>
-          <span>weights 0.55 / 0.45</span>
-          <span>legacy rollup ${o.pct ?? "—"}%${o.tier ? ` · ${escapeHtml(tierName(o.tier))}` : ""}</span>
-          ${o.confidence != null ? `<span>rollup confidence ${escapeHtml(String(o.confidence))}%</span>` : ""}
-        </div>
-        ${o.line ? `<p class="muted tiny">Legacy domain rollup: ${escapeHtml(o.line)}</p>` : ""}
-        <p class="muted tiny">The face is the blend. The engraved rollup is the shelves’ own argument. Please don’t stir them together.</p>
+          <p class="trust-banner"><strong>Blend is blend, not prophecy.</strong> A weighted mix of Stress and Pace for board temperature only. Not an AGI timeline, not a forecast, not a trade signal.</p>
+          ${gateBanner}
+          <div class="detail-stats">
+            <span>legacy rollup ${o.pct ?? "—"}%${o.tier ? ` · ${escapeHtml(tierName(o.tier))}` : ""}</span>
+            ${o.confidence != null ? `<span>rollup confidence ${escapeHtml(String(o.confidence))}%</span>` : ""}
+          </div>
+          ${o.line ? `<p class="muted tiny">Legacy domain rollup: ${escapeHtml(o.line)}</p>` : ""}
+          <p class="muted tiny">The face is the blend. The engraved rollup is the shelves’ own argument.</p>
+        `)}
       `;
     } else if (kind === "dial" && dialOpts) {
       const { domainId, subId } = dialOpts;
@@ -351,8 +406,18 @@ label: ${escapeHtml(b.label || "board temperature (blend, not prophecy)")}</pre>
           : parts.prior != null
             ? `shelf dial: ${parts.formula || `${parts.priorBlend}×prior + ${parts.evidenceBlend}×evidence`} (prior ${parts.prior}% · evidence ${parts.evidenceScore}%).`
             : s.methodNotes || "Snapshot dial. Drivers below are the sources on this export.";
-      const wSub = typeof s.weight === "number" ? `${(s.weight * 100).toFixed(0)}% of domain` : "—";
-      const wDom = d && typeof d.weight === "number" ? `${(d.weight * 100).toFixed(0)}% of rollup` : "—";
+      const dialDrivers = s.drivers || s.signals || [];
+      const wSub = weightPct(s.weight);
+      const wDom = d && weightPct(d.weight);
+      const statBits = [
+        s.confidence != null ? `<span>confidence ${escapeHtml(String(s.confidence))}%</span>` : "",
+        wSub ? `<span>sub weight ${escapeHtml(wSub)}</span>` : "",
+        wDom ? `<span>domain weight ${escapeHtml(wDom)}</span>` : "",
+        d.pct != null ? `<span>shelf ${escapeHtml(String(d.pct))}%</span>` : "",
+        s.lastSignalAt ? `<span>last signal ${fmtTime(s.lastSignalAt)}</span>` : "",
+        conf.note ? `<span>${escapeHtml(conf.note)}</span>` : "",
+        s.staleness && s.staleness.badge ? `<span>${escapeHtml(s.staleness.badge)}</span>` : "",
+      ].filter(Boolean);
       bodyEl.innerHTML = `
         <p class="trust-kicker">Trust drawer · dial · ${escapeHtml(d.shelfLabel || d.name || domainId)}</p>
         <div class="trust-pct-row">
@@ -360,25 +425,24 @@ label: ${escapeHtml(b.label || "board temperature (blend, not prophecy)")}</pre>
           <span class="trust-tier">${escapeHtml(tierName(s.tier) || "—")}</span>
         </div>
         <p><strong>${escapeHtml(s.name || title)}</strong> on the <em>${escapeHtml(d.shelfLabel || d.name || "")}</em> shelf.</p>
-        <pre class="trust-formula">${escapeHtml(formula)}</pre>
-        ${gateBanner}
-        <div class="detail-stats">
-          <span>confidence ${s.confidence ?? "—"}%</span>
-          <span>sub weight ${escapeHtml(wSub)}</span>
-          <span>domain weight ${escapeHtml(wDom)}</span>
-          <span>shelf ${d.pct ?? "—"}%</span>
-          ${s.lastSignalAt ? `<span>last signal ${fmtTime(s.lastSignalAt)}</span>` : ""}
-          ${conf.note ? `<span>${escapeHtml(conf.note)}</span>` : ""}
-          ${s.staleness && s.staleness.badge ? `<span>${escapeHtml(s.staleness.badge)}</span>` : ""}
-        </div>
-        ${
-          s.rationale
-            ? `<div class="dossier-block"><h3 style="margin-top:0">Rationale</h3><p>${escapeHtml(s.rationale)}</p></div>`
-            : ""
-        }
-        <h3>Drivers</h3>
-        ${provenanceDriversHtml(s.drivers || s.signals, 8)}
-        ${s.methodNotes ? `<p class="muted tiny">${escapeHtml(s.methodNotes)}</p>` : ""}
+        <h3>Top drivers</h3>
+        ${provenanceDriversHtml(dialDrivers, 3)}
+        ${scoreFold(`
+          <pre class="trust-formula">${escapeHtml(formula)}</pre>
+          ${gateBanner}
+          ${statBits.length ? `<div class="detail-stats">${statBits.join("")}</div>` : ""}
+          ${
+            s.rationale
+              ? `<div class="dossier-block"><h3 style="margin-top:0">Rationale</h3><p>${escapeHtml(s.rationale)}</p></div>`
+              : ""
+          }
+          ${
+            dialDrivers.length > 3
+              ? `<h3>More drivers</h3>${provenanceDriversHtml(dialDrivers.slice(3), 12)}`
+              : ""
+          }
+          ${s.methodNotes ? `<p class="muted tiny">${escapeHtml(s.methodNotes)}</p>` : ""}
+        `)}
       `;
     } else {
       return;
@@ -394,6 +458,7 @@ label: ${escapeHtml(b.label || "board temperature (blend, not prophecy)")}</pre>
 
     const drawer = $("#trust-drawer");
     if (drawer && typeof drawer.showModal === "function") drawer.showModal();
+    hideVoiceCaption();
   }
 
   function voiceBand(pct) {
@@ -525,6 +590,80 @@ label: ${escapeHtml(b.label || "board temperature (blend, not prophecy)")}</pre>
     }
   }
 
+  const HINT_KEY = "doom-hover-hint";
+
+  function hideVoiceCaption() {
+    const cap = $("#voice-caption");
+    if (cap) cap.hidden = true;
+  }
+
+  function showVoiceCaption(el) {
+    const cap = $("#voice-caption");
+    const text = el && el.dataset.voice;
+    if (!cap || !text) {
+      hideVoiceCaption();
+      return;
+    }
+    cap.textContent = text;
+    cap.hidden = false;
+    const rect = el.getBoundingClientRect();
+    const width = cap.offsetWidth || 220;
+    const left = Math.min(window.innerWidth - width / 2 - 12, Math.max(width / 2 + 12, rect.left + rect.width / 2));
+    let top = rect.bottom + 8;
+    if (top + cap.offsetHeight > window.innerHeight - 8) {
+      top = Math.max(8, rect.top - cap.offsetHeight - 8);
+    }
+    cap.style.left = `${left}px`;
+    cap.style.top = `${top}px`;
+  }
+
+  function bindHoverCaptions() {
+    if (document.body.dataset.captionBound) return;
+    document.body.dataset.captionBound = "1";
+    document.body.addEventListener("pointerover", (e) => {
+      const clock = e.target.closest && e.target.closest("[data-provenance]");
+      if (clock) showVoiceCaption(clock);
+    });
+    document.body.addEventListener("pointerout", (e) => {
+      const clock = e.target.closest && e.target.closest("[data-provenance]");
+      if (!clock) return;
+      const next = e.relatedTarget && e.relatedTarget.closest && e.relatedTarget.closest("[data-provenance]");
+      if (next === clock) return;
+      hideVoiceCaption();
+    });
+    document.body.addEventListener("focusin", (e) => {
+      const clock = e.target.closest && e.target.closest("[data-provenance]");
+      if (clock) showVoiceCaption(clock);
+    });
+    document.body.addEventListener("focusout", (e) => {
+      const clock = e.target.closest && e.target.closest("[data-provenance]");
+      if (!clock) return;
+      const next = e.relatedTarget && e.relatedTarget.closest && e.relatedTarget.closest("[data-provenance]");
+      if (next === clock) return;
+      hideVoiceCaption();
+    });
+    window.addEventListener("scroll", hideVoiceCaption, true);
+    const hint = $("#hover-hint");
+    if (hint) {
+      try {
+        if (localStorage.getItem(HINT_KEY) === "off") hint.hidden = true;
+      } catch {
+        /* ignore */
+      }
+      const dismiss = $("#hover-hint-dismiss");
+      if (dismiss) {
+        dismiss.addEventListener("click", () => {
+          hint.hidden = true;
+          try {
+            localStorage.setItem(HINT_KEY, "off");
+          } catch {
+            /* ignore */
+          }
+        });
+      }
+    }
+  }
+
   function bindVoice() {
     if (document.body.dataset.voiceBound) return;
     document.body.dataset.voiceBound = "1";
@@ -594,11 +733,12 @@ label: ${escapeHtml(b.label || "board temperature (blend, not prophecy)")}</pre>
       agiEl.innerHTML = typeof agi === "number" ? `${Math.round(agi)}<span>%</span>` : `—<span>%</span>`;
     }
 
+    const asOfLabel = formatAsOf(asOf);
     const staleBadge = $("#apex-stale-badge");
     if (staleBadge) {
       if (stale) {
         staleBadge.classList.remove("hidden");
-        staleBadge.textContent = `stale ${staleDays ?? "?"}d`;
+        staleBadge.textContent = `measurement stale ${staleDays ?? "?"}d · as-of ${asOfLabel}`;
       } else {
         staleBadge.classList.add("hidden");
       }
@@ -614,9 +754,9 @@ label: ${escapeHtml(b.label || "board temperature (blend, not prophecy)")}</pre>
     }
     const meta = $("#apex-meta");
     if (meta) {
-      meta.textContent = `asOf ${asOf} · closed-loop ${closed ?? "—"}% · updated ${fmtTime(
+      meta.textContent = `as-of ${asOfLabel} · last checked ${formatChecked(
         pace.apexUpdatedAt || apex.updatedAt
-      )}${stale ? ` · apex stale ${staleDays ?? "?"}d` : ""}`;
+      )} · closed-loop ${closed ?? "—"}%`;
     }
   }
 
@@ -868,38 +1008,116 @@ label: ${escapeHtml(b.label || "board temperature (blend, not prophecy)")}</pre>
         .join("");
   }
 
-  function renderSourceHealth(summary) {
+  function feedIsOk(row) {
+    if (!row || typeof row !== "object") return false;
+    if (row.ok === false) return false;
+    if (row.ok === true) return true;
+    return !row.error;
+  }
+
+  function tierSortKey(tier) {
+    const t = String(tier || "").trim().toUpperCase();
+    if (t === "A" || t.startsWith("A")) return 0;
+    if (t === "B" || t.startsWith("B")) return 1;
+    if (t === "C" || t.startsWith("C")) return 2;
+    return 3;
+  }
+
+  function sortFeeds(feeds) {
+    return feeds.slice().sort((a, b) => {
+      const failA = feedIsOk(a) ? 1 : 0;
+      const failB = feedIsOk(b) ? 1 : 0;
+      if (failA !== failB) return failA - failB;
+      const tierDelta = tierSortKey(a && a.tier) - tierSortKey(b && b.tier);
+      if (tierDelta) return tierDelta;
+      return String((a && (a.name || a.id)) || "").localeCompare(String((b && (b.name || b.id)) || ""));
+    });
+  }
+
+  function clipText(value, max) {
+    const text = String(value || "").replace(/\s+/g, " ").trim();
+    if (text.length <= max) return text;
+    return `${text.slice(0, max - 1)}…`;
+  }
+
+  function renderSourceHealth(summary, feedsFallback) {
     const el = $("#source-health");
     if (!el) return;
-    if (summary == null) {
-      el.innerHTML = `<p class="muted">The health chart didn’t make the trip. Each clock still brought its own sources in the drawer.</p>`;
+    const missing =
+      (summary == null || summary === "") &&
+      !(Array.isArray(feedsFallback) && feedsFallback.length);
+    if (missing) {
+      el.innerHTML = `<p class="muted">The health chart didn’t make the trip. When a snapshot packs source health, every feed shows its homework here. Until then, each clock still keeps receipts in the drawer.</p>`;
       return;
     }
     if (typeof summary === "string") {
       el.innerHTML = `<p>${escapeHtml(summary)}</p>`;
       return;
     }
+
+    let rollup = null;
+    let note = "";
+    let feeds = [];
     if (Array.isArray(summary)) {
-      el.innerHTML = `<div class="source-grid">${summary
-        .map((row) => {
-          const ok = row.ok === true ? "ok" : row.ok === false ? "fail" : "";
-          const name = escapeHtml(row.name || row.id || "source");
-          const note = row.error || row.note || (row.count != null ? `n=${row.count}` : "");
-          return `<div class="source-chip ${ok}">${name}${note ? `<br><span class="muted">${escapeHtml(String(note))}</span>` : ""}</div>`;
-        })
-        .join("")}</div>`;
+      feeds = summary;
+    } else if (summary && typeof summary === "object") {
+      rollup = summary;
+      note = summary.note || "";
+      if (Array.isArray(summary.feeds)) feeds = summary.feeds;
+    }
+    if (!feeds.length && Array.isArray(feedsFallback)) feeds = feedsFallback;
+    if (!rollup && feeds.length) {
+      const ok = feeds.filter(feedIsOk).length;
+      rollup = { ok, fail: feeds.length - ok, total: feeds.length };
+    }
+
+    const chips = [];
+    if (rollup && typeof rollup === "object") {
+      if (rollup.ok != null) chips.push(`<span class="health-chip ok">ok ${escapeHtml(String(rollup.ok))}</span>`);
+      if (rollup.fail != null) chips.push(`<span class="health-chip fail">fail ${escapeHtml(String(rollup.fail))}</span>`);
+      if (rollup.total != null) chips.push(`<span class="health-chip">total ${escapeHtml(String(rollup.total))}</span>`);
+      const byTier = rollup.byTier || {};
+      ["A", "B", "C"].forEach((tier) => {
+        const row = byTier[tier];
+        if (!row || typeof row !== "object") return;
+        const failBit = row.fail ? ` · ${escapeHtml(String(row.fail))} fail` : "";
+        chips.push(
+          `<span class="health-chip tier-${tier.toLowerCase()}">tier ${tier} · ${escapeHtml(String(row.ok ?? "—"))}/${escapeHtml(String(row.total ?? "—"))} ok${failBit}</span>`
+        );
+      });
+    }
+
+    const pills = sortFeeds(feeds)
+      .map((row) => {
+        const ok = feedIsOk(row);
+        const name = escapeHtml((row && (row.name || row.id)) || "feed");
+        const tier = row && row.tier ? escapeHtml(String(row.tier)) : "—";
+        const count = row && row.count != null ? escapeHtml(String(row.count)) : "—";
+        const ms = row && row.ms != null ? provChip(`${row.ms}ms`) : "";
+        const err = !ok && row && row.error ? clipText(row.error, 160) : "";
+        const title = err ? ` title="${escapeAttr(err)}"` : "";
+        return `<div class="source-chip ${ok ? "ok" : "fail"}" role="listitem"${title}>
+          <span class="feed-name">${name}</span>
+          <span class="feed-meta">${provChip(`tier ${tier}`)}${ok ? provChip("ok") : provChip("down")}${provChip(`n=${count}`)}${ms}</span>
+          ${err ? `<span class="feed-err">${escapeHtml(err)}</span>` : ""}
+        </div>`;
+      })
+      .join("");
+
+    if (!chips.length && !pills && !note) {
+      el.innerHTML = `<p class="muted">Unrecognized source health shape. The clocks still keep their own receipts.</p>`;
       return;
     }
-    if (typeof summary === "object") {
-      const parts = [];
-      if (summary.ok != null) parts.push(`ok ${summary.ok}`);
-      if (summary.fail != null) parts.push(`fail ${summary.fail}`);
-      if (summary.total != null) parts.push(`total ${summary.total}`);
-      if (summary.note) parts.push(summary.note);
-      el.innerHTML = `<p>${escapeHtml(parts.join(" · ") || JSON.stringify(summary))}</p>`;
-      return;
-    }
-    el.innerHTML = `<p class="muted">Unrecognized sourceHealthSummary shape.</p>`;
+
+    el.innerHTML = `
+      ${note ? `<p class="health-note">${escapeHtml(note)}</p>` : ""}
+      ${chips.length ? `<div class="health-rollups">${chips.join("")}</div>` : ""}
+      ${
+        pills
+          ? `<div class="source-grid" role="list">${pills}</div>`
+          : `<p class="muted tiny">Rollup arrived without individual feeds. The counts above are the whole proof on this snapshot.</p>`
+      }
+    `;
   }
 
   function renderHeader(data) {
@@ -931,8 +1149,9 @@ label: ${escapeHtml(b.label || "board temperature (blend, not prophecy)")}</pre>
     renderPair(data);
     renderClockWall(data);
     renderPredictions(data.predictions);
-    renderSourceHealth(data.sourceHealthSummary);
+    renderSourceHealth(data.sourceHealthSummary, data.sourceHealth);
     bindVoice();
+    bindHoverCaptions();
     bindProvenanceClicks();
   }
 
