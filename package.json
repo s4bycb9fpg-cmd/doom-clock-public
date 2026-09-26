@@ -1,0 +1,10 @@
+{
+  "name": "doom-public-mirror",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static read-only DOOM INDEX public mirror",
+  "scripts": {
+    "preview": "npx --yes serve -l 3850 .",
+    "publish-from-private": "./publish-from-private.sh"
+  }
+}

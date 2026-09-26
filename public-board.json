@@ -1,0 +1,721 @@
+{
+  "publishedAt": "2026-09-26T08:45:12.889Z",
+  "mode": "live",
+  "disclaimer": "Personal research signal board. Blend is not prophecy. Not financial, legal, or safety advice.",
+  "stress": {
+    "pct": 16,
+    "tier": "Uneasy Picnic",
+    "line": "Ants at the blanket. Nothing's on fire. Yet.",
+    "drivers": [
+      {
+        "title": "Reuters on X: Shipping traffic via Strait of Hormuz stays below 10-day average",
+        "source": "X \u00b7 @Reuters (verified)",
+        "link": "https://x.com/Reuters/status/2100837242654556329",
+        "publishedAt": "2026-09-18T12:00:00.000Z",
+        "evidence": "body-confirmed",
+        "sourceTier": "A",
+        "effectiveImpact": 2.1,
+        "decayHint": "decay \u00d70.568 (~10d half-life)",
+        "bodyConfirmed": true
+      },
+      {
+        "title": "Detecting and countering misuse of AI: September 2026",
+        "source": "Anthropic",
+        "link": "https://www.anthropic.com/threat-intelligence-report-september-2026",
+        "publishedAt": "2026-09-10T16:00:00.000Z",
+        "evidence": "body-confirmed",
+        "sourceTier": "A",
+        "effectiveImpact": 1.2,
+        "decayHint": "decay \u00d70.33 (aging; ~10d half-life)",
+        "bodyConfirmed": true
+      },
+      {
+        "title": "Zelenskyy on X: Russian drones kill civilians near shopping malls in Pavlohrad",
+        "source": "X \u00b7 @ZelenskyyUa (verified)",
+        "link": "https://x.com/ZelenskyyUa/status/2098087993374359969",
+        "publishedAt": "2026-09-10T16:00:00.000Z",
+        "evidence": "body-confirmed",
+        "sourceTier": "A",
+        "effectiveImpact": 1.2,
+        "decayHint": "decay \u00d70.33 (aging; ~10d half-life)",
+        "bodyConfirmed": true
+      },
+      {
+        "title": "CVE-2026-67279: Mikrotik RouterOS Improper Enforcement of Behavioral Workflow Vulnerability",
+        "source": "CISA Known Exploited Vulnerabilities",
+        "link": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-67279",
+        "publishedAt": "2026-09-25T12:00:00.000Z",
+        "evidence": "kev-catalog",
+        "sourceTier": "A",
+        "effectiveImpact": 1.9,
+        "decayHint": "decay \u00d70.923 (fresh; ~10d half-life)",
+        "bodyConfirmed": false
+      },
+      {
+        "title": "CVE-2026-93952: Arista VeloCloud Orchestrator Improper Input Validation Vulnerability",
+        "source": "CISA Known Exploited Vulnerabilities",
+        "link": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-93952",
+        "publishedAt": "2026-09-22T12:00:00.000Z",
+        "evidence": "kev-catalog",
+        "sourceTier": "A",
+        "effectiveImpact": 1.5,
+        "decayHint": "decay \u00d70.749 (~10d half-life)",
+        "bodyConfirmed": false
+      }
+    ],
+    "computedAt": "2026-09-26T15:52:49.150Z",
+    "confidence": 53,
+    "scoreParts": {
+      "intensity": 0.188,
+      "coverageBoost": 2.2,
+      "recencyBoost": 0,
+      "incidentBonus": 0.5,
+      "corroborationBonus": 2.5,
+      "loneTierDPenalty": 0,
+      "confirmationDamp": 0,
+      "avgDecay": 0.58
+    },
+    "eligibleCount": 5,
+    "methodNotes": "Stress = confirmation-gated cyber+conflict+infra+bio incident heat. Body-confirmed or Tier A/B; remediation polarity excluded; time-decay via gatedEff; lone KEV catalog rows soft-haircut in gatedEff (~0.55\u00d7) + Stress impact cap 3; debunk/false-claim + lab-blog classic_cyber misfiles excluded; quiet floor ~7%; \u00b112 delta cap. Demo never feeds this meter.",
+    "refused": false
+  },
+  "pace": {
+    "pct": 44,
+    "tier": "Sweating Softly",
+    "line": "Professional concern face. Someone should probably file a ticket.",
+    "recursiveAiPct": 18,
+    "agiHerePct": 9,
+    "closedLoopPct": 1,
+    "dialPct": 33,
+    "apexPace": 27,
+    "primaryBoost": 7.5,
+    "freshReleaseBoost": 0,
+    "freshBoost": 6,
+    "dialParts": [
+      {
+        "id": "capability_demos",
+        "label": "Cap Demos",
+        "rawPct": 32,
+        "haircutPct": 32,
+        "bodyShare": 1,
+        "weight": 0.4
+      },
+      {
+        "id": "ai_containment",
+        "label": "Containment",
+        "rawPct": 64,
+        "haircutPct": 42,
+        "bodyShare": 0.4,
+        "weight": 0.3
+      },
+      {
+        "id": "lab_governance",
+        "label": "Lab Gov",
+        "rawPct": 35,
+        "haircutPct": 24,
+        "bodyShare": 0.4,
+        "weight": 0.3
+      }
+    ],
+    "drivers": [
+      {
+        "title": "Measurements for understanding the pace of AI development inside frontier labs",
+        "source": "Anthropic Institute",
+        "link": "https://www.anthropic.com/institute/measuring-pace-of-ai-development",
+        "publishedAt": "2026-09-17T16:00:00.000Z",
+        "evidence": "lab-primary",
+        "sourceTier": null,
+        "effectiveImpact": null,
+        "decayHint": null,
+        "bodyConfirmed": null
+      },
+      {
+        "title": "xAI launches Grok 4.7 (live in Grok app, Cursor, API, GitHub Copilot)",
+        "source": "xAI / GitHub Changelog",
+        "link": "https://github.blog/changelog/2026-09-21-grok-4-7-is-now-available-in-github-copilot/",
+        "publishedAt": "2026-09-21T18:00:00.000Z",
+        "evidence": "lab-primary",
+        "sourceTier": null,
+        "effectiveImpact": null,
+        "decayHint": null,
+        "bodyConfirmed": null
+      },
+      {
+        "title": "Sam Altman on X: big shipping this week, then DevDay",
+        "source": "X \u00b7 @sama (verified)",
+        "link": "https://x.com/sama/status/2099872600977760451",
+        "publishedAt": "2026-09-15T16:00:00.000Z",
+        "evidence": "lab-primary",
+        "sourceTier": null,
+        "effectiveImpact": null,
+        "decayHint": null,
+        "bodyConfirmed": null
+      },
+      {
+        "title": "Cap Demos dial 32% \u2192 haircut 32% (body share 100%)",
+        "source": "live scan dial",
+        "link": null,
+        "publishedAt": null,
+        "evidence": "dial-haircut",
+        "sourceTier": null,
+        "effectiveImpact": null,
+        "decayHint": null,
+        "bodyConfirmed": null
+      },
+      {
+        "title": "Containment dial 64% \u2192 haircut 42% (body share 40%)",
+        "source": "live scan dial",
+        "link": null,
+        "publishedAt": null,
+        "evidence": "dial-haircut",
+        "sourceTier": null,
+        "effectiveImpact": null,
+        "decayHint": null,
+        "bodyConfirmed": null
+      },
+      {
+        "title": "Lab Gov dial 35% \u2192 haircut 24% (body share 40%)",
+        "source": "live scan dial",
+        "link": null,
+        "publishedAt": null,
+        "evidence": "dial-haircut",
+        "sourceTier": null,
+        "effectiveImpact": null,
+        "decayHint": null,
+        "bodyConfirmed": null
+      }
+    ],
+    "computedAt": "2026-09-26T15:52:49.151Z",
+    "apexAsOf": "2026-08",
+    "apexUpdatedAt": "2026-09-25T19:45:00.000-07:00",
+    "apexSources": [
+      {
+        "title": "Measurements for understanding the pace of AI development inside frontier labs",
+        "url": "https://www.anthropic.com/institute/measuring-pace-of-ai-development",
+        "publisher": "Anthropic Institute",
+        "publishedAt": "2026-09-17",
+        "measurementAsOf": "2026-08",
+        "role": "primary-spine",
+        "keyFacts": [
+          "Claude leads 26% of Anthropic AI R&D work (August 2026 index, Epoch AL4)",
+          "Share at or above 'AI collaborates' (AL3+) >90%",
+          "Fully autonomous (AL5) on none of the measured AI R&D subsets",
+          "~30,000 agents on main internal platform",
+          "~6% of AI R&D compute that week went to safety"
+        ]
+      },
+      {
+        "title": "Summary of METR's predeployment evaluation of Claude Opus 5.5",
+        "url": "https://metr.org/blog/2026-09-22-claude-opus-5-5/",
+        "publisher": "METR",
+        "publishedAt": "2026-09-22",
+        "measurementAsOf": "2026-09",
+        "role": "primary-confirm",
+        "keyFacts": [
+          "Opus 5.5 unlikely to fully automate AI R&D; modest improvement over Fable 5.1, not a discontinuous jump",
+          "Preliminary internal AI R&D acceleration estimate ~1.5\u00d7 overall (perhaps 30% chance of 2\u00d7)",
+          "Development of Opus 5.5 at least somewhat AI-accelerated, unlikely dramatically accelerated"
+        ]
+      },
+      {
+        "title": "Toward an O*NET for AI R&D (Automation Level scale AL0\u2013AL5)",
+        "url": "https://epoch.ai/gradient-updates/toward-an-onet-for-ai-rnd",
+        "publisher": "Epoch AI",
+        "publishedAt": "2026-06-26",
+        "measurementAsOf": "2026-06",
+        "role": "method-scale",
+        "keyFacts": [
+          "Public AL0\u2013AL5 rubric (assists / collaborates / leads / autonomous) adopted by Anthropic's index",
+          "Taxonomy of 60+ frontier AI R&D tasks \u2014 not a single cross-lab automation % usable as Recursive AI"
+        ]
+      },
+      {
+        "title": "Epoch AI Substack \u2014 recent public indexes (ECI, MirrorCode, compute)",
+        "url": "https://epochai.substack.com/feed",
+        "publisher": "Epoch AI (Substack)",
+        "publishedAt": "2026-09-24",
+        "measurementAsOf": "2026-09",
+        "role": "secondary-context",
+        "keyFacts": [
+          "ECI frontier advanced ~14 pts/year since reasoning models (Sep Brief)",
+          "MirrorCode (w/ METR): Claude Opus 4.7 led at 56% solve \u2014 long-horizon coding, not AL5 R&D share",
+          "Huawei/Nvidia compute report \u2014 infrastructure lag, not Recursive AI %"
+        ]
+      },
+      {
+        "title": "Artificial Analysis Intelligence Index (public leaderboard)",
+        "url": "https://artificialanalysis.ai/",
+        "publisher": "Artificial Analysis",
+        "publishedAt": "2026-09-22",
+        "measurementAsOf": "2026-09",
+        "role": "bench-only-no-spine",
+        "keyFacts": [
+          "Intelligence Index v4.3.2 + Claude Opus 5.5 marked top spot on homepage (2026-09-22)",
+          "Product/bench ranking \u2014 no public R&D-automation or AGI-already-here percentage inventable from AA"
+        ]
+      }
+    ],
+    "apexNotes": {
+      "recursiveAi": "Cross-lab best guess of AI-leads share of frontier model R&D (Epoch-style AL4 'AI leads'). Haircut from Anthropic August 2026 R&D Automation Index (Claude leads 26% at Anthropic; other labs unpublished \u2192 ~18). Reconfirmed 2026-09-25 against Anthropic Institute page + METR Opus 5.5 eval; no change.",
+      "agiHere": "Strict AGI already-here: week-scale novel research with no human in the loop. Stays low because published task length is still hours-scale and METR/Anthropic say R&D acceleration is ~1.5\u00d7 (not yet 2\u00d7).",
+      "closedLoop": "Closed-loop RSI: AI building the next frontier model alone. Anthropic measured fully autonomous on none of the measured AI R&D subsets; METR concurs full automation unlikely \u2192 ~1%."
+    },
+    "apexConfidence": {
+      "recursiveAi": "medium",
+      "agiHere": "low-medium",
+      "closedLoop": "medium-high"
+    },
+    "apexEstimates": {
+      "recursiveAi": {
+        "value": 18,
+        "prior": 18,
+        "changed": false,
+        "confidence": "medium",
+        "notes": "Held at 18. Anthropic Aug 2026 R&D Automation Index still reports Claude leads 26% of Anthropic AI R&D (AL4) and fully autonomous (AL5) on none of the measured subsets. Other labs have not published a comparable index, so the cross-lab AI-leads haircut (26\u2192~18) stays. METR's 2026-09-22 Opus 5.5 predeployment eval finds only incremental AI-R&D uplift vs Fable 5.1 and says the model is unlikely to fully automate AI R&D \u2014 not a Recursive-AI jump. Epoch supplies the AL0\u2013AL5 scale Anthropic used, not a rival cross-lab %."
+      },
+      "agiHere": {
+        "value": 9,
+        "prior": 9,
+        "changed": false,
+        "confidence": "low-medium",
+        "notes": "Held at 9. Strict AGI-already-here = week-scale novel research with no human in the loop. METR 2026-09-22: Opus 5.5 unlikely to fully automate AI R&D; preliminary Anthropic acceleration estimate ~1.5\u00d7 (\u223c30% chance of 2\u00d7) \u2014 faster but not yet 2\u00d7, matching prior apex note. Published eval task lengths remain hours-scale (METR TH1.1 long tasks start at 8h human estimates; MirrorCode weeks-scale coding \u2260 week-scale unsupervised novel research). No primary supports moving this dial on a press release."
+      },
+      "closedLoop": {
+        "value": 1,
+        "prior": 1,
+        "changed": false,
+        "confidence": "medium-high",
+        "notes": "Held at 1. Anthropic Aug 2026: Claude is not fully autonomous on any measured AI R&D subset. METR 2026-09-22 independently: unlikely to fully automate AI R&D. Closed-loop RSI (AI building the next frontier model alone) remains a rounding-error best guess."
+      }
+    },
+    "apexStale": true,
+    "apexStaleDays": 57,
+    "methodNotes": "Pace = 0.55\u00d7(Cap Demos/Containment/Lab Gov haircut for headline-only) + 0.45\u00d7apex spine (recursiveAi\u00d71.15 + agiHere\u00d70.55 + closedLoop\u00d71.5) + lab-primary capability/measurement boost (privacy/leak pins excluded) + body-confirmed breakthrough/agent/eval boost. Apex from data/apex-estimates.json. apexStale when measurementAsOf >45d \u2014 do not invent new apex numbers."
+  },
+  "blend": {
+    "pct": 29,
+    "formula": "0.55\u00d7Stress(16) + 0.45\u00d7Pace(44)",
+    "label": "board temperature (blend, not prophecy)",
+    "tier": "Uneasy Picnic"
+  },
+  "apex": {
+    "recursiveAi": 18,
+    "agiHere": 9,
+    "closedLoop": 1,
+    "asOf": "2026-08",
+    "updatedAt": "2026-09-25T19:45:00.000-07:00",
+    "sources": [
+      {
+        "title": "Measurements for understanding the pace of AI development inside frontier labs",
+        "url": "https://www.anthropic.com/institute/measuring-pace-of-ai-development",
+        "publisher": "Anthropic Institute",
+        "publishedAt": "2026-09-17",
+        "measurementAsOf": "2026-08",
+        "role": "primary-spine",
+        "keyFacts": [
+          "Claude leads 26% of Anthropic AI R&D work (August 2026 index, Epoch AL4)",
+          "Share at or above 'AI collaborates' (AL3+) >90%",
+          "Fully autonomous (AL5) on none of the measured AI R&D subsets",
+          "~30,000 agents on main internal platform",
+          "~6% of AI R&D compute that week went to safety"
+        ]
+      },
+      {
+        "title": "Summary of METR's predeployment evaluation of Claude Opus 5.5",
+        "url": "https://metr.org/blog/2026-09-22-claude-opus-5-5/",
+        "publisher": "METR",
+        "publishedAt": "2026-09-22",
+        "measurementAsOf": "2026-09",
+        "role": "primary-confirm",
+        "keyFacts": [
+          "Opus 5.5 unlikely to fully automate AI R&D; modest improvement over Fable 5.1, not a discontinuous jump",
+          "Preliminary internal AI R&D acceleration estimate ~1.5\u00d7 overall (perhaps 30% chance of 2\u00d7)",
+          "Development of Opus 5.5 at least somewhat AI-accelerated, unlikely dramatically accelerated"
+        ]
+      },
+      {
+        "title": "Toward an O*NET for AI R&D (Automation Level scale AL0\u2013AL5)",
+        "url": "https://epoch.ai/gradient-updates/toward-an-onet-for-ai-rnd",
+        "publisher": "Epoch AI",
+        "publishedAt": "2026-06-26",
+        "measurementAsOf": "2026-06",
+        "role": "method-scale",
+        "keyFacts": [
+          "Public AL0\u2013AL5 rubric (assists / collaborates / leads / autonomous) adopted by Anthropic's index",
+          "Taxonomy of 60+ frontier AI R&D tasks \u2014 not a single cross-lab automation % usable as Recursive AI"
+        ]
+      },
+      {
+        "title": "Epoch AI Substack \u2014 recent public indexes (ECI, MirrorCode, compute)",
+        "url": "https://epochai.substack.com/feed",
+        "publisher": "Epoch AI (Substack)",
+        "publishedAt": "2026-09-24",
+        "measurementAsOf": "2026-09",
+        "role": "secondary-context",
+        "keyFacts": [
+          "ECI frontier advanced ~14 pts/year since reasoning models (Sep Brief)",
+          "MirrorCode (w/ METR): Claude Opus 4.7 led at 56% solve \u2014 long-horizon coding, not AL5 R&D share",
+          "Huawei/Nvidia compute report \u2014 infrastructure lag, not Recursive AI %"
+        ]
+      },
+      {
+        "title": "Artificial Analysis Intelligence Index (public leaderboard)",
+        "url": "https://artificialanalysis.ai/",
+        "publisher": "Artificial Analysis",
+        "publishedAt": "2026-09-22",
+        "measurementAsOf": "2026-09",
+        "role": "bench-only-no-spine",
+        "keyFacts": [
+          "Intelligence Index v4.3.2 + Claude Opus 5.5 marked top spot on homepage (2026-09-22)",
+          "Product/bench ranking \u2014 no public R&D-automation or AGI-already-here percentage inventable from AA"
+        ]
+      }
+    ],
+    "notes": {
+      "recursiveAi": "Cross-lab best guess of AI-leads share of frontier model R&D (Epoch-style AL4 'AI leads'). Haircut from Anthropic August 2026 R&D Automation Index (Claude leads 26% at Anthropic; other labs unpublished \u2192 ~18). Reconfirmed 2026-09-25 against Anthropic Institute page + METR Opus 5.5 eval; no change.",
+      "agiHere": "Strict AGI already-here: week-scale novel research with no human in the loop. Stays low because published task length is still hours-scale and METR/Anthropic say R&D acceleration is ~1.5\u00d7 (not yet 2\u00d7).",
+      "closedLoop": "Closed-loop RSI: AI building the next frontier model alone. Anthropic measured fully autonomous on none of the measured AI R&D subsets; METR concurs full automation unlikely \u2192 ~1%."
+    },
+    "confidence": {
+      "recursiveAi": "medium",
+      "agiHere": "low-medium",
+      "closedLoop": "medium-high"
+    },
+    "estimates": {
+      "recursiveAi": {
+        "value": 18,
+        "prior": 18,
+        "changed": false,
+        "confidence": "medium",
+        "notes": "Held at 18. Anthropic Aug 2026 R&D Automation Index still reports Claude leads 26% of Anthropic AI R&D (AL4) and fully autonomous (AL5) on none of the measured subsets. Other labs have not published a comparable index, so the cross-lab AI-leads haircut (26\u2192~18) stays. METR's 2026-09-22 Opus 5.5 predeployment eval finds only incremental AI-R&D uplift vs Fable 5.1 and says the model is unlikely to fully automate AI R&D \u2014 not a Recursive-AI jump. Epoch supplies the AL0\u2013AL5 scale Anthropic used, not a rival cross-lab %."
+      },
+      "agiHere": {
+        "value": 9,
+        "prior": 9,
+        "changed": false,
+        "confidence": "low-medium",
+        "notes": "Held at 9. Strict AGI-already-here = week-scale novel research with no human in the loop. METR 2026-09-22: Opus 5.5 unlikely to fully automate AI R&D; preliminary Anthropic acceleration estimate ~1.5\u00d7 (\u223c30% chance of 2\u00d7) \u2014 faster but not yet 2\u00d7, matching prior apex note. Published eval task lengths remain hours-scale (METR TH1.1 long tasks start at 8h human estimates; MirrorCode weeks-scale coding \u2260 week-scale unsupervised novel research). No primary supports moving this dial on a press release."
+      },
+      "closedLoop": {
+        "value": 1,
+        "prior": 1,
+        "changed": false,
+        "confidence": "medium-high",
+        "notes": "Held at 1. Anthropic Aug 2026: Claude is not fully autonomous on any measured AI R&D subset. METR 2026-09-22 independently: unlikely to fully automate AI R&D. Closed-loop RSI (AI building the next frontier model alone) remains a rounding-error best guess."
+      }
+    },
+    "stale": true,
+    "staleDays": 57
+  },
+  "formula": null,
+  "legacyOverall": {
+    "pct": 31,
+    "tier": "Sweating Softly",
+    "line": "Professional concern face. Someone should probably file a ticket.",
+    "confidence": 55,
+    "note": "Legacy incident rollup (domain\u00d7weight). Prefer Stress + Pace."
+  },
+  "dialSnapshot": null,
+  "movedNeedle": [],
+  "changeSummary": null,
+  "predictions": {
+    "gate": "closed",
+    "verdict": "no edge",
+    "markets": [
+      {
+        "id": "best-sep-anthropic",
+        "question": "Will Anthropic have the best AI model at the end of September 2026?",
+        "polymarketUrl": "https://polymarket.com/event/which-company-has-the-best-ai-model-end-of-september-20260717143435868",
+        "slug": "which-company-has-the-best-ai-model-end-of-september-20260717143435868",
+        "ourP": null,
+        "marketYes": 0.9985,
+        "gapPoints": null,
+        "call": "no_edge",
+        "edge": false,
+        "reason": "Recent public indexes had Anthropic's Fable ahead or tied with OpenAI's Astra. The market already prices Anthropic near 98% with 13 days left. Same direction as our read. Not a fade, and not a buy at 98 cents.",
+        "family": "best",
+        "primary": false,
+        "sources": [],
+        "openedAt": "2026-09-21T15:00:00.000Z",
+        "resolvedAt": null,
+        "outcome": null
+      },
+      {
+        "id": "opus-sep-24",
+        "question": "Will the next Claude Opus model be released by September 24, 2026?",
+        "polymarketUrl": "https://polymarket.com/event/next-claude-opus-released-byptptpt-20260727142323912",
+        "slug": "next-claude-opus-released-byptptpt-20260727142323912",
+        "ourP": null,
+        "marketYes": 1,
+        "gapPoints": null,
+        "call": "no_edge",
+        "edge": false,
+        "reason": "This is the only mid-priced AI contract on the board, near a coin flip for a ship date a week out. Nothing in the lab posts or the clock gives a date. No number, no edge.",
+        "family": "best",
+        "primary": false,
+        "sources": [],
+        "openedAt": "2026-09-21T15:00:00.000Z",
+        "resolvedAt": null,
+        "outcome": null
+      },
+      {
+        "id": "opus-sep-30",
+        "question": "Will the next Claude Opus model be released by September 30, 2026?",
+        "polymarketUrl": "https://polymarket.com/event/next-claude-opus-released-byptptpt-20260727142323912",
+        "slug": "next-claude-opus-released-byptptpt-20260727142323912",
+        "ourP": null,
+        "marketYes": 1,
+        "gapPoints": null,
+        "call": "no_edge",
+        "edge": false,
+        "reason": "Price is a strong favorite. We do not have a release calendar that disagrees with it.",
+        "family": "best",
+        "primary": false,
+        "sources": [],
+        "openedAt": "2026-09-21T15:00:00.000Z",
+        "resolvedAt": null,
+        "outcome": null
+      },
+      {
+        "id": "millennium-sep-30",
+        "question": "Will OpenAI announce another Millennium Prize solution by September 30, 2026?",
+        "polymarketUrl": "https://polymarket.com/event/openai-announces-another-millennium-prize-solution-by",
+        "slug": "openai-announces-another-millennium-prize-solution-by",
+        "ourP": null,
+        "marketYes": 0.0315,
+        "gapPoints": null,
+        "call": "no_edge",
+        "edge": false,
+        "reason": "Our set has no second Millennium proof. That is absence in our crawler, not evidence it will not happen. Not enough to fade a 20% contract.",
+        "family": "agi",
+        "primary": false,
+        "sources": [],
+        "openedAt": "2026-09-21T15:00:00.000Z",
+        "resolvedAt": null,
+        "outcome": null
+      },
+      {
+        "id": "pace-2026",
+        "question": "US x China agree to pace the AI frontier in 2026?",
+        "polymarketUrl": "https://polymarket.com/event/us-x-china-agree-to-pace-the-ai-frontier-in-2026",
+        "slug": "us-x-china-agree-to-pace-the-ai-frontier-in-2026",
+        "ourP": 0.08,
+        "marketYes": 0.068,
+        "gapPoints": 1,
+        "call": "aligned",
+        "edge": false,
+        "reason": "The Anthropic pace paper is one lab proposing measurements, not a US-China agreement. Our read stays near the market, around 8%, not a gap.",
+        "family": "best",
+        "primary": false,
+        "sources": [
+          {
+            "title": "Anthropic measuring-pace paper (lab proposal, not US\u2013China pact)",
+            "url": "https://www.anthropic.com/institute/measuring-pace-of-ai-development"
+          }
+        ],
+        "openedAt": "2026-09-21T15:00:00.000Z",
+        "resolvedAt": null,
+        "outcome": null
+      },
+      {
+        "id": "openai-best-dec",
+        "question": "Will OpenAI have the best AI model at the end of December 2026?",
+        "polymarketUrl": "https://polymarket.com/event/which-company-has-best-ai-model-end-of-2026",
+        "slug": "which-company-has-best-ai-model-end-of-2026",
+        "ourP": null,
+        "marketYes": 0.095,
+        "gapPoints": null,
+        "call": "no_edge",
+        "edge": false,
+        "reason": "Anthropic is the December favorite on the same board. Three months is long enough for a new model to flip it. We do not have a December probability.",
+        "family": "best",
+        "primary": false,
+        "sources": [],
+        "openedAt": "2026-09-21T15:00:00.000Z",
+        "resolvedAt": null,
+        "outcome": null
+      },
+      {
+        "id": "ceasefire-dec",
+        "question": "Russia x Ukraine ceasefire agreement by December 31, 2026?",
+        "polymarketUrl": "https://polymarket.com/event/russia-x-ukraine-ceasefire-agreement-by",
+        "slug": "russia-x-ukraine-ceasefire-agreement-by",
+        "ourP": null,
+        "marketYes": 0.225,
+        "gapPoints": null,
+        "call": "no_edge",
+        "edge": false,
+        "reason": "The Zeihan shelf is directionally useful and a weak hard-hit record. That is not a calibrated probability against a liquid ceasefire book.",
+        "family": "cease",
+        "primary": false,
+        "sources": [],
+        "openedAt": "2026-09-21T15:00:00.000Z",
+        "resolvedAt": null,
+        "outcome": null
+      },
+      {
+        "id": "nato-dec",
+        "question": "NATO x Russia military clash by December 31, 2026?",
+        "polymarketUrl": "https://polymarket.com/event/nato-x-russia-military-clash-in-2025",
+        "slug": "nato-x-russia-military-clash-in-2025",
+        "ourP": null,
+        "marketYes": 0.295,
+        "gapPoints": null,
+        "call": "no_edge",
+        "edge": false,
+        "reason": "Headlines move the dial. They do not beat this price.",
+        "family": "nato",
+        "primary": false,
+        "sources": [],
+        "openedAt": "2026-09-21T15:00:00.000Z",
+        "resolvedAt": null,
+        "outcome": null
+      },
+      {
+        "id": "taiwan-2027",
+        "question": "Will China invade Taiwan by June 30, 2027?",
+        "polymarketUrl": "https://polymarket.com/event/will-china-invade-taiwan-by-june-30-2027",
+        "slug": "will-china-invade-taiwan-by-june-30-2027",
+        "ourP": null,
+        "marketYes": 0.075,
+        "gapPoints": null,
+        "call": "no_edge",
+        "edge": false,
+        "reason": "Important risk, thin tape, and we do not have an invasion probability we would defend against 8%.",
+        "family": "taiwan",
+        "primary": false,
+        "sources": [],
+        "openedAt": "2026-09-21T15:00:00.000Z",
+        "resolvedAt": null,
+        "outcome": null
+      },
+      {
+        "id": "recession-2026",
+        "question": "US recession by end of 2026?",
+        "polymarketUrl": "https://polymarket.com/event/us-recession-by-end-of-2026",
+        "slug": "us-recession-by-end-of-2026",
+        "ourP": null,
+        "marketYes": 0.095,
+        "gapPoints": null,
+        "call": "no_edge",
+        "edge": false,
+        "reason": "Liquid US recession book. No calibrated ourRead \u2014 watch only; gate closed.",
+        "family": "recession",
+        "primary": false,
+        "sources": [],
+        "openedAt": "2026-09-26T02:05:00.000Z",
+        "resolvedAt": null,
+        "outcome": null
+      },
+      {
+        "id": "pandemic-2026",
+        "question": "New pandemic in 2026?",
+        "polymarketUrl": "https://polymarket.com/event/new-pandemic-in-2026",
+        "slug": "new-pandemic-in-2026",
+        "ourP": null,
+        "marketYes": 0.045,
+        "gapPoints": null,
+        "call": "no_edge",
+        "edge": false,
+        "reason": "Liquid pandemic book. No primary pathogen probability \u2014 watch, no edge.",
+        "family": "pandemic",
+        "primary": false,
+        "sources": [],
+        "openedAt": "2026-09-26T02:05:00.000Z",
+        "resolvedAt": null,
+        "outcome": null
+      },
+      {
+        "id": "taiwan-clash-2027",
+        "question": "China x Taiwan military clash before 2027?",
+        "polymarketUrl": "https://polymarket.com/event/china-x-taiwan-military-clash-before-2027",
+        "slug": "china-x-taiwan-military-clash-before-2027",
+        "ourP": null,
+        "marketYes": 0.056,
+        "gapPoints": null,
+        "call": "no_edge",
+        "edge": false,
+        "reason": "Clash (not invasion) through 2026. Complements taiwan-2027 invade row. No edge.",
+        "family": "taiwan",
+        "primary": false,
+        "sources": [],
+        "openedAt": "2026-09-26T02:05:00.000Z",
+        "resolvedAt": null,
+        "outcome": null
+      },
+      {
+        "id": "taiwan-blockade-2026",
+        "question": "Will China blockade Taiwan in 2026?",
+        "polymarketUrl": "https://polymarket.com/event/will-china-blockade-taiwan-by-in-2026",
+        "slug": "will-china-blockade-taiwan-by-in-2026",
+        "ourP": null,
+        "marketYes": 0.0395,
+        "gapPoints": null,
+        "call": "no_edge",
+        "edge": false,
+        "reason": "Blockade risk book. Thin primary for a defended probability \u2014 watch.",
+        "family": "taiwan",
+        "primary": false,
+        "sources": [],
+        "openedAt": "2026-09-26T02:05:00.000Z",
+        "resolvedAt": null,
+        "outcome": null
+      },
+      {
+        "id": "russia-nuke-test-dec",
+        "question": "Will Russia test a nuclear weapon by December 31 2026?",
+        "polymarketUrl": "https://polymarket.com/event/russia-nuclear-test-by",
+        "slug": "russia-nuclear-test-by",
+        "ourP": null,
+        "marketYes": 0.051,
+        "gapPoints": null,
+        "call": "no_edge",
+        "edge": false,
+        "reason": "Russia nuclear test by end-2026. Liquid; no ourRead \u2014 watch.",
+        "family": "nuclear",
+        "primary": false,
+        "sources": [],
+        "openedAt": "2026-09-26T02:05:00.000Z",
+        "resolvedAt": null,
+        "outcome": null
+      },
+      {
+        "id": "russia-invade-nato-dec",
+        "question": "Will Russia invade a NATO country by December 31, 2026?",
+        "polymarketUrl": "https://polymarket.com/event/will-russia-invade-a-nato-country-in-2025",
+        "slug": "will-russia-invade-a-nato-country-in-2025",
+        "ourP": null,
+        "marketYes": 0.055,
+        "gapPoints": null,
+        "call": "no_edge",
+        "edge": false,
+        "reason": "Russia invade NATO by Dec 2026. Complements nato-dec clash. No edge.",
+        "family": "nato",
+        "primary": false,
+        "sources": [],
+        "openedAt": "2026-09-26T02:05:00.000Z",
+        "resolvedAt": null,
+        "outcome": null
+      },
+      {
+        "id": "iran-israel-ceasefire-dec",
+        "question": "Israel x Iran ceasefire continues through December 31?",
+        "polymarketUrl": "https://polymarket.com/event/israel-x-iran-ceasefire-continues-throughptptpt-20260716224448963",
+        "slug": "israel-x-iran-ceasefire-continues-throughptptpt-20260716224448963",
+        "ourP": null,
+        "marketYes": 0.645,
+        "gapPoints": null,
+        "call": "no_edge",
+        "edge": false,
+        "reason": "Most liquid open Iran\u2013Israel contract is ceasefire continuation through Dec 31. No strike-war slug still open with tape \u2014 watch only.",
+        "family": "iran_israel",
+        "primary": false,
+        "sources": [],
+        "openedAt": "2026-09-26T02:05:00.000Z",
+        "resolvedAt": null,
+        "outcome": null
+      }
+    ]
+  },
+  "sourceHealthSummary": null
+}

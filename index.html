@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#080c12" />
+  <meta name="description" content="DOOM INDEX public mirror — static snapshot of Stress, Pace, and blend. Blend is not prophecy." />
+  <title>DOOM INDEX · Public Mirror</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="wall-bg" aria-hidden="true">
+    <div class="carbon-layer"></div>
+    <div class="marble-veil"></div>
+    <div class="metal-sheen"></div>
+    <div class="vignette"></div>
+    <div class="rivet r1"></div><div class="rivet r2"></div>
+    <div class="rivet r3"></div><div class="rivet r4"></div>
+  </div>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-badge" aria-hidden="true">◈</span>
+      <div>
+        <h1 class="wordmark">DOOM INDEX</h1>
+        <p class="tagline">Public mirror · last private auto-scan · read-only snapshot</p>
+      </div>
+    </div>
+    <div class="top-meta">
+      <span id="mode-badge" class="badge">mirror</span>
+      <span id="published-badge" class="badge stale-badge" title="Snapshot publishedAt">published · —</span>
+    </div>
+  </header>
+
+  <main>
+    <p class="mirror-banner" id="mirror-banner">
+      Static public mirror. No live scan. Numbers below are Josh’s last private board snapshot.
+      Click Stress / Pace / blend / any driver for provenance.
+    </p>
+
+    <section class="apex-cap" id="apex" aria-label="Apex spine Recursive AI and AGI">
+      <p class="apex-kicker">APEX SPINE · best guess, not a scraped dial <span id="apex-stale-badge" class="stale-pill hidden">stale</span></p>
+      <div class="apex-row">
+        <article class="apex-stone">
+          <p class="apex-label">Recursive AI now</p>
+          <p class="apex-num" id="apex-recursive">—<span>%</span></p>
+          <p class="apex-def">Share of frontier model R&amp;D where AI leads the work. Not autocomplete. Not a closed loop.</p>
+        </article>
+        <article class="apex-stone">
+          <p class="apex-label">AGI already here</p>
+          <p class="apex-num" id="apex-agi">—<span>%</span></p>
+          <p class="apex-def">Chance a system can already do nearly all of a skilled researcher’s work, including week-scale novel tasks, with no human in the loop.</p>
+        </article>
+      </div>
+      <p class="apex-why" id="apex-why">Loading apex notes…</p>
+      <p class="apex-meta muted tiny" id="apex-meta">asOf — · closed-loop —%</p>
+    </section>
+
+    <section class="dual-meters" id="dual-meters" aria-label="Stress and Pace indexes">
+      <div class="dual-grid">
+        <article class="meter-card stress-card meter-clickable" id="stress-card" role="button" tabindex="0" data-provenance="stress" title="Open Stress provenance">
+          <p class="meter-kicker">STRESS INDEX · fear / chaos / incident heat <span class="prov-hint">trust</span></p>
+          <div class="meter-row">
+            <div class="meter-clock" id="stress-clock" role="img" aria-label="Stress gauge"></div>
+            <div class="meter-copy">
+              <div class="meter-pct-row"><span class="meter-pct" id="stress-pct">—</span><span class="meter-unit">%</span></div>
+              <p class="meter-tier" id="stress-tier">loading…</p>
+              <p class="meter-line muted" id="stress-line">Body-confirmed cyber · conflict · infra · bio only.</p>
+              <ul class="meter-drivers" id="stress-drivers"></ul>
+            </div>
+          </div>
+        </article>
+        <article class="meter-card pace-card meter-clickable" id="pace-card" role="button" tabindex="0" data-provenance="pace" title="Open Pace provenance">
+          <p class="meter-kicker">PACE INDEX · RSI / AGI-adjacent / frontier speed <span class="prov-hint">trust</span></p>
+          <div class="meter-row">
+            <div class="meter-clock" id="pace-clock" role="img" aria-label="Pace gauge"></div>
+            <div class="meter-copy">
+              <div class="meter-pct-row"><span class="meter-pct" id="pace-pct">—</span><span class="meter-unit">%</span></div>
+              <p class="meter-tier" id="pace-tier">loading…</p>
+              <p class="meter-line muted" id="pace-line">Apex spine + haircut Cap Demos / Containment / Lab Gov.</p>
+              <p class="meter-apex-mini muted tiny" id="pace-apex-mini">Recursive AI —% · AGI —% · Closed-loop —%</p>
+              <ul class="meter-drivers" id="pace-drivers"></ul>
+            </div>
+          </div>
+        </article>
+      </div>
+      <div class="blend-strip blend-clickable" id="blend-strip" role="button" tabindex="0" data-provenance="blend" title="Open blend provenance">
+        <span class="blend-label">Board temperature (blend, not prophecy) <span class="prov-hint">trust</span></span>
+        <span class="blend-pct" id="blend-pct">—</span>
+        <span class="blend-formula muted tiny" id="blend-formula">0.55×Stress + 0.45×Pace</span>
+        <span class="blend-gate muted tiny" id="blend-gate">Prediction edges · gate closed</span>
+      </div>
+    </section>
+
+    <section class="panel panel-predictions" id="predictions-panel" aria-label="Polymarket gate">
+      <div class="panel-head">
+        <h2>Polymarket · prediction gate</h2>
+        <p class="muted">Public markets shown for context. Edges only when the calibration gate is open.</p>
+      </div>
+      <div class="pred-gate" id="pred-gate">Calibration gate · —</div>
+      <div id="pred-feed" class="pred-feed"><p class="muted">Loading prediction book…</p></div>
+    </section>
+
+    <section class="panel panel-sources" id="sources-panel" aria-label="Source health">
+      <div class="panel-head">
+        <h2>Source health</h2>
+        <p class="muted">Summary from the private scan that produced this snapshot</p>
+      </div>
+      <div id="source-health" class="source-summary"><p class="muted">Loading…</p></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Carbon · marble · cold steel. Public headlines only. Not prophecy.</p>
+    <p class="muted" id="footer-disclaimer">Personal research signal board. Blend is not prophecy. Not financial, legal, or safety advice.</p>
+    <p class="muted tiny">This is a static mirror of a private research board. No scanning runs here. Click meters for provenance.</p>
+    <p class="footer-cute" aria-hidden="true">TOKYO · MOSCOW · DUBAI · NYC · calibrated for doom · mirror only</p>
+  </footer>
+
+  <dialog id="trust-drawer" class="modal trust-drawer">
+    <form method="dialog" class="modal-inner">
+      <header class="modal-head">
+        <h2 id="trust-drawer-title">Provenance</h2>
+        <button type="submit" class="btn ghost" value="cancel" aria-label="Close">Close</button>
+      </header>
+      <div class="modal-body" id="trust-drawer-body"></div>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
