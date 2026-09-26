@@ -490,6 +490,43 @@ main {
   line-height: 1.35;
   color: var(--muted);
 }
+.clock-aside {
+  position: relative;
+  z-index: 1;
+  margin-top: 0.4rem;
+  font-size: 0.68rem;
+  line-height: 1.35;
+  color: rgba(176, 196, 210, 0.72);
+  font-style: italic;
+}
+.clock-stamp {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  margin-top: 0.65rem;
+  padding: 0.16rem 0.42rem;
+  border: 1px solid rgba(224, 176, 96, 0.55);
+  border-radius: 2px;
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(232, 196, 120, 0.92);
+  transform: rotate(-1.5deg);
+}
+.sev-chip {
+  position: relative;
+  z-index: 1;
+  margin-top: 0.28rem;
+  padding: 0.04rem 0.42rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--dial-glow, var(--steel)) 50%, transparent);
+  font-family: var(--mono);
+  font-size: 0.56rem;
+  letter-spacing: 0.06em;
+  text-transform: lowercase;
+  color: color-mix(in srgb, var(--dial-glow, var(--steel-bright)) 75%, white);
+}
 .clock-formula { font-family: var(--mono); font-size: 0.68rem; color: rgba(224, 196, 140, 0.9); }
 .clock-legacy { font-family: var(--mono); font-size: 0.66rem; color: rgba(180, 200, 216, 0.8); }
 .clock-conf { font-family: var(--mono); font-size: 0.58rem; color: var(--steel-dim); }
