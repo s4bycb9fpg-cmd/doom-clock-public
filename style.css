@@ -599,22 +599,6 @@ main {
     0 0 0 1px rgba(224, 176, 96, 0.75),
     0 0 18px rgba(224, 176, 96, 0.22);
 }
-.voice-caption {
-  position: fixed;
-  z-index: 40;
-  max-width: min(340px, calc(100vw - 1.25rem));
-  margin: 0;
-  padding: 0.45rem 0.65rem;
-  border-radius: 8px;
-  border: 1px solid rgba(224, 176, 96, 0.5);
-  background: rgba(8, 12, 18, 0.94);
-  color: #f3e6c8;
-  font-size: 0.8rem;
-  line-height: 1.35;
-  pointer-events: none;
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
-}
-.voice-caption[hidden] { display: none; }
 @media (prefers-reduced-motion: reduce) {
   .doom-clock, .doom-clock:hover, .doom-clock:focus-visible { transition: none; transform: none; }
   .doom-clock.is-speaking { box-shadow: 0 0 0 1px rgba(224, 176, 96, 0.75); }
@@ -765,6 +749,18 @@ main {
   vertical-align: middle;
 }
 .trust-drawer .modal-inner { max-width: min(720px, 96vw); }
+.voice-aside {
+  margin: 0 0 0.75rem;
+  padding: 0.55rem 0.7rem;
+  border-radius: 10px;
+  border: 1px solid rgba(160, 120, 40, 0.45);
+  background: rgba(255, 244, 214, 0.9);
+  color: #3a2e10;
+  font-family: var(--display);
+  font-size: 1.08rem;
+  font-style: italic;
+  line-height: 1.35;
+}
 .trust-kicker {
   margin: 0 0 0.55rem;
   font-family: var(--mono);

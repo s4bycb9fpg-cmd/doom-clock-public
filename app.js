@@ -384,6 +384,14 @@ label: ${escapeHtml(b.label || "board temperature (blend, not prophecy)")}</pre>
       return;
     }
 
+    const spoken = voiceTarget && voiceTarget.dataset.voice;
+    if (spoken && bodyEl && !bodyEl.querySelector(".voice-aside")) {
+      const aside = document.createElement("p");
+      aside.className = "voice-aside";
+      aside.textContent = spoken;
+      bodyEl.insertBefore(aside, bodyEl.firstChild);
+    }
+
     const drawer = $("#trust-drawer");
     if (drawer && typeof drawer.showModal === "function") drawer.showModal();
   }
@@ -439,17 +447,14 @@ label: ${escapeHtml(b.label || "board temperature (blend, not prophecy)")}</pre>
   }
 
   const VOICE_KEY = "doom-clock-voice";
-  const SPEAK_DELAY_MS = 260;
-  let voiceOn = false;
-  let voiceTimer = null;
+  let voiceOn = true;
   let voiceTarget = null;
-  let voiceCaption = null;
 
   function readVoicePref() {
     try {
-      return localStorage.getItem(VOICE_KEY) === "on";
+      return localStorage.getItem(VOICE_KEY) !== "off";
     } catch {
-      return false;
+      return true;
     }
   }
 
@@ -467,15 +472,11 @@ label: ${escapeHtml(b.label || "board temperature (blend, not prophecy)")}</pre>
     btn.setAttribute("aria-pressed", voiceOn ? "true" : "false");
     btn.textContent = voiceOn ? "Voice on" : "Voice off";
     btn.title = voiceOn
-      ? "Voice is on. Hover or focus a dial and it will say its line. Click to mute."
-      : "Voice is off. Hover still shows the line. Click to let the lobby speak.";
+      ? "Voice is on. Click a dial and it will say its line. Click here to mute."
+      : "Voice is muted. Click a dial still opens the receipts, quietly. Click here to unmute.";
   }
 
   function cancelUtterance() {
-    if (voiceTimer) {
-      clearTimeout(voiceTimer);
-      voiceTimer = null;
-    }
     document.querySelectorAll(".doom-clock.is-speaking").forEach((el) => el.classList.remove("is-speaking"));
     try {
       if (window.speechSynthesis) window.speechSynthesis.cancel();
@@ -484,39 +485,12 @@ label: ${escapeHtml(b.label || "board temperature (blend, not prophecy)")}</pre>
     }
   }
 
-  function hideVoiceCaption() {
-    if (!voiceCaption) voiceCaption = $("#voice-caption");
-    if (!voiceCaption) return;
-    voiceCaption.hidden = true;
-    voiceCaption.textContent = "";
-    if (voiceTarget) voiceTarget.removeAttribute("aria-describedby");
-  }
-
-  function placeVoiceCaption(el, text) {
-    if (!voiceCaption) voiceCaption = $("#voice-caption");
-    if (!voiceCaption || !el) return;
-    voiceCaption.textContent = text;
-    voiceCaption.hidden = false;
-    el.setAttribute("aria-describedby", "voice-caption");
-    const rect = el.getBoundingClientRect();
-    const maxWidth = Math.min(340, window.innerWidth - 20);
-    voiceCaption.style.maxWidth = `${maxWidth}px`;
-    voiceCaption.style.width = "max-content";
-    const capW = Math.min(maxWidth, voiceCaption.offsetWidth || maxWidth);
-    let left = rect.left + rect.width / 2 - capW / 2;
-    left = Math.max(10, Math.min(left, window.innerWidth - capW - 10));
-    voiceCaption.style.left = `${left}px`;
-    const capH = voiceCaption.offsetHeight || 48;
-    let top = rect.bottom + 8;
-    if (top + capH > window.innerHeight - 8) top = Math.max(8, rect.top - capH - 8);
-    voiceCaption.style.top = `${top}px`;
-  }
-
   function speakVoice(text, el) {
     if (!voiceOn || !text || !el) return;
     const synth = window.speechSynthesis;
     if (!synth || typeof window.SpeechSynthesisUtterance !== "function") return;
     try {
+      const wasSpeaking = !!synth.speaking;
       synth.cancel();
       const utter = new SpeechSynthesisUtterance(text);
       utter.lang = "en-US";
@@ -530,42 +504,25 @@ label: ${escapeHtml(b.label || "board temperature (blend, not prophecy)")}</pre>
       const done = () => el.classList.remove("is-speaking");
       utter.onend = done;
       utter.onerror = done;
+      const start = () => {
+        if (!voiceOn || voiceTarget !== el) {
+          done();
+          return;
+        }
+        try {
+          if (typeof synth.resume === "function") synth.resume();
+          synth.speak(utter);
+        } catch {
+          done();
+        }
+      };
       el.classList.add("is-speaking");
-      if (typeof synth.resume === "function") synth.resume();
-      synth.speak(utter);
+      // cancel() can swallow a speak() in the same turn once something is already talking
+      if (wasSpeaking) setTimeout(start, 80);
+      else start();
     } catch {
       el.classList.remove("is-speaking");
     }
-  }
-
-  function showDialVoice(el) {
-    const text = el && el.dataset ? el.dataset.voice : "";
-    if (!el || !text) return;
-    if (voiceTarget && voiceTarget !== el) {
-      voiceTarget.classList.remove("is-speaking");
-      voiceTarget.removeAttribute("aria-describedby");
-    }
-    voiceTarget = el;
-    cancelUtterance();
-    placeVoiceCaption(el, text);
-    voiceTimer = setTimeout(() => {
-      voiceTimer = null;
-      if (voiceTarget !== el) return;
-      speakVoice(text, el);
-    }, SPEAK_DELAY_MS);
-  }
-
-  function leaveDialVoice(el) {
-    if (!el || voiceTarget !== el) return;
-    el.removeAttribute("aria-describedby");
-    voiceTarget = null;
-    cancelUtterance();
-    hideVoiceCaption();
-  }
-
-  function dialFromEvent(e) {
-    const node = e.target && e.target.closest ? e.target.closest("[data-voice]") : null;
-    return node && node.dataset.voice ? node : null;
   }
 
   function bindVoice() {
@@ -575,50 +532,30 @@ label: ${escapeHtml(b.label || "board temperature (blend, not prophecy)")}</pre>
     paintVoiceToggle();
     const toggle = $("#voice-toggle");
     if (toggle) {
-      toggle.addEventListener("click", () => {
+      toggle.addEventListener("click", (e) => {
+        e.stopPropagation();
         voiceOn = !voiceOn;
         writeVoicePref(voiceOn);
         paintVoiceToggle();
         if (!voiceOn) cancelUtterance();
-        else if (voiceTarget && voiceTarget.dataset.voice) speakVoice(voiceTarget.dataset.voice, voiceTarget);
       });
+    }
+    const drawer = $("#trust-drawer");
+    if (drawer) {
+      drawer.addEventListener("close", () => cancelUtterance());
     }
     if (window.speechSynthesis && typeof window.speechSynthesis.getVoices === "function") {
       window.speechSynthesis.getVoices();
     }
-    document.addEventListener("pointerover", (e) => {
-      const el = dialFromEvent(e);
-      if (!el || el === voiceTarget) return;
-      showDialVoice(el);
-    });
-    document.addEventListener("pointerout", (e) => {
-      const el = dialFromEvent(e);
-      if (!el) return;
-      const next = e.relatedTarget && e.relatedTarget.closest ? e.relatedTarget.closest("[data-voice]") : null;
-      if (next === el) return;
-      leaveDialVoice(el);
-    });
-    document.addEventListener("focusin", (e) => {
-      const el = dialFromEvent(e);
-      if (el) showDialVoice(el);
-    });
-    document.addEventListener("focusout", (e) => {
-      const el = dialFromEvent(e);
-      if (!el) return;
-      const next = e.relatedTarget && e.relatedTarget.closest ? e.relatedTarget.closest("[data-voice]") : null;
-      if (next === el) return;
-      leaveDialVoice(el);
-    });
-    window.addEventListener("scroll", () => {
-      if (voiceTarget && voiceCaption && !voiceCaption.hidden) placeVoiceCaption(voiceTarget, voiceTarget.dataset.voice || "");
-    }, true);
   }
 
-  function hushVoiceForDrawer() {
-    if (voiceTarget) voiceTarget.removeAttribute("aria-describedby");
-    voiceTarget = null;
-    cancelUtterance();
-    hideVoiceCaption();
+  function speakClickedDial(el) {
+    const text = el && el.dataset ? el.dataset.voice : "";
+    if (!text) return "";
+    if (voiceTarget && voiceTarget !== el) voiceTarget.classList.remove("is-speaking");
+    voiceTarget = el;
+    speakVoice(text, el);
+    return text;
   }
 
   function bindProvenanceClicks() {
@@ -628,7 +565,7 @@ label: ${escapeHtml(b.label || "board temperature (blend, not prophecy)")}</pre>
       const clock = e.target.closest("[data-provenance]");
       if (!clock) return;
       if (e.target.closest("a")) return;
-      hushVoiceForDrawer();
+      speakClickedDial(clock);
       const kind = clock.dataset.provenance;
       if (kind === "dial") {
         openProvenanceDrawer("dial", { domainId: clock.dataset.domain, subId: clock.dataset.sub });
