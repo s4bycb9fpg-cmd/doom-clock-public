@@ -537,7 +537,7 @@ label: ${escapeHtml(b.label || "board temperature (blend, not prophecy)")}</pre>
     btn.setAttribute("aria-pressed", voiceOn ? "true" : "false");
     btn.textContent = voiceOn ? "Voice on" : "Voice off";
     btn.title = voiceOn
-      ? "Voice is on. Click a dial and it will say its line. Click here to mute."
+      ? "Voice is on. British male default (Bond-adjacent). Click a dial and it will say its line. Click here to mute."
       : "Voice is muted. Click a dial still opens the receipts, quietly. Click here to unmute.";
   }
 
@@ -550,6 +550,49 @@ label: ${escapeHtml(b.label || "board temperature (blend, not prophecy)")}</pre>
     }
   }
 
+  // Bond-adjacent spy narrator: slower and lower, still intelligible.
+  const DIAL_VOICE_RATE = 0.9;
+  const DIAL_VOICE_PITCH = 0.85;
+  const BRITISH_MALE_NAME = /daniel|arthur|gordon|rishi|oliver|malcolm|uk english male|british|scottish/i;
+
+  function voiceName(v) {
+    return (v && v.name) || "";
+  }
+
+  function voiceLang(v) {
+    return String((v && v.lang) || "").replace(/_/g, "-");
+  }
+
+  function isEnGb(v) {
+    return /^en-GB\b/i.test(voiceLang(v));
+  }
+
+  function isFemaleName(name) {
+    return /female/i.test(name);
+  }
+
+  // Web Speech has no gender field. "Female" contains "male", so that check is first.
+  // George and Ryan are the Windows en-GB male defaults; the rest are the common UK/Scottish names.
+  function isMaleName(name) {
+    if (isFemaleName(name)) return false;
+    if (/\bmale\b/i.test(name)) return true;
+    return /\b(daniel|arthur|gordon|rishi|oliver|malcolm|george|ryan)\b/i.test(name);
+  }
+
+  function pickDialVoice(voices) {
+    const list = voices || [];
+    return (
+      list.find((v) => /google uk english male/i.test(voiceName(v))) ||
+      list.find((v) => isEnGb(v) && /\bdaniel\b/i.test(voiceName(v))) ||
+      list.find((v) => isEnGb(v) && isMaleName(voiceName(v))) ||
+      list.find((v) => BRITISH_MALE_NAME.test(voiceName(v)) && !isFemaleName(voiceName(v))) ||
+      list.find((v) => isEnGb(v)) ||
+      list.find((v) => /en-US/i.test(voiceLang(v)) && /natural|samantha|daniel|google/i.test(voiceName(v))) ||
+      list.find((v) => /^en/i.test(voiceLang(v))) ||
+      null
+    );
+  }
+
   function speakVoice(text, el) {
     if (!voiceOn || !text || !el) return;
     const synth = window.speechSynthesis;
@@ -558,14 +601,16 @@ label: ${escapeHtml(b.label || "board temperature (blend, not prophecy)")}</pre>
       const wasSpeaking = !!synth.speaking;
       synth.cancel();
       const utter = new SpeechSynthesisUtterance(text);
-      utter.lang = "en-US";
-      utter.rate = 1;
-      utter.pitch = 0.96;
+      utter.rate = DIAL_VOICE_RATE;
+      utter.pitch = DIAL_VOICE_PITCH;
       const voices = synth.getVoices ? synth.getVoices() : [];
-      const pick =
-        voices.find((v) => /en-US/i.test(v.lang) && /natural|samantha|daniel|google/i.test(v.name)) ||
-        voices.find((v) => /^en/i.test(v.lang));
-      if (pick) utter.voice = pick;
+      const pick = pickDialVoice(voices);
+      if (pick) {
+        utter.voice = pick;
+        utter.lang = voiceLang(pick) || "en-GB";
+      } else {
+        utter.lang = "en-GB";
+      }
       const done = () => el.classList.remove("is-speaking");
       utter.onend = done;
       utter.onerror = done;
